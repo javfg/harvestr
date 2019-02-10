@@ -1,0 +1,29 @@
+[{
+  "name": "UniProt: Gene name",
+  "url": "https://Xuniprot.org/uniprot/{{ITEM}}.xml",
+  "field": "entry.accession[0]",
+  "fetcher": "standardFetch",
+  "parser": "printToConsole",
+  "multiple": false
+}, {
+  "name": "UniProt: Accession",
+  "url": "https://Xuniprot.org/uniprot/{{ITEM}}.xml",
+  "field": "entry.gene.name",
+  "fetcher": "standardFetch",
+  "parseStrategy": "printToConsole",
+  "multiple": false
+}, {
+  "name": "UniProt: subcellular location",
+  "url": "https://Xuniprot.org/uniprot/{{ITEM}}.xml",
+  "field": "subcellularLocation",
+  "fetcher": "standardFetch",
+  "parseStrategy": "printToConsole",
+  "multiple": true
+}, {
+  "name": "UniProt interactions",
+  "url": "https://Xuniprot.org/uniprot/{{ITEM}}.xml",
+  "field": "interactant",
+  "fetcher": "standardFetch",
+  "parser": "printToConsole",
+  "multiple": true
+}]
