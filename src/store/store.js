@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 import itemListReducer from '../reducers/itemList';
 import searchProfileReducer from '../reducers/searchProfile';
 //import searchEngineReducer from '../reducers/searchEngine'
+import searchResultReducer from '../reducers/searcResults';
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -16,8 +17,9 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   combineReducers({
     itemList: itemListReducer,
-    searchProfile: searchProfileReducer
+    searchProfile: searchProfileReducer,
     //searchEngine: searchEngineReducer
+    searchResults: searchResultReducer
   }),
   composeEnhancers(applyMiddleware(thunk))
 );

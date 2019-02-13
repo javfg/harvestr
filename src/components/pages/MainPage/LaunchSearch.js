@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import selectItemList from '../../../selectors/itemList';
 import selectSearchProfile from '../../../selectors/searchProfile';
 import SearchEngine from '../../../engine/searchEngine';
+import { setSearchResults } from '../../../actions/searchResults';
 
 
 class LaunchSearch extends React.Component {
@@ -14,11 +15,13 @@ class LaunchSearch extends React.Component {
     this.props = props;
   }
 
-  handleLaunchSearch = () => {
+  handleLaunchSearch = async () => {
     const searchEngine = new SearchEngine();
-    const searchResult = searchEngine.run(this.props.searchProfile, this.props.itemList);
+    const searchResults = await searchEngine.run(this.props.searchProfile, this.props.itemList);
 
-    console.log('searchResult when done', searchResult);
+    console.log('searchResult when done', JSON.stringify(searchResults));
+
+    this.props.setSearchResults(searchResults);
   }
 
   render() {
@@ -48,6 +51,9 @@ const mapStateToProps = (state) => {
   };
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  setSearchResults: (data) => dispatch(setSearchResults(data))
+});
 
 // Connect HOC.
-export default connect(mapStateToProps)(LaunchSearch);
+export default connect(mapStateToProps, mapDispatchToProps)(LaunchSearch);

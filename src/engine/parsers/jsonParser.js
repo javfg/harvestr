@@ -1,16 +1,11 @@
-import { getField } from "../../utils/utils";
+import get from 'lodash/get';
 
 
-export const jsonParser = function (doc, fields) {
+export const jsonParser = function (doc, fields, multiple) {
   try {
-    const results = fields.map(f => {
-      console.log('parsing', f, 'from', doc );
-      getField(doc, f, undefined);
-    });
+    const result = fields.map(f => get(doc, f, 'EMPTY'));
 
-    console.log('results', results);
-
-    return results;
+    return multiple ? result : result[0];
   } catch (e) {
     console.log('e', e);
   }

@@ -1,5 +1,3 @@
-import async from 'async-es';
-
 // Fetcher/Parser and strategies.
 import Fetcher from "./fetcher";
 import { standardFetcher } from "./fetchers/standardFetcher";
@@ -9,7 +7,7 @@ import { jsonParser } from './parsers/jsonParser';
 
 
 export default class SearchEngine {
-  getFetcherFunction = (fetcherFunctionName) => {
+  getFetcher = (fetcherFunctionName) => {
     switch (fetcherFunctionName) {
       case 'standardFetcher': return standardFetcher;
 
@@ -18,7 +16,7 @@ export default class SearchEngine {
     }
   };
 
-  getParserFunction = (parserFunctionName) => {
+  getParser = (parserFunctionName) => {
     switch (parserFunctionName) {
       case 'xmlParser': return xmlParser;
       case 'jsonParser': return jsonParser;
@@ -29,37 +27,39 @@ export default class SearchEngine {
   };
 
 
-  run = (searchProfile, itemList) => {
-    let searchResult = {};
+  processQuery = async (query, item) => {
+    const url = query.url.replace(/{{ITEM}}/, item);
 
-    const queue = async.queue((promise, callBack) => {
-      promise.then((doc) => {
-        callBack(doc);
-      });
-    }, searchProfile.length);
+    const fetcher = new Fetcher(this.getFetcher(query.fetcher), url, this.cache);
+    const fetch = await fetcher.fetch();
 
-    // Traverse item list...
-    itemList.forEach(item => {
-      searchResult[item] = {};
+    const parser = new Parser(this.getParser(query.parser), fetch.data, query.fields, query.multiple);
+    const parse = parser.parse();
 
-      // Traverse search queries in search profile...
-      searchProfile.forEach(query => {
-        const url = query.url.replace(/{{ITEM}}/, item);
-        const fetcher = new Fetcher(this.getFetcherFunction(query.fetcher), url, this.cache);
+    return parse;
+  }
 
-        queue.push(
-          fetcher.fetch(),
-          (doc) => {
-            searchResult[item][query.name] = new Parser(this.getParserFunction(query.parser), doc.data, query.fields).parse();
-          }
-        );
+
+  run = async (searchProfile, itemList) => {
+    let searchResult = [];
+
+    itemList.forEach(async item => {
+      searchResult.push({
+        item,
+        queries: await Promise.all(searchProfile.map(async query => {
+          const data = await this.processQuery(query, item);
+          console.log('data', data);
+
+          const queryResult = {
+            query: query.name,
+            data
+          };
+
+          return queryResult;
+        }))
       });
     });
 
-
-    queue.drain = () => {
-      console.log('all elements processed');
-      return searchResult;
-    }
+    return searchResult;
   }
 }
