@@ -95,6 +95,7 @@ export default class SearchEngine {
       })
     );
 
+    //TODO: CREATE OBJECT WITH QUERY FIELD NAME
     return searchResult;
   };
 }

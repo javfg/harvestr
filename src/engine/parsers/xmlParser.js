@@ -8,7 +8,7 @@ export const xmlParser = function(doc, fields, multiple) {
     );
 
     const result = fields.map(f => {
-      return JSON.stringify(get(jsonDoc, f, "EMPTY"));
+      return get(jsonDoc, f, "EMPTY")._text;
     });
 
     return result;

@@ -1,10 +1,9 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 
-import ItemList from './HarvestPage/ItemList';
+import ResultItemList from "./HarvestPage/ResultItemList";
 
-import { setSearchResults } from '../../actions/searchResults';
-
+import { setSearchResults } from "../../actions/searchResults";
 
 class HarvestPage extends React.Component {
   constructor(props) {
@@ -14,30 +13,31 @@ class HarvestPage extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log('this.props', this.props);
+    console.log("this.props", this.props);
   }
 
   render() {
     return (
       <div>
         <h2>Search results</h2>
-        <ItemList items={this.props.searchResults} />
+        <ResultItemList items={this.props.searchResults} />
       </div>
     );
   }
 }
 
-
 //
 // Mapping functions.
 //
-const mapStateToProps = (state) => {
-  return {searchResults: state.searchResults};
+const mapStateToProps = state => {
+  return { searchResults: state.searchResults };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  setItemList: (data) => dispatch(setSearchResults(data))
+const mapDispatchToProps = dispatch => ({
+  setItemList: data => dispatch(setSearchResults(data))
 });
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(HarvestPage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HarvestPage);

@@ -1,0 +1,14 @@
+[
+  {
+    "name": "UniProt",
+    "url": "https://www.uniprot.org/uniprot/{{ITEM}}.xml",
+    "fields": [
+      "uniprot.entry.accession[0]",
+      "uniprot.entry.gene.name",
+      "uniprot.entry.sequence"
+    ],
+    "fetcher": "standardFetcher",
+    "parser": "xmlParser",
+    "multiple": false
+  }
+]
