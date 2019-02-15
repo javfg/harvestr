@@ -1,16 +1,17 @@
 import React from "react";
 
-const ResultQuery = ({ query, data }) => {
-  console.log("data", data);
-
+const ResultQuery = ({ name, url, fields }) => {
   return (
     <li>
-      {query}:
+      <strong>{name}:</strong> {url}
       <ul>
-        {data.map(d => {
-          console.log("d", d);
-
-          return <p key={d}>{d}</p>;
+        {fields.map((f, i) => {
+          return (
+            <li key={`${f}-${i}`}>
+              <strong>{f.name}:</strong>{" "}
+              {Array.isArray(f.data) ? f.data.join("; ") : f.data || "Empty"}
+            </li>
+          );
         })}
       </ul>
     </li>

@@ -2,14 +2,16 @@ import React from "react";
 
 import ResultQuery from "./ResultQuery";
 
-const ResultItem = ({ data }) => {
+const ResultItem = ({ name, queries }) => {
   return (
     <li>
-      {data.item}:
+      <strong>{name}:</strong>
       <ul>
-        {data.queries.map((query, index) => (
-          <ResultQuery key={`q-${data.item}-${index}-${query}`} {...query} />
-        ))}
+        {queries.map((query, index) => {
+          return (
+            <ResultQuery key={`q-${name}-${index}-${query.name}`} {...query} />
+          );
+        })}
       </ul>
     </li>
   );

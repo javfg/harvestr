@@ -2,13 +2,160 @@
   {
     "name": "UniProt",
     "url": "https://www.uniprot.org/uniprot/{{ITEM}}.xml",
-    "fields": [
-      "uniprot.entry.accession[0]",
-      "uniprot.entry.gene.name",
-      "uniprot.entry.sequence"
-    ],
     "fetcher": "standardFetcher",
     "parser": "xmlParser",
-    "multiple": false
+    "saveData": [
+      {
+        "name": "SEQUENCE",
+        "field": "uniprot.entry.sequence"
+      }
+    ],
+    "fields": [
+      {
+        "name": "Accession",
+        "field": "uniprot.entry.accession",
+        "type": "text",
+        "multiple": true
+      },
+      {
+        "name": "Gene name",
+        "type": "text",
+        "field": "uniprot.entry.gene.name"
+      },
+      {
+        "name": "Full name",
+        "type": "text",
+        "field": "uniprot.entry.protein.submittedName.fullName",
+        "or": "uniprot.entry.protein.recommendedName.fullName"
+      },
+      {
+        "name": "Sequence",
+        "type": "text",
+        "field": "uniprot.entry.sequence",
+        "removeNewLines": true
+      },
+      {
+        "name": "Molecular function",
+        "type": "object",
+        "field": "uniprot.entry.dbReference",
+        "mustInclude": "\"value\":\"F:",
+        "getFields": [
+          {
+            "field": "_attributes.id",
+            "linkTo": "https://www.ebi.ac.uk/QuickGO/term/"
+          },
+          {
+            "field": "property[0]._attributes.value",
+            "deleteLeadingChars": 2
+          }
+        ]
+      },
+      {
+        "name": "Subcellular location",
+        "type": "object",
+        "field": "uniprot.entry.dbReference",
+        "mustInclude": "\"value\":\"C:",
+        "getFields": [
+          {
+            "field": "_attributes.id",
+            "linkTo": "https://www.ebi.ac.uk/QuickGO/term/"
+          },
+          {
+            "field": "property[0]._attributes.value",
+            "deleteLeadingChars": 2
+          }
+        ]
+      },
+      {
+        "name": "Disgenet ID",
+        "type": "object",
+        "field": "uniprot.entry.dbReference",
+        "mustInclude": "\"type\":\"DisGeNET\"",
+        "getFields": [
+          {
+            "field": "_attributes.id"
+          }
+        ]
+      },
+      {
+        "name": "Glycosylation sites",
+        "type": "object",
+        "field": "uniprot.entry.feature",
+        "mustInclude": "\"type\":\"glycosylation site\"",
+        "getFields": [
+          {
+            "field": "_attributes.description"
+          },
+          {
+            "field": "location.position._attributes.position"
+          }
+        ]
+      },
+      {
+        "name": "Disulfide bonds",
+        "type": "object",
+        "field": "uniprot.entry.feature",
+        "mustInclude": "\"type\":\"disulfide bond\"",
+        "getFields": [
+          {
+            "field": "location.begin._attributes.position",
+            "and": "location.end._attributes.position",
+            "or": "location.position._attributes.position"
+          }
+        ]
+      },
+      {
+        "name": "Tissue specificity",
+        "type": "object",
+        "field": "uniprot.entry.comment",
+        "mustInclude": "\"type\":\"tissue specificity\"",
+        "getFields": [
+          {
+            "field": "text._text"
+          }
+        ]
+      },
+      {
+        "name": "BioGrid ID",
+        "type": "object",
+        "field": "uniprot.entry.dbReference",
+        "mustInclude": "\"type\":\"BioGrid\"",
+        "getFields": [
+          {
+            "field": "_attributes.id"
+          }
+        ],
+        "linkTo": "https://thebiogrid.org/"
+      },
+      {
+        "name": "Reactome pathways",
+        "type": "object",
+        "field": "uniprot.entry.dbReference",
+        "mustInclude": "\"type\":\"Reactome\"",
+        "getFields": [
+          {
+            "field": "_attributes.id"
+          },
+          {
+            "field": "property._attributes.value"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "TM Predictor",
+    "url": "http://tm.life.nthu.edu.tw/result.php?seq={{SEQUENCE}}&submit=Submit",
+    "fetcher": "corsFetcher",
+    "parser": "htmlParser",
+    "requires": "SEQUENCE",
+    "fields": [
+      {
+        "name": "TM Index",
+        "type": "text",
+        "searchString": "Tm Index (TI)",
+        "betweenTags": "font"
+      }
+    ]
   }
 ]

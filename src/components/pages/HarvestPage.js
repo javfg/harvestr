@@ -5,6 +5,8 @@ import ResultItemList from "./HarvestPage/ResultItemList";
 
 import { setSearchResults } from "../../actions/searchResults";
 
+import { exportCSV } from "../../utils/utils";
+
 class HarvestPage extends React.Component {
   constructor(props) {
     super(props);
@@ -12,14 +14,15 @@ class HarvestPage extends React.Component {
     this.props = props;
   }
 
-  componentDidUpdate() {
-    console.log("this.props", this.props);
-  }
+  handleSaveHarvest = () => {
+    exportCSV(this.props.searchResults);
+  };
 
   render() {
     return (
       <div>
         <h2>Search results</h2>
+        <button onClick={this.handleSaveHarvest}>Save CSV</button>
         <ResultItemList items={this.props.searchResults} />
       </div>
     );

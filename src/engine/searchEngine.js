@@ -1,9 +1,12 @@
 // Fetcher/Parser and strategies.
 import Fetcher from "./fetcher";
 import { standardFetcher } from "./fetchers/standardFetcher";
+
 import Parser from "./parser";
 import { xmlParser } from "./parsers/xmlParser";
 import { jsonParser } from "./parsers/jsonParser";
+import { corsFetcher } from "./fetchers/corsFetcher";
+import { htmlParser } from "./parsers/htmlParser";
 
 export default class SearchEngine {
   savedData = {};
@@ -12,6 +15,8 @@ export default class SearchEngine {
     switch (fetcherFunctionName) {
       case "standardFetcher":
         return standardFetcher;
+      case "corsFetcher":
+        return corsFetcher;
 
       default:
         return undefined;
@@ -24,6 +29,8 @@ export default class SearchEngine {
         return xmlParser;
       case "jsonParser":
         return jsonParser;
+      case "htmlParser":
+        return htmlParser;
 
       default:
         return undefined;
@@ -50,8 +57,8 @@ export default class SearchEngine {
     const data = fetcher.fetch();
 
     // Save data promise.
-    if (query.saveTo) {
-      this.savedData[query.saveTo] = data;
+    if (query.saveData) {
+      query.saveData.forEach(sd => (this.savedData[sd.name] = data));
     }
 
     const fetch = await data;
@@ -65,11 +72,17 @@ export default class SearchEngine {
     const parse = parser.parse();
 
     // Save data if specified.
-    if (query.saveTo) {
-      this.savedData[query.saveTo] = parse;
+    if (query.saveData) {
+      query.saveData.forEach(sd => {
+        this.savedData[sd.name] = parse.find(f => f.field === sd.field).data;
+      });
     }
 
-    return parse;
+    // Add final url to results.
+    return {
+      url,
+      data: parse
+    };
   };
 
   run = async (searchProfile, itemList) => {
@@ -78,14 +91,21 @@ export default class SearchEngine {
     await Promise.all(
       itemList.map(async item => {
         searchResult.push({
-          item,
+          name: item,
           queries: await Promise.all(
             searchProfile.map(async query => {
-              const data = await this.processQuery(query, item);
+              const result = await this.processQuery(query, item);
+
+              console.log("result", result);
 
               const queryResult = {
-                query: query.name,
-                data
+                name: query.name,
+                url: result.url,
+                fields: result.data.map(d => ({
+                  name: d.name,
+                  field: d.field,
+                  data: d.data
+                }))
               };
 
               return queryResult;
