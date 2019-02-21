@@ -18,7 +18,11 @@ export const xmlParser = function(doc, field, multiple) {
     // Text type field.
     if (field.type === "text") {
       // Get text.
-      data = Array.isArray(data) ? data.map(e => e._text) : data._text;
+      data = Array.isArray(data)
+        ? data.map(e => e._text)
+        : typeof data === "object"
+        ? Object.keys(data).map(k => data[k]._text)
+        : data._text;
 
       // Remove newlines.
       if (field.removeNewLines) {

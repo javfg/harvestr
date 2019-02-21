@@ -1,0 +1,16 @@
+[
+  {
+    "name": "PMC IDs",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&term={{ITEM}}%20AND%antithombin",
+    "fetcher": "standardFetcher",
+    "parser": "xmlParser",
+    "fields": [
+      {
+        "name": "IDs",
+        "field": "eSearchResult.IdList.Id",
+        "type": "text",
+        "multiple": true
+      }
+    ]
+  }
+]
