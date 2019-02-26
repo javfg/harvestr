@@ -18,11 +18,19 @@ export const xmlParser = function(doc, field, multiple) {
     // Text type field.
     if (field.type === "text") {
       // Get text.
-      data = Array.isArray(data)
-        ? data.map(e => e._text)
-        : typeof data === "object"
-        ? Object.keys(data).map(k => data[k]._text)
-        : data._text;
+
+      // TODO TEXT SHOULD BE IN SEARCHPROFILE
+      if (Array.isArray(data)) {
+        data = data.map(e => e._text);
+      } else if (typeof data === "object") {
+        if (data._text) {
+          data = data._text;
+        } else {
+          data = Object.keys(data).map(k => data[k]._text);
+        }
+      } else {
+        data = data._text;
+      }
 
       // Remove newlines.
       if (field.removeNewLines) {
@@ -33,6 +41,15 @@ export const xmlParser = function(doc, field, multiple) {
       if (Array.isArray(data) && field.multiple === false) {
         data = data[0];
       }
+
+      // Link to in arrays.
+      if (field.linkTo) {
+        console.log("data in linkto", data);
+
+        data = data.map(e => [e, `${field.linkTo}${e}`]);
+      }
+
+      console.log("data", data);
     }
 
     // dbReference type field.
@@ -77,7 +94,7 @@ export const xmlParser = function(doc, field, multiple) {
         );
       }
 
-      // Link to.
+      // Link to in arrays.
       if (field.linkTo && data[0]) {
         data.push(`${field.linkTo}${data[0]}`);
       }
