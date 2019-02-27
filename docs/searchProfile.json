@@ -4,12 +4,7 @@
     "url": "https://www.uniprot.org/uniprot/{{ITEM}}.xml",
     "fetcher": "standardFetcher",
     "parser": "xmlParser",
-    "saveData": [
-      {
-        "name": "SEQUENCE",
-        "field": "uniprot.entry.sequence"
-      }
-    ],
+    "saveData": ["SEQUENCE", "DISGENET"],
     "fields": [
       {
         "name": "Accession",
@@ -32,7 +27,8 @@
         "name": "Sequence",
         "type": "text",
         "field": "uniprot.entry.sequence",
-        "removeNewLines": true
+        "removeNewLines": true,
+        "saveData": ["SEQUENCE", -1]
       },
       {
         "name": "Molecular function",
@@ -71,11 +67,13 @@
         "type": "object",
         "field": "uniprot.entry.dbReference",
         "mustInclude": "\"type\":\"DisGeNET\"",
+        "saveData": ["DISGENET", 1],
         "getFields": [
           {
             "field": "_attributes.id"
           }
-        ]
+        ],
+        "linkTo": "http://disgenet.org/search?q="
       },
       {
         "name": "Glycosylation sites",
@@ -143,6 +141,7 @@
       }
     ]
   },
+
   {
     "name": "TM Predictor",
     "url": "http://tm.life.nthu.edu.tw/result.php?seq={{SEQUENCE}}&submit=Submit",
@@ -158,6 +157,7 @@
       }
     ]
   },
+
   {
     "name": "PMC",
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&term={{ITEM}}%20AND%antithrombin",
@@ -173,11 +173,18 @@
       }
     ]
   },
+
   {
-    "name": "Disgenet",
-    "url": "",
+    "name": "Biogrid",
+    "url": "https://webservice.thebiogrid.org/interactions/?geneList={{ITEM}}&interSpeciesExcluded=true&accessKey=8b95f31461c48d27eb8cce6e8f1caa15",
     "fetcher": "standardFetcher",
-    "parser": "txtParser",
-    "fields": []
+    "parser": "csvParser",
+    "requires": "BIOGRID",
+    "fields": [
+      {
+        "name": "BioGRID Interaction ID",
+        "field": 0
+      }
+    ]
   }
 ]

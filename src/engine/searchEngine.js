@@ -7,6 +7,8 @@ import { xmlParser } from "./parsers/xmlParser";
 import { jsonParser } from "./parsers/jsonParser";
 import { corsFetcher } from "./fetchers/corsFetcher";
 import { htmlParser } from "./parsers/htmlParser";
+import { csvParser } from "./parsers/csvParser";
+import { tsvParser } from "./parsers/tsvParser";
 
 export default class SearchEngine {
   savedData = {};
@@ -31,6 +33,10 @@ export default class SearchEngine {
         return jsonParser;
       case "htmlParser":
         return htmlParser;
+      case "csvParser":
+        return csvParser;
+      case "tsvParser":
+        return tsvParser;
 
       default:
         return undefined;
@@ -58,7 +64,7 @@ export default class SearchEngine {
 
     // Save data promise.
     if (query.saveData) {
-      query.saveData.forEach(sd => (this.savedData[sd.name] = data));
+      query.saveData.forEach(sd => (this.savedData[sd] = data));
     }
 
     const fetch = await data;
@@ -74,9 +80,18 @@ export default class SearchEngine {
     // Save data if specified.
     if (query.saveData) {
       query.saveData.forEach(sd => {
-        this.savedData[sd.name] = parse.find(f => f.field === sd.field).data;
+        const fieldToSave = parse.find(f => f.saveData && f.saveData[0] === sd);
+
+        // Save field or subfield, depending on index specified.
+        if (fieldToSave.saveData[1] === -1) {
+          this.savedData[sd] = fieldToSave.data;
+        } else {
+          this.savedData[sd] = fieldToSave.data[fieldToSave.saveData[1]];
+        }
       });
     }
+
+    console.log("parse", parse);
 
     // Add final url to results.
     return {

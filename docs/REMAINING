@@ -1,0 +1,13 @@
+  {
+    "name": "Disgenet",
+    "url": "",
+    "fetcher": "standardFetcher",
+    "parser": "csvParser",
+    "requires": "DISGENET",
+    "fields": [
+      {
+        "name": "DOC",
+        "field": ""
+      }
+    ]
+  },

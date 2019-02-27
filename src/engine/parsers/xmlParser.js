@@ -44,12 +44,8 @@ export const xmlParser = function(doc, field, multiple) {
 
       // Link to in arrays.
       if (field.linkTo) {
-        console.log("data in linkto", data);
-
         data = data.map(e => [e, `${field.linkTo}${e}`]);
       }
-
-      console.log("data", data);
     }
 
     // dbReference type field.
