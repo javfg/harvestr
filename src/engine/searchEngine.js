@@ -6,6 +6,7 @@ import Parser from "./parser";
 import { xmlParser } from "./parsers/xmlParser";
 import { jsonParser } from "./parsers/jsonParser";
 import { corsFetcher } from "./fetchers/corsFetcher";
+import { serverFetcher } from "./fetchers/serverFetcher";
 import { htmlParser } from "./parsers/htmlParser";
 import { csvParser } from "./parsers/csvParser";
 import { tsvParser } from "./parsers/tsvParser";
@@ -19,6 +20,8 @@ export default class SearchEngine {
         return standardFetcher;
       case "corsFetcher":
         return corsFetcher;
+      case "serverFetcher":
+        return serverFetcher;
 
       default:
         return undefined;

@@ -4,7 +4,7 @@
     "url": "https://www.uniprot.org/uniprot/{{ITEM}}.xml",
     "fetcher": "standardFetcher",
     "parser": "xmlParser",
-    "saveData": ["SEQUENCE", "DISGENET"],
+    "saveData": ["SEQUENCE", "DISGENET", "GENENAME"],
     "fields": [
       {
         "name": "Accession",
@@ -15,7 +15,8 @@
       {
         "name": "Gene name",
         "type": "text",
-        "field": "uniprot.entry.gene.name"
+        "field": "uniprot.entry.gene.name",
+        "saveData": ["GENENAME", -1]
       },
       {
         "name": "Full name",
@@ -145,7 +146,7 @@
   {
     "name": "TM Predictor",
     "url": "http://tm.life.nthu.edu.tw/result.php?seq={{SEQUENCE}}&submit=Submit",
-    "fetcher": "corsFetcher",
+    "fetcher": "serverFetcher",
     "parser": "htmlParser",
     "requires": "SEQUENCE",
     "fields": [
@@ -160,9 +161,10 @@
 
   {
     "name": "PMC",
-    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&term={{ITEM}}%20AND%antithrombin",
-    "fetcher": "corsFetcher",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&term={{GENENAME}}%20AND%antithrombin",
+    "fetcher": "serverFetcher",
     "parser": "xmlParser",
+    "requires": "GENENAME",
     "fields": [
       {
         "name": "IDs",
@@ -176,9 +178,10 @@
 
   {
     "name": "Biogrid",
-    "url": "https://webservice.thebiogrid.org/interactions/?geneList={{ITEM}}&accessKey=8b95f31461c48d27eb8cce6e8f1caa15",
+    "url": "https://webservice.thebiogrid.org/interactions/?geneList={{GENENAME}}&accessKey=8b95f31461c48d27eb8cce6e8f1caa15",
     "fetcher": "standardFetcher",
     "parser": "tsvParser",
+    "requires": "GENENAME",
     "fields": [
       {
         "name": "BioGRID Interaction ID",
