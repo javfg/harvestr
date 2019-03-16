@@ -91,8 +91,6 @@ export default class SearchEngine {
       });
     }
 
-    console.log("parse", parse);
-
     // Add final url to results.
     return {
       url,
@@ -110,8 +108,6 @@ export default class SearchEngine {
           queries: await Promise.all(
             searchProfile.map(async query => {
               const result = await this.processQuery(query, item);
-
-              console.log("result", result);
 
               const queryResult = {
                 name: query.name,
