@@ -161,7 +161,7 @@
   {
     "name": "PMC",
     "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&term={{ITEM}}%20AND%antithrombin",
-    "fetcher": "standardFetcher",
+    "fetcher": "corsFetcher",
     "parser": "xmlParser",
     "fields": [
       {
@@ -176,14 +176,29 @@
 
   {
     "name": "Biogrid",
-    "url": "https://webservice.thebiogrid.org/interactions/?geneList={{ITEM}}&interSpeciesExcluded=true&accessKey=8b95f31461c48d27eb8cce6e8f1caa15",
+    "url": "https://webservice.thebiogrid.org/interactions/?geneList={{ITEM}}&accessKey=8b95f31461c48d27eb8cce6e8f1caa15",
     "fetcher": "standardFetcher",
-    "parser": "csvParser",
-    "requires": "BIOGRID",
+    "parser": "tsvParser",
     "fields": [
       {
         "name": "BioGRID Interaction ID",
         "field": 0
+      },
+      {
+        "name": "Interactor A",
+        "field": 5
+      },
+      {
+        "name": "Interactor B",
+        "field": 6
+      },
+      {
+        "name": "Pubmed ID",
+        "field": 14
+      },
+      {
+        "name": "Score",
+        "field": 18
       }
     ]
   }
