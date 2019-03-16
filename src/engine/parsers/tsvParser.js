@@ -1,3 +1,4 @@
+// TODO: Refactor into Generic Separated Value parser.
 export const tsvParser = function(doc, field) {
   try {
     let data = [];
