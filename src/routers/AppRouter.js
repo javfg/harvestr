@@ -11,7 +11,7 @@ import NotFoundPage from '../components/pages/NotFoundPage';
 
 
 const AppRouter = () => (
-  <BrowserRouter basename="/harvestr">
+  <BrowserRouter>
     <div>
       <Header />
       <Switch>
