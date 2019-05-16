@@ -3,11 +3,11 @@ import React from 'react';
 import { faSeedling } from '@fortawesome/free-solid-svg-icons';
 
 // Actions
-import LoadItemList from './MainPage/LoadItemList';
-import LoadSearchProfile from './MainPage/LoadSearchProfile';
-import LoadRankingDefinition from './MainPage/LoadRankingDefinition';
-import LaunchSearch from './MainPage/LaunchSearch';
-import LoadSearchResults from './MainPage/LoadSearchResults';
+import LoadItemList from './HomePage/LoadItemList';
+import LoadSearchProfile from './HomePage/LoadSearchProfile';
+import LoadRankingDefinition from './HomePage/LoadRankingDefinition';
+import LaunchSearch from './HomePage/LaunchSearch';
+import LoadSearchResults from './HomePage/LoadSearchResults';
 
 import PageTitle from '../common/PageTitle';
 
