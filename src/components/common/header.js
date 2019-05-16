@@ -1,40 +1,76 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { AppBar, Button, Toolbar, Typography } from '@material-ui/core';
-import { Home, List, Search, Sort } from '@material-ui/icons';
-import { withStyles } from '@material-ui/styles'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faHome,
+  faSearch,
+  faListOl,
+  faPoll
+} from '@fortawesome/free-solid-svg-icons';
 
 
-const styles = {
-  rightToolbar: {
-    marginLeft: 'auto',
-    marginRight: -12
+class Header extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      navCollapsed: true
+    };
+  }
+
+
+  handleToggleNav = () => {
+    this.setState({navCollapsed: !this.state.navCollapsed});
+  }
+
+  render() {
+    const {
+      state: { navCollapsed },
+      handleToggleNav
+    } = this;
+
+    return (
+      <header>
+        <nav className="navbar navbar-expand-md navbar-dark bg-secondary shadow-sm">
+
+          <a className="navbar-brand" href="#">
+            <h2 className="mt-2">HARVESTR</h2>
+          </a>
+
+          <button className="navbar-toggler" type="button" onClick={handleToggleNav}>
+            <span className="navbar-toggler-icon"></span>
+          </button>
+
+          <div className={`collapse navbar-collapse ${navCollapsed ? '' : 'show'}`}>
+            <ul className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <NavLink exact to="/" className="nav-link" activeClassName="active">
+                    <FontAwesomeIcon icon={faHome}/> HOME
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink exact to="/profile" className="nav-link" activeClassName="active">
+                    <FontAwesomeIcon icon={faSearch}/> SEARCH PROFILE
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink exact to="/ranking" className="nav-link" activeClassName="active">
+                    <FontAwesomeIcon icon={faListOl}/> RANKING
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink exact to="/harvest" className="nav-link" activeClassName="active">
+                    <FontAwesomeIcon icon={faPoll}/> RESULTS
+                </NavLink>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+    );
   }
 }
 
-// eslint-disable-next-line react/display-name
-const AdapterNavLink = React.forwardRef((props, ref) => <NavLink innerRef={ref} {...props} />);
 
-
-const Header = ({ classes }) => (
-  <header>
-    <AppBar position="sticky" color="primary">
-      <Toolbar>
-        <Typography variant="h4">
-          HARVESTR
-        </Typography>
-
-        <section className={classes.rightToolbar}>
-          <Button component={AdapterNavLink} to="/"><Home />Home</Button>
-          <Button component={AdapterNavLink} to="/profile"><Search />Search Profile</Button>
-          <Button component={AdapterNavLink} to="/ranking"><Sort />Ranking</Button>
-          <Button component={AdapterNavLink} to="/harvest"><List />Results</Button>
-        </section>
-      </Toolbar>
-    </AppBar>
-  </header>
-);
-
-
-export default withStyles(styles)(Header);
+export default Header;

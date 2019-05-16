@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Header from '../components/common/header';
 
-import MainPage from '../components/pages/MainPage';
+import HomePage from '../components/pages/HomePage';
 import SearchProfilePage from '../components/pages/SearchProfilePage';
 import RankingPage from '../components/pages/RankingPage';
 import HarvestPage from '../components/pages/HarvestPage';
@@ -12,16 +12,16 @@ import NotFoundPage from '../components/pages/NotFoundPage';
 
 const AppRouter = () => (
   <BrowserRouter>
-    <div>
+    <>
       <Header />
       <Switch>
-        <Route exact path="/" component={MainPage} />
+        <Route exact path="/" component={HomePage} />
         <Route path="/profile" component={SearchProfilePage} />
         <Route path="/ranking" component={RankingPage} />
         <Route path="/harvest" component={HarvestPage} />
         <Route component={NotFoundPage} />
       </Switch>
-    </div>
+    </>
   </BrowserRouter>
 )
 
