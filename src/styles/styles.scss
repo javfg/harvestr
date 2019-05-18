@@ -1,4 +1,6 @@
 @import './base/base';
 @import './base/bootstrap_extra';
 
-@import "../../node_modules/bootstrap/scss/bootstrap";
+@import './components/common/step';
+
+@import '../../node_modules/bootstrap/scss/bootstrap';

@@ -3,11 +3,12 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Header from '../components/common/Header';
 
-import HomePage from '../components/pages/HomePage';
-import SearchProfilePage from '../components/pages/SearchProfilePage';
-import RankingPage from '../components/pages/RankingPage';
 import HarvestPage from '../components/pages/HarvestPage';
+import HomePage from '../components/pages/HomePage';
 import NotFoundPage from '../components/pages/NotFoundPage';
+import RankingPage from '../components/pages/RankingPage';
+import ResultsPage from '../components/pages/ResultsPage';
+import SearchProfilePage from '../components/pages/SearchProfilePage';
 
 
 const AppRouter = () => (
@@ -16,9 +17,10 @@ const AppRouter = () => (
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
+        <Route path="/harvest" component={HarvestPage} />
         <Route path="/profile" component={SearchProfilePage} />
         <Route path="/ranking" component={RankingPage} />
-        <Route path="/harvest" component={HarvestPage} />
+        <Route path="/results" component={ResultsPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </>
