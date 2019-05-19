@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { CSSTransition } from 'react-transition-group';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowCircleLeft, faArrowCircleRight } from '@fortawesome/free-solid-svg-icons';
 
@@ -36,7 +38,12 @@ class Steps extends React.Component {
     return (
       <div className="row">
         <div className="col col-xs-4 col-sm-3 col-md-2">
-          {currentStep !== 1 && (
+          <CSSTransition
+            in={currentStep !== 1}
+            timeout={250}
+            classNames='step-button'
+            unmountOnExit
+          >
             <button
               className="btn btn-primary btn-block"
               onClick={handlePrevClick}
@@ -44,17 +51,20 @@ class Steps extends React.Component {
               <p className="mb-0"><FontAwesomeIcon icon={faArrowCircleLeft} size="2x" /></p>
                 Go back
             </button>
-          )}
+          </CSSTransition>
         </div>
 
-        <div
-          className="col col-xs-4 col-sm-6 col-md-8 d-flex"
-        >
+        <div className="col col-xs-4 col-sm-6 col-md-8 d-flex">
           {preparedChildren}
         </div>
 
         <div className="col col-xs-4 col-sm-3 col-md-2 text-right">
-          {currentStep !== totalSteps && (
+          <CSSTransition
+              in={currentStep !== totalSteps}
+              timeout={250}
+              classNames='step-button'
+              unmountOnExit
+          >
             <button
               className="btn btn-primary btn-block"
               onClick={handleNextClick}
@@ -63,7 +73,7 @@ class Steps extends React.Component {
               <p className="mb-0"><FontAwesomeIcon icon={faArrowCircleRight} size="2x" /></p>
               Continue
             </button>
-          )}
+          </CSSTransition>
         </div>
       </div>
     );

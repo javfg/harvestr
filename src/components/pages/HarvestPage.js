@@ -20,6 +20,7 @@ class HarvestPage extends React.Component {
 
     this.state = {
       currentStep: 1,
+      loadItemListOk: false,
       loadSearchProfileOk: false,
       loadRankingDefinitionOk: false,
       launchSearchOk: false
@@ -42,7 +43,6 @@ class HarvestPage extends React.Component {
         <PageTitle
           icon={faSeedling}
           title="Create a harvest"
-          description="To begin creating a harvest, select a CSV file or paste some data."
         />
 
         <div className="row mb-2">
@@ -52,23 +52,30 @@ class HarvestPage extends React.Component {
                 case 1:
                   return (
                     <div className="p-5 bg-light rounded text-center">
-                      STEP 1
+                      <LoadItemList />
                     </div>
                   );
 
                 case 2:
                   return (
                     <div className="p-5 bg-light rounded text-center">
-                      STEP 2
+                      <LoadSearchProfile />
                     </div>
                   );
 
                 case 3:
                   return (
                     <div className="p-5 bg-light rounded text-center">
-                      STEP 3
+                      <LoadRankingDefinition />
                     </div>
                   );
+
+                case 4:
+                  return (
+                    <div className="p-5 bg-light rounded text-center">
+                      <LaunchSearch />
+                    </div>
+                  )
               }
             })()}
           </div>
@@ -79,17 +86,11 @@ class HarvestPage extends React.Component {
           handlePrevClick={handlePrevClick}
           handleNextClick={handleNextClick}
         >
+          <Step name="Item list" isCorrect={this.props.loadItemListOk} />
           <Step name="Search profile" isCorrect={this.props.loadSearchProfileOk} />
           <Step name="Ranking definition" isCorrect={this.props.loadRankingDefinitionOk} />
           <Step name="Launch" isCorrect={this.props.launchSearchOk} />
         </Steps>
-
-
-        {/*<LoadItemList />
-        <LoadSearchProfile />
-        <LoadRankingDefinition />
-        <LaunchSearch />
-        <LoadSearchResults />*/}
       </div>
     );
   }

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 class Step extends React.Component {
   constructor(props) {
@@ -26,11 +28,14 @@ class Step extends React.Component {
 
     return (
       <>
-        <div className={`d-flex  align-middle align-items-center ${divClasses}`}>
+        <div className={`d-flex align-middle align-items-center ${divClasses}`}>
           <div className={`mx-2 step-fixed-width border rounded-circle text-center ${stepClasses}`}>
-            {currentStep <= stepNumber && <span>{stepNumber}</span>}
+            {currentStep <= stepNumber ?
+              <span>{stepNumber}</span> :
+              <span className="text-success"><FontAwesomeIcon icon={faCheck} /></span>
+            }
           </div>
-          <small className="text-muted w-100">{name}</small>
+          <small className="text-muted step-label">{name}</small>
           {stepNumber < totalSteps && <div className={`mx-2 ${tailClasses} step-tail w-100`}></div>}
         </div>
       </>

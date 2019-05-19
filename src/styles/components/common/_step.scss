@@ -1,9 +1,52 @@
+// Button animations.
+.step-button-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.step-button-enter-active {
+  opacity: 1;
+  pointer-events: none;
+  transform: translateX(0);
+  transition: opacity 250ms, transform 250ms !important;
+}
+
+.step-button-exit {
+  opacity: 1;
+}
+
+.step-button-exit-active {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.9);
+  transition: opacity 250ms, transform 250ms !important;
+}
+
+
+// Step style.
 .step-fixed-width {
   min-width: 26px;
   height: 26px;
+}
+
+.step-label {
+  white-space: nowrap;
 }
 
 .step-tail {
   height: 1px;
   background-color: #dbe2e9;
 }
+
+
+// Step animations?
+.step-enter {
+  opacity: 1;
+}
+
+.step-enter-active {
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 1000ms !important;
+}
+
