@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import ResultItemList from "./HarvestPage/ResultItemList";
+import ResultItemList from "../harvestpage/ResultItemList";
 
 import { setSearchResults } from "../../actions/searchResults";
 

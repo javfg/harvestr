@@ -1,16 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUpload } from '@fortawesome/free-solid-svg-icons';
+
 // Components.
-import FileLoader from '../../io/FileLoader';
-import ColumnSelector from '../../io/ColumnSelector';
+import FileLoader from '../io/FileLoader';
+import ColumnSelector from '../io/ColumnSelector';
 import ItemList from './ItemList';
 
 // Utils.
-import { arrayOfStrNumbers } from '../../../utils/utils';
+import { arrayOfStrNumbers } from '../../utils/utils';
 
 // Actions.
-import { setItemList } from '../../../actions/itemList';
+import { setItemList } from '../../actions/itemList';
 
 
 class LoadItemList extends React.Component {
@@ -45,7 +48,7 @@ class LoadItemList extends React.Component {
   render() {
     return (
       <div>
-        <h3>Load item list</h3>
+
         <FileLoader fileType='CSV' onFileRead={this.handleItemListFile} />
         <h4>Select data column</h4>
         <ColumnSelector columns={this.state.columns} onSelectedColumn={this.handleSelectedColumn} />

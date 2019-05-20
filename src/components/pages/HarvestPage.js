@@ -3,11 +3,11 @@ import React from 'react';
 import { faSeedling } from '@fortawesome/free-solid-svg-icons';
 
 // Actions
-import LoadItemList from './HomePage/LoadItemList';
-import LoadSearchProfile from './HomePage/LoadSearchProfile';
-import LoadRankingDefinition from './HomePage/LoadRankingDefinition';
-import LaunchSearch from './HomePage/LaunchSearch';
-import LoadSearchResults from './HomePage/LoadSearchResults';
+import LoadItemList from '../harvestpage/LoadItemList';
+// import LoadSearchProfile from './homepage/LoadSearchProfile';
+// import LoadRankingDefinition from './homepage/LoadRankingDefinition';
+// import LaunchSearch from './homepage/LaunchSearch';
+// import LoadSearchResults from './homepage/LoadSearchResults';
 
 import PageTitle from '../common/PageTitle';
 import Steps from '../common/Steps';
@@ -43,6 +43,8 @@ class HarvestPage extends React.Component {
         <PageTitle
           icon={faSeedling}
           title="Create a harvest"
+          description="Follow the steps below to create a harvest."
+          size="h1"
         />
 
         <div className="row mb-2">
@@ -59,21 +61,21 @@ class HarvestPage extends React.Component {
                 case 2:
                   return (
                     <div className="p-5 bg-light rounded text-center">
-                      <LoadSearchProfile />
+                      {/* <LoadSearchProfile /> */}
                     </div>
                   );
 
                 case 3:
                   return (
                     <div className="p-5 bg-light rounded text-center">
-                      <LoadRankingDefinition />
+                      {/* <LoadRankingDefinition /> */}
                     </div>
                   );
 
                 case 4:
                   return (
                     <div className="p-5 bg-light rounded text-center">
-                      <LaunchSearch />
+                      {/* <LaunchSearch /> */}
                     </div>
                   )
               }

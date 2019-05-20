@@ -1,7 +1,7 @@
 import React from 'react';
 
 //Components
-import Item from './Item';
+import Item from '../homepage/Item';
 
 
 const ItemList = ({ items }) => (

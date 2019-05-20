@@ -3,21 +3,29 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
-const PageTitle = ({ icon, title, extraTitle, description }) => (
+const PageTitle = ({ icon, title, extraTitle, description, size }) => (
   <>
-    <div className="row">
+    <div className={`row ${!description ? 'mb-4' : ''}`}>
       <div className="col">
-        <h1>
-          <FontAwesomeIcon icon={icon} /> {title}&nbsp;
-          <span className="font-italic">{extraTitle}</span>
-        </h1>
+        {(() => {
+          const SizeTag = size;
+
+          return (
+            <SizeTag>
+              <FontAwesomeIcon icon={icon} /> {title}&nbsp;
+              <span>{extraTitle}</span>
+            </SizeTag>
+          );
+        })()}
       </div>
     </div>
-    <div className="row">
-      <div className="col">
-        <p>{description}</p>
+    {description && (
+      <div className={`row ${description ? 'mb-4' : ''}`}>
+        <div className="col">
+          <p>{description}</p>
+        </div>
       </div>
-    </div>
+    )}
   </>
 );
 
