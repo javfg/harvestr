@@ -37,7 +37,7 @@ class Steps extends React.Component {
 
     return (
       <div className="row">
-        <div className="col col-xs-4 col-sm-3 col-md-2">
+        <div className="col col-xs-12 col-sm-2 col-lg-2">
           <CSSTransition
             in={currentStep !== 1}
             timeout={250}
@@ -45,7 +45,7 @@ class Steps extends React.Component {
             unmountOnExit
           >
             <button
-              className="btn btn-primary btn-block"
+              className="btn btn-primary btn-block step-button"
               onClick={handlePrevClick}
             >
               <p className="mb-0"><FontAwesomeIcon icon={faArrowCircleLeft} size="2x" /></p>
@@ -54,11 +54,11 @@ class Steps extends React.Component {
           </CSSTransition>
         </div>
 
-        <div className="col col-xs-4 col-sm-6 col-md-8 d-flex">
+        <div className="col col-xs-4 col-sm-8 col-lg-8 d-flex">
           {preparedChildren}
         </div>
 
-        <div className="col col-xs-4 col-sm-3 col-md-2 text-right">
+        <div className="col col-xs-4 col-sm-2 col-lg-2 text-right">
           <CSSTransition
               in={currentStep !== totalSteps}
               timeout={250}
@@ -66,7 +66,7 @@ class Steps extends React.Component {
               unmountOnExit
           >
             <button
-              className="btn btn-primary btn-block"
+              className="btn btn-primary btn-block step-button ml-auto"
               onClick={handleNextClick}
             >
 

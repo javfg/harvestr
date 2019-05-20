@@ -39,7 +39,7 @@ class HarvestPage extends React.Component {
     } = this;
 
     return (
-      <div className="container my-4">
+      <div className="container-fluid my-4">
         <PageTitle
           icon={faSeedling}
           title="Create a harvest"
@@ -51,7 +51,7 @@ class HarvestPage extends React.Component {
               switch (currentStep) {
                 case 1:
                   return (
-                    <div className="p-5 bg-light rounded text-center">
+                    <div className="p-2 bg-light rounded">
                       <LoadItemList />
                     </div>
                   );

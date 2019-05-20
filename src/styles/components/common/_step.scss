@@ -38,15 +38,6 @@
   background-color: #dbe2e9;
 }
 
-
-// Step animations?
-.step-enter {
-  opacity: 1;
+.step-button {
+  max-width: 10rem;
 }
-
-.step-enter-active {
-  pointer-events: none;
-  opacity: 1;
-  transition: opacity 1000ms !important;
-}
-
