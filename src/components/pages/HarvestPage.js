@@ -41,10 +41,10 @@ class HarvestPage extends React.Component {
     return (
       <div className="container-fluid my-4">
         <PageTitle
-          icon={faSeedling}
-          title="Create a harvest"
           description="Follow the steps below to create a harvest."
+          icon={faSeedling}
           size="h1"
+          title="Create a harvest"
         />
 
         <div className="row mb-2">
