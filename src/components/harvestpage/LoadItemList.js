@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { faUpload, faClipboard } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUpload, faClipboard, faList } from '@fortawesome/free-solid-svg-icons';
 
 // Components.
 import FileLoader from '../io/FileLoader';
@@ -26,7 +27,11 @@ class LoadItemList extends React.Component {
       currentTab: 0,
       csvContents: [],
       itemList: props.itemList ? props.itemList : [],
-      columns: []
+      columns: [],
+      currentColumn: undefined,
+      currentFile: undefined,
+      currentFileHasHeader: true,
+      currentTextArea: undefined
     };
   }
 
@@ -41,36 +46,73 @@ class LoadItemList extends React.Component {
 
 
   handleSelectedColumn = column => {
+    const {
+      props: { setItemList },
+      state: { csvContents, itemList }
+    } = this;
+
     // Save unique values in column, then store in redux.
     this.setState({
-      itemList: [...new Set(this.state.csvContents.map(row => row[column]))]
-    }, () => {this.props.setItemList(this.state.itemList)});
+      currentColumn: column,
+      itemList: [...new Set(csvContents.map(row => row[column]))]
+    }, () => {setItemList(itemList)});
   }
 
 
   handleSelectTab = (currentTab) => {
-    console.log(currentTab)
     this.setState({currentTab}, ()=>{console.log(this.state)});
+  }
+
+  handleTypeInTextArea = (e) => {
+    this.setState({currentTextArea: e.target.value});
+  }
+
+  handleSetItemlistFromTextArea = () => {
+    const { itemList } = this.state;
+
+    this.setState({
+      itemList: [...new Set(this.textArea.value.split('\n'))]
+    }, () => {setItemList(itemList)});
+  }
+
+  handleFileSelectedChange = (currentFile) => {
+    this.setState({currentFile});
+  }
+
+  handleFileHasHeaderChange = (currentFileHasHeader) => {
+    this.setState({currentFileHasHeader});
   }
 
 
   render() {
     const {
+      handleFileSelectedChange,
+      handleFileHasHeaderChange,
       handleSelectTab,
-      state: { currentTab }
-     } = this;
+      handleSelectedColumn,
+      handleSetItemlistFromTextArea,
+      handleTypeInTextArea,
+      state: { columns, currentTab, currentColumn, currentFile, currentFileHasHeader, currentTextArea, itemList }
+    } = this;
 
-     return (
-      <div>
+    console.log('this.state', this.state);
+
+
+    return (
+      <>
         <PageTitle
-          description="upload a csv file with the list of items, or paste one in the text area below."
+          description="upload a csv file which contains the items in any column,
+                      and specify which one is it. Alternatively, you can paste
+                      a list of items separated in different lines."
           icon={faUpload}
+          marginBottom='mb-2'
           size="h3"
           title="Load item list"
         />
 
+
         <div className="row">
-          <div className="col">
+          <div className="col px-5">
             <div className="card">
               <div className="card-header">
                 <Tabs handleClick={handleSelectTab} currentTab={currentTab}>
@@ -78,12 +120,50 @@ class LoadItemList extends React.Component {
                   <Tab caption="Paste data" icon={faClipboard} tabNumber={1} type="radio" />
                 </Tabs>
               </div>
-              <div className="card-body">
+              <div className="card-body h-12r">
                 {
                   currentTab === 0 ? (
-                    <p>TAB 0</p>
+                    <>
+                      <FileLoader
+                        currentFile={currentFile}
+                        handleFileSelectedChange={handleFileSelectedChange}
+                        currentFileHasHeader={currentFileHasHeader}
+                        handleFileHasHeaderChange={handleFileHasHeaderChange}
+                        fileType="CSV"
+                        mimeType="text/csv"
+                        onFileRead={this.handleItemListFile}
+                      />
+                      <div className="mt-2" />
+                      <ColumnSelector
+                        columns={columns}
+                        currentColumn={currentColumn}
+                        onSelectedColumn={handleSelectedColumn}
+                      />
+                    </>
                   ) : (
-                    <p>TAB 1</p>
+                    <>
+                      <div className="row">
+                        <div className="col">
+                          <textarea
+                            className="form-control resize-none"
+                            value={currentTextArea}
+                            onChange={handleTypeInTextArea}
+                            rows={4}
+                            placeholder="Paste a list of items here."
+                          />
+                        </div>
+                      </div>
+                      <div className="row justify-content-center">
+                        <div className="col-xs-8 col-sm-6 col-md-4">
+                          <button
+                            className="btn btn-primary btn-block mt-2"
+                            onClick={handleSetItemlistFromTextArea}
+                          >
+                            <FontAwesomeIcon icon={faList} /> Load items
+                          </button>
+                        </div>
+                      </div>
+                    </>
                   )
                 }
               </div>
@@ -91,12 +171,22 @@ class LoadItemList extends React.Component {
           </div>
         </div>
 
-        <FileLoader fileType='CSV' onFileRead={this.handleItemListFile} />
-        <h4>Select data column</h4>
-        <ColumnSelector columns={this.state.columns} onSelectedColumn={this.handleSelectedColumn} />
-        <h4>Item list</h4>
-        <ItemList items={this.state.itemList} />
-      </div>
+        <div className="mt-5"></div>
+        <PageTitle
+          description="You can check if the file and column loaded are correct taking a
+                       look at the first items in the list."
+          icon={faList}
+          marginBottom='mb-2'
+          size="h3"
+          title="Some items on your list"
+        />
+
+        <div className="row">
+          <div className="col px-5">
+            <ItemList items={itemList.slice(0, 10)} />
+          </div>
+        </div>
+      </>
     );
   }
 }

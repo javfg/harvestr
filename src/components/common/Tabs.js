@@ -1,8 +1,5 @@
 import React from 'react';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowCircleLeft, faArrowCircleRight } from '@fortawesome/free-solid-svg-icons';
-
 
 class Tabs extends React.Component {
   constructor(props) {
@@ -24,8 +21,6 @@ class Tabs extends React.Component {
         tabNumber: index
       })
     )
-
-    console.log('children', children);
 
     return (
       <ul className="nav nav-tabs card-header-tabs">

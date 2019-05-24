@@ -1,15 +1,23 @@
 import React from 'react';
 
 //Components
-import Item from '../homepage/Item';
+import Item from './Item';
 
 
 const ItemList = ({ items }) => (
-  <ul style={{'maxHeight': '200px', 'overflow': 'auto'}}>
+  <div className="card p-2">
     {
-      items.map(i => <Item key={i} name={i} />)
+      (items.length === 0) ? (
+        <p>There are no items loaded.</p>
+      ) : (
+        <div className="row">
+          <div className="col">
+            {items.map(i => <Item key={i} name={i}/> )}
+          </div>
+        </div>
+      )
     }
-  </ul>
+  </div>
 );
 
 

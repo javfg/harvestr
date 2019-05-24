@@ -15,22 +15,32 @@ export class ColumnSelector extends React.Component {
 
 
   render() {
-    return (
-      <div>
-        <label htmlFor="columns">Select column to get elements from:</label>
-        <select
-          name="columns"
-          onChange={this.handleColumnSelected}
-          disabled={this.props.columns.length === 0}
-        >
-          <option key={'none'} value="none">Select a column...</option>
-          {this.props.columns.map((c, i) => {
-            const name = c ? c.trim() : '<Empty column header>';
-            const key = `${i}-${name}`;
+    const { currentColumn } = this.props;
 
-            return <option key={key} value={c}>{name}</option>;
-          })}
-        </select>
+    return (
+      <div className="row">
+        <div className="col">
+          <div className="input-group">
+            <div className="input-group-prepend">
+              <span className="input-group-text">Column with the relevant items</span>
+            </div>
+            <select
+              className="custom-select"
+              name="columns"
+              value={currentColumn}
+              onChange={this.handleColumnSelected}
+              disabled={this.props.columns.length === 0}
+            >
+              <option key={'none'} value="none">Select a column...</option>
+              {this.props.columns.map((c, i) => {
+                const name = c ? c.trim() : '<Empty column header>';
+                const key = `${i}-${name}`;
+
+                return <option key={key} value={c}>{name}</option>;
+              })}
+            </select>
+          </div>
+        </div>
       </div>
     );
   }

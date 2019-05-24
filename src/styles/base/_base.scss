@@ -21,6 +21,8 @@ $success-muted: #8ce2a0;
 $warning-muted: #f9d977;
 $danger-muted: #f2a4ac;
 
+$grey: rgb(222, 226, 230);
+
 $border-radius: 0;
 
 
@@ -42,3 +44,8 @@ a, a:visited, a:hover, a:active {
   text-decoration: none;
   cursor: pointer;
 }
+
+.resize-none {
+  resize: none;
+}
+

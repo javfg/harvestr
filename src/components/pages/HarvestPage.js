@@ -53,7 +53,7 @@ class HarvestPage extends React.Component {
               switch (currentStep) {
                 case 1:
                   return (
-                    <div className="p-4 bg-light border">
+                    <div className="p-3 bg-light border">
                       <LoadItemList />
                     </div>
                   );
