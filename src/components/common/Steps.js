@@ -33,8 +33,6 @@ class Steps extends React.Component {
       })
     )
 
-    console.log('children', children);
-
     return (
       <div className="row">
         <div className="col col-xs-12 col-sm-2 col-lg-2">

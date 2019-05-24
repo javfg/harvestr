@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { faUpload } from '@fortawesome/free-solid-svg-icons';
+import { faUpload, faClipboard } from '@fortawesome/free-solid-svg-icons';
 
 // Components.
 import FileLoader from '../io/FileLoader';
@@ -14,6 +14,8 @@ import { arrayOfStrNumbers } from '../../utils/utils';
 // Actions.
 import { setItemList } from '../../actions/itemList';
 import PageTitle from '../common/PageTitle';
+import Tabs from '../common/Tabs';
+import Tab from '../common/Tab';
 
 
 class LoadItemList extends React.Component {
@@ -21,7 +23,7 @@ class LoadItemList extends React.Component {
     super(props);
 
     this.state = {
-      tabSelected: 0,
+      currentTab: 0,
       csvContents: [],
       itemList: props.itemList ? props.itemList : [],
       columns: []
@@ -46,20 +48,19 @@ class LoadItemList extends React.Component {
   }
 
 
-  handleSelectTab = (tabSelected) => {
-    console.log(tabSelected)
-    this.setState({tabSelected}, ()=>{console.log(this.state)});
+  handleSelectTab = (currentTab) => {
+    console.log(currentTab)
+    this.setState({currentTab}, ()=>{console.log(this.state)});
   }
 
 
   render() {
     const {
       handleSelectTab,
-      state: { tabSelected }
+      state: { currentTab }
      } = this;
 
-    // TODO: PASAR A COMPONENTE
-    return (
+     return (
       <div>
         <PageTitle
           description="upload a csv file with the list of items, or paste one in the text area below."
@@ -72,41 +73,19 @@ class LoadItemList extends React.Component {
           <div className="col">
             <div className="card">
               <div className="card-header">
-                <ul className="nav nav-tabs card-header-tabs">
-                  <li className="nav-item">
-                    <span className={`nav-link ${tabSelected === 0 ? 'active' : ''}`}>
-                      <input
-                        type="radio"
-                        name="upload"
-                        checked={tabSelected === 0}
-                        onChange={() => {handleSelectTab(0)}}
-                      />
-                      <a
-                        href="#!"
-                        onClick={() => {handleSelectTab(0)}}
-                        className="clear-link"
-                      > Upload data</a>
-                    </span>
-                  </li>
-                  <li className="nav-item">
-                    <span className={`nav-link ${tabSelected === 1 ? 'active' : ''}`}>
-                      <input
-                        type="radio"
-                        name="paste"
-                        checked={tabSelected === 1}
-                        onChange={() => {handleSelectTab(1)}}
-                      />
-                      <a
-                        href="#!"
-                        onClick={() => {handleSelectTab(1)}}
-                        className="clear-link"
-                      > Paste data</a>
-                    </span>
-                  </li>
-                </ul>
+                <Tabs handleClick={handleSelectTab} currentTab={currentTab}>
+                  <Tab caption="Upload data" icon={faUpload} tabNumber={0} type="radio" />
+                  <Tab caption="Paste data" icon={faClipboard} tabNumber={1} type="radio" />
+                </Tabs>
               </div>
               <div className="card-body">
-                <h1>hi</h1>
+                {
+                  currentTab === 0 ? (
+                    <p>TAB 0</p>
+                  ) : (
+                    <p>TAB 1</p>
+                  )
+                }
               </div>
             </div>
           </div>
