@@ -5,7 +5,7 @@ import { faSeedling } from '@fortawesome/free-solid-svg-icons';
 
 // Actions
 import LoadItemList from '../harvestpage/LoadItemList';
-// import LoadSearchProfile from './homepage/LoadSearchProfile';
+import LoadSearchProfile from './harvestpage/LoadSearchProfile';
 // import LoadRankingDefinition from './homepage/LoadRankingDefinition';
 // import LaunchSearch from './homepage/LaunchSearch';
 // import LoadSearchResults from './homepage/LoadSearchResults';
@@ -38,7 +38,7 @@ class HarvestPage extends React.Component {
     const {
       handleNextClick,
       handlePrevClick,
-      props: { harvestPage: { currentStep } }
+      props: { harvestPage: { currentStep, loadItemListOk, loadSearchProfileOk, loadRankingDefinitionOk } }
     } = this;
 
     return (
@@ -64,7 +64,7 @@ class HarvestPage extends React.Component {
                 case 2:
                   return (
                     <div className="p-5 bg-light rounded text-center">
-                      {/* <LoadSearchProfile /> */}
+                      <LoadSearchProfile />
                     </div>
                   );
 
@@ -91,10 +91,10 @@ class HarvestPage extends React.Component {
           handlePrevClick={handlePrevClick}
           handleNextClick={handleNextClick}
         >
-          <Step name="Item list" isCorrect={this.props.loadItemListOk} />
-          <Step name="Search profile" isCorrect={this.props.loadSearchProfileOk} />
-          <Step name="Ranking definition" isCorrect={this.props.loadRankingDefinitionOk} />
-          <Step name="Launch" isCorrect={this.props.launchSearchOk} />
+          <Step name="Item list" isCorrect={loadItemListOk} />
+          <Step name="Search profile" isCorrect={loadSearchProfileOk} />
+          <Step name="Ranking definition" isCorrect={loadRankingDefinitionOk} />
+          <Step name="Launch" />
         </Steps>
       </div>
     );

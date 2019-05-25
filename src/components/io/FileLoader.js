@@ -59,7 +59,6 @@ export class FileLoader extends React.Component {
     }
   };
 
-// TODO: PASS ALL THIS TO REDUX!
   render() {
     const {
       handleFileSelected,

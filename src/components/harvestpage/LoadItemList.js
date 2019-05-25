@@ -51,7 +51,7 @@ class LoadItemList extends React.Component {
     const { setField, setItemList, harvestPage: { selectedColumn, uploadFileContents } } = this.props;
     const itemList = [...new Set(uploadFileContents.map(row => row[selectedColumn]))];
 
-    setField({selectedColumn});
+    setField({selectedColumn, loadItemListOk: true});
     setItemList(itemList);
   }
 
@@ -59,7 +59,7 @@ class LoadItemList extends React.Component {
     const { setField, setItemList, harvestPage: { textAareaContents } } = this.props;
     const itemList = [...new Set(textAareaContents.split('\n'))];
 
-    setField({textAareaContents});
+    setField({textAareaContents, loadItemListOk: true});
     setItemList(itemList);
   }
 

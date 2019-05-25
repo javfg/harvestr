@@ -11,8 +11,6 @@ class Steps extends React.Component {
     super(props);
   }
 
-
-
   render() {
     const {
       children,
@@ -28,10 +26,9 @@ class Steps extends React.Component {
         stepNumber: index + 1,
         currentStep,
         totalSteps,
-        isCorrect: false,
         isCurrent: index + 1 === currentStep
       })
-    )
+    );
 
     return (
       <div className="row">
@@ -66,6 +63,7 @@ class Steps extends React.Component {
             <button
               className="btn btn-primary btn-block step-button ml-auto"
               onClick={handleNextClick}
+              disabled={!preparedChildren[currentStep - 1].props.isCorrect}
             >
 
               <p className="mb-0"><FontAwesomeIcon icon={faArrowCircleRight} size="2x" /></p>
