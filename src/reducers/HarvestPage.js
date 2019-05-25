@@ -1,7 +1,7 @@
 // Harvest Page Settings Reducer
 
 const HarvestPageDefaultState = {
-  currentStep: 1,
+  currentStep: 2,
   currentLoadItemListTab: 0,
   itemList: [],
   loadItemListOk: false,

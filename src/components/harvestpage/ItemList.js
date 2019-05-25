@@ -8,7 +8,7 @@ const ItemList = ({ items }) => (
   <div className="card p-2">
     {
       (items.length === 0) ? (
-        <p>There are no items loaded.</p>
+        <p>Item list is empty.</p>
       ) : (
         <div className="row">
           <div className="col">

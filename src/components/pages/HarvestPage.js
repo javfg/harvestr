@@ -5,7 +5,7 @@ import { faSeedling } from '@fortawesome/free-solid-svg-icons';
 
 // Actions
 import LoadItemList from '../harvestpage/LoadItemList';
-import LoadSearchProfile from './harvestpage/LoadSearchProfile';
+import LoadSearchProfile from '../harvestpage/LoadSearchProfile';
 // import LoadRankingDefinition from './homepage/LoadRankingDefinition';
 // import LaunchSearch from './homepage/LaunchSearch';
 // import LoadSearchResults from './homepage/LoadSearchResults';
@@ -63,7 +63,7 @@ class HarvestPage extends React.Component {
 
                 case 2:
                   return (
-                    <div className="p-5 bg-light rounded text-center">
+                    <div className="p-3 bg-light border">
                       <LoadSearchProfile />
                     </div>
                   );

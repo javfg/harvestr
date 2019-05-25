@@ -94,6 +94,9 @@ class LoadItemList extends React.Component {
       }
     } = this;
 
+    const shortItemList = itemList.length <= 10 ? itemList.slice(0, 10)
+    :
+    itemList.slice(0, 10).concat(`...${itemList.length - 10} more`);
 
     return (
       <>
@@ -189,12 +192,12 @@ class LoadItemList extends React.Component {
           icon={faList}
           marginBottom='mb-2'
           size="h3"
-          title="Some items on your list"
+          title="Items on your list"
         />
 
         <div className="row">
           <div className="col px-5">
-            <ItemList items={itemList.slice(0, 10)} />
+            <ItemList items={shortItemList} />
           </div>
         </div>
       </>
