@@ -46,6 +46,15 @@
 }
 
 
+.badge-service {
+  background-color: $crafted-color;
+}
+
+.badge-field {
+  background-color: $magic-color;
+}
+
+
 // Block text with ellipsis.
 .text-block {
   hyphens: auto;

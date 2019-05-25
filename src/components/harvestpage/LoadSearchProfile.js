@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faFolderOpen, faFile, faHammer } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faFolderOpen, faFile, faHammer, faListAlt } from '@fortawesome/free-solid-svg-icons';
 
 // Components.
 import FileLoader from '../io/FileLoader';
 import PageTitle from '../common/PageTitle';
-import QueryList from './QueryList';
+import QueryList from '../common/QueryList';
 
 // Actions.
 import { setSearchProfile } from '../../actions/searchProfile';
@@ -56,16 +56,16 @@ class LoadSearchProfile extends React.Component {
           title="Search profile"
         />
 
-        <div className="row mb-4">
-          <div className="col col-md-12 col-lg-6 mb-4">
+        <div className="row mb-5 px-5">
+          <div className="col col-md-12 col-lg-6 pr-3 pl-0">
             <PageTitle
               icon={faFolderOpen}
-              margins='mb-0'
+              margins='ml-0 mb-0'
               size="h4"
               title="Load search profile"
             />
 
-            <div className="row">
+            <div className="row mt-1">
               <div className="col">
                 <FileLoader
                   fileType='JSON'
@@ -76,7 +76,7 @@ class LoadSearchProfile extends React.Component {
               </div>
             </div>
           </div>
-          <div className="col col-md-12 col-lg-6 mb-4">
+          <div className="col col-md-12 col-lg-6 pl-3">
             <PageTitle
               icon={faFile}
               margins='mb-0'
@@ -84,8 +84,8 @@ class LoadSearchProfile extends React.Component {
               title="Create a new search profile"
             />
 
-            <div className="row">
-              <div className="col border p-2 mx-3">
+            <div className="row mt-1">
+              <div className="col border p-2 mx-0">
                 <button
                   className="btn btn-primary btn-block"
                   onClick={handleGoToSearchProfile}
@@ -97,17 +97,23 @@ class LoadSearchProfile extends React.Component {
           </div>
         </div>
 
-        <div className="card">
-          <div className="card-header py-2">
-            <PageTitle
-              icon={faSearch}
-              margins="mb-0"
-              size="h4"
-              title="Current search profile"
-            />
-          </div>
+        <div className="row">
+          <div className="col px-5">
+            <div className="card">
+              <div className="card-header py-2">
+                <PageTitle
+                  icon={faListAlt}
+                  margins="mb-0"
+                  size="h4"
+                  title="Current search profile"
+                />
+              </div>
 
-          <QueryList queries={searchProfile} />
+              <div className="card-body">
+                <QueryList queries={searchProfile} />
+              </div>
+            </div>
+          </div>
         </div>
       </>
     );

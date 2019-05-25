@@ -7,7 +7,7 @@ import { faUpload, faClipboard, faList } from '@fortawesome/free-solid-svg-icons
 // Components.
 import FileLoader from '../io/FileLoader';
 import ColumnSelector from '../io/ColumnSelector';
-import ItemList from './ItemList';
+import ItemList from '../common/ItemList';
 
 // Utils.
 import { arrayOfStrNumbers } from '../../utils/utils';
@@ -111,7 +111,7 @@ class LoadItemList extends React.Component {
         />
 
 
-        <div className="row">
+        <div className="row mb-3">
           <div className="col px-5">
             <div className="card">
               <div className="card-header">
@@ -185,19 +185,24 @@ class LoadItemList extends React.Component {
           </div>
         </div>
 
-        <div className="mt-5"></div>
-        <PageTitle
-          description="You can check if the file and column loaded are correct taking a
-                       look at the first items in the list."
-          icon={faList}
-          margins='mb-2'
-          size="h3"
-          title="Items on your list"
-        />
-
         <div className="row">
           <div className="col px-5">
-            <ItemList items={shortItemList} />
+            <div className="card">
+              <div className="card-header py-2">
+                <PageTitle
+                  description="You can check if the file and column loaded are correct taking a
+                              look at the first items in the list."
+                  icon={faList}
+                  margins='mb-2'
+                  size="h3"
+                  title="Items on your list"
+                />
+              </div>
+
+              <div className="card-body">
+                <ItemList items={shortItemList} />
+              </div>
+            </div>
           </div>
         </div>
       </>
