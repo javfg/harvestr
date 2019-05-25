@@ -9,24 +9,14 @@ import { readJSONFromFile } from '../../utils/file';
 export class FileLoader extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      header: this.props.currentFileHasHeader,
-      file: this.props.currentFile
-    };
   }
 
 
   handleFileSelected = event => {
-    this.setState({
-      file: event.target.files[0]
-    });
-
-    this.props.handleFileSelectedChange(event.target.files[0]);
+    this.props.handleUploadFileChange(event.target.files[0]);
   }
 
-  handleHeaderChange = event => {
-    this.setState({header: event.target.checked});
+  handleHeaderChange = (event) => {
     this.props.handleFileHasHeaderChange(event.target.checked);
   }
 
@@ -34,15 +24,14 @@ export class FileLoader extends React.Component {
   readFile = async () => {
     const {
       parseError,
-      props: { onFileRead, fileType },
-      state: { file, header }
+      props: { onFileRead, fileType, uploadFile, uploadFileHasHeader }
     } = this;
 
     // CSV file type: use papaparse.
     if (fileType === 'CSV') {
-      Papa.parse(file, {
+      Papa.parse(uploadFile, {
         complete: (result) => onFileRead(result),
-        header,
+        header: uploadFileHasHeader,
         error: parseError,
         skipEmptyLines: true
       });
@@ -51,7 +40,7 @@ export class FileLoader extends React.Component {
     // JSON file type: deserialize.
     if (fileType === 'JSON') {
       try {
-        const result = await readJSONFromFile(file);
+        const result = await readJSONFromFile(uploadFile);
         onFileRead(result);
       } catch (e) {
         console.log(e);
@@ -59,18 +48,18 @@ export class FileLoader extends React.Component {
     }
   };
 
+
   render() {
     const {
       handleFileSelected,
       handleHeaderChange,
-      props: { currentFileHasHeader, fileType, mimeType },
-      state: { file, header },
+      props: { uploadFile, uploadFileHasHeader, fileType, mimeType },
       readFile
     } = this;
 
     return (
         <div className="cool-file-loader">
-          <div className="row mb-2">
+          <div className="row">
             <div className="col d-flex align-items-center">
               <div className="custom-file mr-2">
                 <input
@@ -86,7 +75,12 @@ export class FileLoader extends React.Component {
                   htmlFor="name"
                 >
                   {
-                    file ? file.name : <><FontAwesomeIcon icon={faEllipsisH} className="mr-1" /> Select file</>
+                    uploadFile ?
+                      uploadFile.name
+                    :
+                      <>
+                        <FontAwesomeIcon icon={faEllipsisH} className="mr-1" /> Select file
+                      </>
                   }
                 </label>
               </div>
@@ -101,14 +95,13 @@ export class FileLoader extends React.Component {
           </div>
           {
             fileType === 'CSV' && (
-              <div className="row">
+              <div className="row mt-2">
                 <div className="col">
                   <div className="form-group form-check mb-0">
                     <input
-                      checked={header}
+                      checked={uploadFileHasHeader}
                       className="form-check-input"
                       id="hasHeader"
-                      value={currentFileHasHeader}
                       onChange={handleHeaderChange}
                       type="checkbox"
                     />

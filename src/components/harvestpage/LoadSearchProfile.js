@@ -1,48 +1,49 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch, faFolderOpen, faFile, faHammer } from '@fortawesome/free-solid-svg-icons';
 
 // Components.
 import FileLoader from '../io/FileLoader';
-import QueryList from '../homepage/QueryList';
+import PageTitle from '../common/PageTitle';
+import QueryList from './QueryList';
 
 // Actions.
 import { setSearchProfile } from '../../actions/searchProfile';
-import PageTitle from '../common/PageTitle';
+import { setHarvestPageField } from '../../actions/HarvestPage';
 
 
+// TODO: CHECK SEARCH PROFILE VALIDITY.
 class LoadSearchProfile extends React.Component {
   constructor(props) {
     super(props);
-
-    this.props = props;
-
-    this.state = {
-      searchProfile: props.searchProfile ? props.searchProfile : []
-    };
   }
 
-
-  checkSearchProfile = (searchProfile) => {
-    // TODO: CHECK SEARCH PROFILE.
-    searchProfile;
-    return true;
-  }
 
   handleSearchProfileFile = (result) => {
-    try {
-      this.checkSearchProfile(result);
-    } catch (e) {
-      console.log(e);
-    }
-
     // Save search profile, then store in redux.
-    this.setState({ searchProfile: result }, () => {this.props.setSearchProfile(this.state.searchProfile)});
+    this.props.setSearchProfile(result);
+  }
+
+  handleSearchProfileFileChange = (searchProfileFile) => {
+    this.props.setHarvestPageField({searchProfileFile})
+  }
+
+  handleGoToSearchProfile = () => {
+    this.props.history.push('/profile');
   }
 
 
   render() {
+    const {
+      handleGoToSearchProfile,
+      handleSearchProfileFile,
+      handleSearchProfileFileChange,
+      props: { searchProfile, harvestPage: { searchProfileFile } }
+    } = this;
+
     return (
       <>
         <PageTitle
@@ -50,17 +51,63 @@ class LoadSearchProfile extends React.Component {
                        items previously loaded; and for every resource, the relevant fields
                        of data the harvest will contain."
           icon={faSearch}
-          marginBottom='mb-2'
+          margins='mb-2'
           size="h3"
           title="Search profile"
         />
 
+        <div className="row mb-4">
+          <div className="col col-md-12 col-lg-6 mb-4">
+            <PageTitle
+              icon={faFolderOpen}
+              margins='mb-0'
+              size="h4"
+              title="Load search profile"
+            />
 
-        <div>
-          <h3>Load search profile</h3>
-          <FileLoader fileType='JSON' onFileRead={this.handleSearchProfileFile} />
-          <h4>Queries</h4>
-          <QueryList queries={this.state.searchProfile} />
+            <div className="row">
+              <div className="col">
+                <FileLoader
+                  fileType='JSON'
+                  handleUploadFileChange={handleSearchProfileFileChange}
+                  onFileRead={handleSearchProfileFile}
+                  uploadFile={searchProfileFile}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="col col-md-12 col-lg-6 mb-4">
+            <PageTitle
+              icon={faFile}
+              margins='mb-0'
+              size="h4"
+              title="Create a new search profile"
+            />
+
+            <div className="row">
+              <div className="col border p-2 mx-3">
+                <button
+                  className="btn btn-primary btn-block"
+                  onClick={handleGoToSearchProfile}
+                >
+                  <FontAwesomeIcon icon={faHammer} /> Go to search profile creator
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="card">
+          <div className="card-header py-2">
+            <PageTitle
+              icon={faSearch}
+              margins="mb-0"
+              size="h4"
+              title="Current search profile"
+            />
+          </div>
+
+          <QueryList queries={searchProfile} />
         </div>
       </>
     );
@@ -73,13 +120,15 @@ class LoadSearchProfile extends React.Component {
 //
 const mapStateToProps = (state) => {
   return {
+    harvestPage: state.ui.harvestPage,
     searchProfile: state.searchProfile
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
+  setHarvestPageField: (newState) => dispatch(setHarvestPageField(newState)),
   setSearchProfile: (data) => dispatch(setSearchProfile(data))
 });
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoadSearchProfile);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LoadSearchProfile));

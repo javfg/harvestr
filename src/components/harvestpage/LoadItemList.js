@@ -13,7 +13,7 @@ import ItemList from './ItemList';
 import { arrayOfStrNumbers } from '../../utils/utils';
 
 // Actions.
-import { setField } from '../../actions/HarvestPage';
+import { setHarvestPageField } from '../../actions/HarvestPage';
 import { setItemList } from '../../actions/itemList';
 import PageTitle from '../common/PageTitle';
 import Tabs from '../common/Tabs';
@@ -28,54 +28,54 @@ class LoadItemList extends React.Component {
 
   handleItemListFile = result => {
     // Save column names or indexes (length of first data array).
-    this.props.setField({
+    this.props.setHarvestPageField({
       columns: result.meta.fields ? result.meta.fields : arrayOfStrNumbers(result.data[0].length),
-      uploadFileContents: result.data
+      itemListFileContents: result.data
     });
   };
 
 
   handleSelectColumn = selectedColumn => {
-    this.props.setField({selectedColumn});
+    this.props.setHarvestPageField({selectedColumn});
   }
 
   handleSelectTab = (currentLoadItemListTab) => {
-    this.props.setField({currentLoadItemListTab});
+    this.props.setHarvestPageField({currentLoadItemListTab});
   }
 
   handleTypeInTextArea = (e) => {
-    this.props.setField({textAareaContents: e.target.value});
+    this.props.setHarvestPageField({textAareaContents: e.target.value});
   }
 
   handleSetItemListFromCSV = () => {
-    const { setField, setItemList, harvestPage: { selectedColumn, uploadFileContents } } = this.props;
-    const itemList = [...new Set(uploadFileContents.map(row => row[selectedColumn]))];
+    const { setHarvestPageField, setItemList, harvestPage: { selectedColumn, itemListFileContents } } = this.props;
+    const itemList = [...new Set(itemListFileContents.map(row => row[selectedColumn]))];
 
-    setField({selectedColumn, loadItemListOk: true});
+    setHarvestPageField({selectedColumn, loadItemListOk: true});
     setItemList(itemList);
   }
 
   handleSetItemlistFromTextArea = () => {
-    const { setField, setItemList, harvestPage: { textAareaContents } } = this.props;
+    const { setHarvestPageField, setItemList, harvestPage: { textAareaContents } } = this.props;
     const itemList = [...new Set(textAareaContents.split('\n'))];
 
-    setField({textAareaContents, loadItemListOk: true});
+    setHarvestPageField({textAareaContents, loadItemListOk: true});
     setItemList(itemList);
   }
 
-  handleFileSelectedChange = (uploadFileName) => {
-    this.props.setField({uploadFileName});
+  handleItemListFileChange = (itemListFile) => {
+    this.props.setHarvestPageField({itemListFile});
   }
 
-  handleFileHasHeaderChange = (uploadFileHasHeaders) => {
-    this.props.setField({uploadFileHasHeaders});
+  handleItemListFileHasHeaderChange = (itemListFileHasHeaders) => {
+    this.props.setHarvestPageField({itemListFileHasHeaders});
   }
 
 
   render() {
     const {
-      handleFileSelectedChange,
-      handleFileHasHeaderChange,
+      handleItemListFileChange,
+      handleItemListFileHasHeaderChange,
       handleSelectTab,
       handleSelectColumn,
       handleSetItemListFromCSV,
@@ -87,8 +87,8 @@ class LoadItemList extends React.Component {
           selectedColumn,
           currentLoadItemListTab,
           textAareaContents,
-          uploadFileName,
-          uploadFileHasHeaders
+          itemListFile,
+          itemListFileHasHeader
         },
         itemList
       }
@@ -105,7 +105,7 @@ class LoadItemList extends React.Component {
                       and specify which one is it. Alternatively, you can paste
                       a list of items separated in different lines."
           icon={faUpload}
-          marginBottom='mb-2'
+          margins='mb-2'
           size="h3"
           title="Load item list"
         />
@@ -125,10 +125,10 @@ class LoadItemList extends React.Component {
                   currentLoadItemListTab === 0 ? (
                     <>
                       <FileLoader
-                        currentFile={uploadFileName}
-                        handleFileSelectedChange={handleFileSelectedChange}
-                        currentFileHasHeader={uploadFileHasHeaders}
-                        handleFileHasHeaderChange={handleFileHasHeaderChange}
+                        uploadFile={itemListFile}
+                        handleUploadFileChange={handleItemListFileChange}
+                        uploadFileHasHeader={itemListFileHasHeader}
+                        handleFileHasHeaderChange={handleItemListFileHasHeaderChange}
                         fileType="CSV"
                         mimeType="text/csv"
                         onFileRead={this.handleItemListFile}
@@ -190,7 +190,7 @@ class LoadItemList extends React.Component {
           description="You can check if the file and column loaded are correct taking a
                        look at the first items in the list."
           icon={faList}
-          marginBottom='mb-2'
+          margins='mb-2'
           size="h3"
           title="Items on your list"
         />
@@ -215,7 +215,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setField: (newState) => dispatch(setField(newState)),
+  setHarvestPageField: (newState) => dispatch(setHarvestPageField(newState)),
   setItemList: (data) => dispatch(setItemList(data))
 });
 

@@ -13,7 +13,7 @@ import LoadSearchProfile from '../harvestpage/LoadSearchProfile';
 import PageTitle from '../common/PageTitle';
 import Steps from '../common/Steps';
 import Step from '../common/Step';
-import { setField } from '../../actions/HarvestPage';
+import { setHarvestPageField } from '../../actions/HarvestPage';
 
 
 class HarvestPage extends React.Component {
@@ -23,14 +23,14 @@ class HarvestPage extends React.Component {
 
 
   handlePrevClick = () => {
-    const { harvestPage: { currentStep }, setField } = this.props;
-    setField({currentStep: currentStep - 1});
+    const { harvestPage: { currentStep }, setHarvestPageField } = this.props;
+    setHarvestPageField({currentStep: currentStep - 1});
   };
 
   handleNextClick = () => {
-    const { harvestPage: { currentStep }, setField } = this.props;
+    const { harvestPage: { currentStep }, setHarvestPageField } = this.props;
 
-    setField({currentStep: currentStep + 1});
+    setHarvestPageField({currentStep: currentStep + 1});
   };
 
 
@@ -110,7 +110,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setField: (newState) => dispatch(setField(newState))
+  setHarvestPageField: (newState) => dispatch(setHarvestPageField(newState))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HarvestPage);

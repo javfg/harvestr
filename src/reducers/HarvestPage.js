@@ -9,11 +9,12 @@ const HarvestPageDefaultState = {
   loadRankingDefinitionOk: false,
   launchSearchOk: false,
   columns: [],
+  searchProfileFile: undefined,
   selectedColumn: undefined,
   selectedTab: 0,
-  uploadFileName: undefined,
-  uploadFileContents: undefined,
-  uploadFileHasHeaders: true,
+  itemListFile: undefined,
+  itemListFileContents: undefined,
+  itemListFileHasHeader: true,
   textAareaContents: ''
 };
 
