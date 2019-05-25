@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import { faSeedling } from '@fortawesome/free-solid-svg-icons';
 
@@ -12,30 +13,32 @@ import LoadItemList from '../harvestpage/LoadItemList';
 import PageTitle from '../common/PageTitle';
 import Steps from '../common/Steps';
 import Step from '../common/Step';
+import { setField } from '../../actions/HarvestPage';
 
 
 class HarvestPage extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      currentStep: 1,
-      loadItemListOk: false,
-      loadSearchProfileOk: false,
-      loadRankingDefinitionOk: false,
-      launchSearchOk: false
-    }
   }
 
-  handlePrevClick = () => {this.setState({currentStep: this.state.currentStep - 1});};
-  handleNextClick = () => {this.setState({currentStep: this.state.currentStep + 1});};
+
+  handlePrevClick = () => {
+    const { harvestPage: { currentStep }, setField } = this.props;
+    setField({currentStep: currentStep - 1});
+  };
+
+  handleNextClick = () => {
+    const { harvestPage: { currentStep }, setField } = this.props;
+
+    setField({currentStep: currentStep + 1});
+  };
 
 
   render() {
     const {
       handleNextClick,
       handlePrevClick,
-      state: { currentStep }
+      props: { harvestPage: { currentStep } }
     } = this;
 
     return (
@@ -99,4 +102,15 @@ class HarvestPage extends React.Component {
 }
 
 
-export default HarvestPage;
+//
+// Redux mapping functions.
+//
+const mapStateToProps = state => ({
+  harvestPage: state.ui.harvestPage
+});
+
+const mapDispatchToProps = dispatch => ({
+  setField: (newState) => dispatch(setField(newState))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(HarvestPage);

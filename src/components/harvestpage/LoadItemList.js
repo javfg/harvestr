@@ -13,6 +13,7 @@ import ItemList from './ItemList';
 import { arrayOfStrNumbers } from '../../utils/utils';
 
 // Actions.
+import { setField } from '../../actions/HarvestPage';
 import { setItemList } from '../../actions/itemList';
 import PageTitle from '../common/PageTitle';
 import Tabs from '../common/Tabs';
@@ -22,65 +23,52 @@ import Tab from '../common/Tab';
 class LoadItemList extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      currentTab: 0,
-      csvContents: [],
-      itemList: props.itemList ? props.itemList : [],
-      columns: [],
-      currentColumn: undefined,
-      currentFile: undefined,
-      currentFileHasHeader: true,
-      currentTextArea: undefined
-    };
   }
 
 
   handleItemListFile = result => {
     // Save column names or indexes (length of first data array).
-    this.setState({
+    this.props.setField({
       columns: result.meta.fields ? result.meta.fields : arrayOfStrNumbers(result.data[0].length),
-      csvContents: result.data
+      uploadFileContents: result.data
     });
   };
 
 
-  handleSelectedColumn = column => {
-    const {
-      props: { setItemList },
-      state: { csvContents, itemList }
-    } = this;
-
-    // Save unique values in column, then store in redux.
-    this.setState({
-      currentColumn: column,
-      itemList: [...new Set(csvContents.map(row => row[column]))]
-    }, () => {setItemList(itemList)});
+  handleSelectColumn = selectedColumn => {
+    this.props.setField({selectedColumn});
   }
 
-
-  handleSelectTab = (currentTab) => {
-    this.setState({currentTab}, ()=>{console.log(this.state)});
+  handleSelectTab = (currentLoadItemListTab) => {
+    this.props.setField({currentLoadItemListTab});
   }
 
   handleTypeInTextArea = (e) => {
-    this.setState({currentTextArea: e.target.value});
+    this.props.setField({textAareaContents: e.target.value});
+  }
+
+  handleSetItemListFromCSV = () => {
+    const { setField, setItemList, harvestPage: { selectedColumn, uploadFileContents } } = this.props;
+    const itemList = [...new Set(uploadFileContents.map(row => row[selectedColumn]))];
+
+    setField({selectedColumn});
+    setItemList(itemList);
   }
 
   handleSetItemlistFromTextArea = () => {
-    const { itemList } = this.state;
+    const { setField, setItemList, harvestPage: { textAareaContents } } = this.props;
+    const itemList = [...new Set(textAareaContents.split('\n'))];
 
-    this.setState({
-      itemList: [...new Set(this.textArea.value.split('\n'))]
-    }, () => {setItemList(itemList)});
+    setField({textAareaContents});
+    setItemList(itemList);
   }
 
-  handleFileSelectedChange = (currentFile) => {
-    this.setState({currentFile});
+  handleFileSelectedChange = (uploadFileName) => {
+    this.props.setField({uploadFileName});
   }
 
-  handleFileHasHeaderChange = (currentFileHasHeader) => {
-    this.setState({currentFileHasHeader});
+  handleFileHasHeaderChange = (uploadFileHasHeaders) => {
+    this.props.setField({uploadFileHasHeaders});
   }
 
 
@@ -89,13 +77,22 @@ class LoadItemList extends React.Component {
       handleFileSelectedChange,
       handleFileHasHeaderChange,
       handleSelectTab,
-      handleSelectedColumn,
+      handleSelectColumn,
+      handleSetItemListFromCSV,
       handleSetItemlistFromTextArea,
       handleTypeInTextArea,
-      state: { columns, currentTab, currentColumn, currentFile, currentFileHasHeader, currentTextArea, itemList }
+      props: {
+        harvestPage: {
+          columns,
+          selectedColumn,
+          currentLoadItemListTab,
+          textAareaContents,
+          uploadFileName,
+          uploadFileHasHeaders
+        },
+        itemList
+      }
     } = this;
-
-    console.log('this.state', this.state);
 
 
     return (
@@ -115,19 +112,19 @@ class LoadItemList extends React.Component {
           <div className="col px-5">
             <div className="card">
               <div className="card-header">
-                <Tabs handleClick={handleSelectTab} currentTab={currentTab}>
+                <Tabs handleClick={handleSelectTab} currentTab={currentLoadItemListTab}>
                   <Tab caption="Upload data" icon={faUpload} tabNumber={0} type="radio" />
                   <Tab caption="Paste data" icon={faClipboard} tabNumber={1} type="radio" />
                 </Tabs>
               </div>
-              <div className="card-body h-12r">
+              <div className="card-body h-13r">
                 {
-                  currentTab === 0 ? (
+                  currentLoadItemListTab === 0 ? (
                     <>
                       <FileLoader
-                        currentFile={currentFile}
+                        currentFile={uploadFileName}
                         handleFileSelectedChange={handleFileSelectedChange}
-                        currentFileHasHeader={currentFileHasHeader}
+                        currentFileHasHeader={uploadFileHasHeaders}
                         handleFileHasHeaderChange={handleFileHasHeaderChange}
                         fileType="CSV"
                         mimeType="text/csv"
@@ -136,9 +133,22 @@ class LoadItemList extends React.Component {
                       <div className="mt-2" />
                       <ColumnSelector
                         columns={columns}
-                        currentColumn={currentColumn}
-                        onSelectedColumn={handleSelectedColumn}
+                        currentColumn={selectedColumn}
+                        onSelectedColumn={handleSelectColumn}
                       />
+
+                      <div className="row justify-content-center">
+                        <div className="col-xs-8 col-sm-6 col-md-4">
+                          <button
+                            className="btn btn-primary btn-block mt-2"
+                            disabled={!selectedColumn}
+                            onClick={handleSetItemListFromCSV}
+                          >
+                            <FontAwesomeIcon icon={faList} /> Load items
+                          </button>
+                        </div>
+                      </div>
+
                     </>
                   ) : (
                     <>
@@ -146,9 +156,9 @@ class LoadItemList extends React.Component {
                         <div className="col">
                           <textarea
                             className="form-control resize-none"
-                            value={currentTextArea}
+                            value={textAareaContents}
                             onChange={handleTypeInTextArea}
-                            rows={4}
+                            rows={5}
                             placeholder="Paste a list of items here."
                           />
                         </div>
@@ -158,6 +168,7 @@ class LoadItemList extends React.Component {
                           <button
                             className="btn btn-primary btn-block mt-2"
                             onClick={handleSetItemlistFromTextArea}
+                            disabled={textAareaContents.length === 0}
                           >
                             <FontAwesomeIcon icon={faList} /> Load items
                           </button>
@@ -195,11 +206,13 @@ class LoadItemList extends React.Component {
 //
 // Mapping functions.
 //
-const mapStateToProps = (state) => {
-  return {itemList: state.itemList};
-};
+const mapStateToProps = (state) => ({
+  harvestPage: state.ui.harvestPage,
+  itemList: state.itemList
+});
 
 const mapDispatchToProps = (dispatch) => ({
+  setField: (newState) => dispatch(setField(newState)),
   setItemList: (data) => dispatch(setItemList(data))
 });
 
