@@ -23,7 +23,7 @@ class LoadSearchProfile extends React.Component {
 
 
   handleSearchProfileFile = (result) => {
-    // Save search profile, then store in redux.
+    this.props.setHarvestPageField({loadSearchProfileOk: true});
     this.props.setSearchProfile(result);
   }
 
