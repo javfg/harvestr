@@ -70,14 +70,14 @@ class HarvestPage extends React.Component {
 
                 case 3:
                   return (
-                    <div className="p-5 bg-light rounded text-center">
+                    <div className="p-5 bg-light rounded">
                       <LoadRankingDefinition />
                     </div>
                   );
 
                 case 4:
                   return (
-                    <div className="p-5 bg-light rounded text-center">
+                    <div className="p-5 bg-light rounded">
                       {/* <LaunchSearch /> */}
                     </div>
                   )
