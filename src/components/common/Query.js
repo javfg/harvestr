@@ -9,13 +9,13 @@ import Field from './Field';
 
 const Query = ({ name, fields }) => (
   <>
-    <td className="align-middle p-1">
+    <td className="align-middle py-1">
       <Service name={name} />
     </td>
-    <td className="align-middle p-1">
+    <td className="align-middle py-1">
       <FontAwesomeIcon icon={faArrowAltCircleRight} className="mr-2" />
     </td>
-    <td className="align-middle p-1">
+    <td className="align-middle py-1">
     {fields.map(f => <Field key={f.name} name={f.name} />)}
   </td>
   </>
