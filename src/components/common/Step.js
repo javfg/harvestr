@@ -20,7 +20,7 @@ class Step extends React.Component {
     const divClasses = stepNumber < totalSteps ? 'flex-grow-1' : '';
 
     const stepClasses =
-      currentStep > stepNumber ? 'border-secondary' :
+      currentStep > stepNumber ? 'border-success' :
       currentStep === stepNumber ? 'border-secondary bg-secondary text-light' :
       'text-muted';
 
