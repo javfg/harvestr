@@ -1,5 +1,5 @@
-const arrayOfStrNumbers = l =>
-  [...Array(l + 1).keys()].splice(1).map(e => e.toString());
+const arrayOfStrNumbers = l => [...Array(l + 1).keys()].splice(1).map(e => e.toString());
+
 
 const exportCSV = searchResults => {
   const escape = text => {
