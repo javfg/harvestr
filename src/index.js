@@ -5,6 +5,8 @@ import { Provider } from 'react-redux';
 import AppRouter from './routers/AppRouter';
 import store from './store/store';
 
+import { getConfigFromEnv, populateStore } from './actions/Config';
+
 import './styles/styles.scss';
 
 
@@ -14,6 +16,13 @@ const jsx = (
     <AppRouter />
   </Provider>
 );
+
+
+(async () => {
+  await store.dispatch(getConfigFromEnv());
+  await store.dispatch(populateStore());
+})()
+
 
 
 // Render app.

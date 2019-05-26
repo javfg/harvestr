@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 
 import harvestPageReducer from '../reducers/HarvestPage';
 
+import configReducer from '../reducers/ConfigReducer';
 import itemListReducer from '../reducers/itemList';
 import rankingDefinitionReducer from '../reducers/RankingDefinition';
 import searchProfileReducer from '../reducers/searchProfile';
@@ -19,13 +20,14 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // Store creation.
 const store = createStore(
   combineReducers({
-    ui: combineReducers({
-      harvestPage: harvestPageReducer,
-    }),
+    config: configReducer,
     itemList: itemListReducer,
     rankingDefinition: rankingDefinitionReducer,
     searchProfile: searchProfileReducer,
     searchResults: searchResultReducer,
+    ui: combineReducers({
+      harvestPage: harvestPageReducer,
+    }),
     //searchEngine: searchEngineReducer
   }),
   composeEnhancers(applyMiddleware(thunk))
