@@ -15,6 +15,11 @@ class SearchSummary extends React.Component {
   }
 
 
+  handleLaunchSearch = () => {
+    console.log('LAUNCH!');
+  }
+
+
   render() {
     const {
       handleLaunchSearch,
@@ -30,6 +35,12 @@ class SearchSummary extends React.Component {
           size="h3"
           title="Harvest summary"
         />
+
+        <div className="row">
+          <div className="col text-center">
+            <p>Summary goes here</p>
+          </div>
+        </div>
 
         <div className="row justify-content-center">
           <div className="col-xs-8 col-sm-6 col-md-4">
