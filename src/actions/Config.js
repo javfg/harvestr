@@ -40,8 +40,6 @@ export const populateStore = () => {
 
 // Redux store update for config.
 export const setConfig = (config) => {
-  console.log('config', config);
-
   return {
     type: 'SET_CONFIG',
     config
