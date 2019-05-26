@@ -17,9 +17,9 @@ class SearchSummary extends React.Component {
 
   handleLaunchSearch = () => {
     console.log('Launch with:',
-      JSON.stringify(this.props.itemList, null, 0),
-      JSON.stringify(this.props.searchProfile, null, 0),
-      JSON.stringify(this.props.rankingDefinition, null, 0)
+      this.props.itemList,
+      this.props.searchProfile,
+      this.props.rankingDefinition,
     );
 
   }
