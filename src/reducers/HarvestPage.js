@@ -1,12 +1,12 @@
 // Harvest Page Settings Reducer
 
 const HarvestPageDefaultState = {
-  currentStep: 2,
+  currentStep: 3,
   currentLoadItemListTab: 0,
   itemList: [],
+  debugHarvestPage: true,
   loadItemListOk: false,
   loadSearchProfileOk: false,
-  loadRankingDefinitionOk: false,
   launchSearchOk: false,
   columns: [],
   searchProfileFile: undefined,

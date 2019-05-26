@@ -38,7 +38,15 @@ class HarvestPage extends React.Component {
     const {
       handleNextClick,
       handlePrevClick,
-      props: { harvestPage: { currentStep, loadItemListOk, loadSearchProfileOk, loadRankingDefinitionOk } }
+      props: {
+        harvestPage: {
+          currentStep,
+          debugHarvestPage,
+          loadItemListOk,
+          loadSearchProfileOk,
+          loadRankingDefinitionOk
+        }
+      }
     } = this;
 
     return (
@@ -70,14 +78,14 @@ class HarvestPage extends React.Component {
 
                 case 3:
                   return (
-                    <div className="p-5 bg-light rounded">
+                    <div className="p-3 bg-light border">
                       <LoadRankingDefinition />
                     </div>
                   );
 
                 case 4:
                   return (
-                    <div className="p-5 bg-light rounded">
+                    <div className="p-3 bg-light border">
                       {/* <LaunchSearch /> */}
                     </div>
                   )
@@ -91,9 +99,9 @@ class HarvestPage extends React.Component {
           handlePrevClick={handlePrevClick}
           handleNextClick={handleNextClick}
         >
-          <Step name="Item list" isCorrect={loadItemListOk} />
-          <Step name="Search profile" isCorrect={loadSearchProfileOk} />
-          <Step name="Ranking definition" isCorrect={loadRankingDefinitionOk} />
+          <Step name="Item list" isCorrect={loadItemListOk || debugHarvestPage} />
+          <Step name="Search profile" isCorrect={loadSearchProfileOk || debugHarvestPage} />
+          <Step name="Ranking definition" isCorrect={loadRankingDefinitionOk || debugHarvestPage} />
           <Step name="Launch" />
         </Steps>
       </div>
