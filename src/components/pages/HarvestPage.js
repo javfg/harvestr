@@ -101,7 +101,7 @@ class HarvestPage extends React.Component {
         >
           <Step name="Item list" isCorrect={loadItemListOk || debugHarvestPage} />
           <Step name="Search profile" isCorrect={loadSearchProfileOk || debugHarvestPage} />
-          <Step name="Ranking definition" isCorrect={loadRankingDefinitionOk || debugHarvestPage} />
+          <Step name="Ranking definition" isOptional={true}/>
           <Step name="Launch" />
         </Steps>
       </div>

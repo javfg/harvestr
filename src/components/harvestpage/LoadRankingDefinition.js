@@ -31,7 +31,7 @@ class LoadRankingDefinition extends React.Component {
   }
 
   handleGoToRankingDefinition = () => {
-    this.props.history.push('/profile');
+    this.props.history.push('/ranking');
   }
 
 
@@ -47,9 +47,10 @@ class LoadRankingDefinition extends React.Component {
       <>
         <PageTitle
           description="The ranking definition is the list of parameters and values that will
-                       be used to sort items. The system will assign a score to each of them
-                       according to those parameters, and will be able to explain the reasons
-                       for every ranking."
+                       be used to sort the harvest. The system will assign a score to each of
+                       them according to those parameters, and will be able to explain the
+                       reasons for every ranking. If you do not specify a ranking definition,
+                       the harvest will be unsorted."
           icon={faSearch}
           margins='mb-2'
           size="h3"

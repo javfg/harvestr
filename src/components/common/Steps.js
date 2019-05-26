@@ -30,6 +30,11 @@ class Steps extends React.Component {
       })
     );
 
+    const currentChildren = preparedChildren[currentStep - 1];
+
+    const isDisabled = !currentChildren.props.isOptional && !currentChildren.props.isCorrect;
+    const isOptional = currentChildren.props.isOptional;
+
     return (
       <div className="row">
         <div className="col col-xs-12 col-sm-2 col-lg-2">
@@ -63,7 +68,7 @@ class Steps extends React.Component {
             <button
               className="btn btn-primary btn-block step-button ml-auto"
               onClick={handleNextClick}
-              disabled={!preparedChildren[currentStep - 1].props.isCorrect}
+              disabled={isDisabled}
             >
 
               <p className="mb-0"><FontAwesomeIcon icon={faArrowCircleRight} size="2x" /></p>
@@ -71,6 +76,18 @@ class Steps extends React.Component {
             </button>
           </CSSTransition>
         </div>
+          <div className="col d-flex justify-content-end">
+            <CSSTransition
+              in={isOptional}
+              timeout={500}
+              classNames='step-optional-tooltip'
+              unmountOnExit
+            >
+              <p className="border-tooltip bg-tooltip m-2 py-0 px-1">
+                This step is optional, you can skip it.
+              </p>
+            </CSSTransition>
+          </div>
       </div>
     );
   }

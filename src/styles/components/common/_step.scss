@@ -23,6 +23,45 @@
 }
 
 
+// Optional step tooltip animtion.
+// Button animations.
+.step-optional-tooltip-enter {
+  opacity: 0;
+  transform: translate(0, 10px);
+}
+
+.step-optional-tooltip-enter-active {
+  opacity: 1;
+  pointer-events: none;
+  transform: translate(0, 0);
+  transition: opacity 500ms, transform 500ms !important;
+}
+
+.step-optional-tooltip-enter-done {
+  animation: floating .5s ease-in-out 2;
+}
+
+@keyframes floating {
+  0%, 100% {
+    box-shadow: none;
+  }
+  50% {
+    box-shadow: 0px 0px 10px -1px $warning;
+  }
+}
+
+.step-optional-tooltip-exit {
+  opacity: 1;
+}
+
+.step-optional-tooltip-exit-active {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(0, 10px);
+  transition: opacity 500ms, transform 500ms !important;
+}
+
+
 // Step style.
 .step-fixed-width {
   min-width: 26px;
