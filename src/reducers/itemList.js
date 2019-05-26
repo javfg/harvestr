@@ -1,5 +1,6 @@
-// Item List Profile Reducer
-
+//
+// Item List Reducer.
+//
 const ItemListDefaultState = [];
 
 export default (state = ItemListDefaultState, action) => {

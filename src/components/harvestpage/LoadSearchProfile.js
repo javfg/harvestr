@@ -5,14 +5,14 @@ import { withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faFolderOpen, faFile, faHammer, faListAlt } from '@fortawesome/free-solid-svg-icons';
 
+// Actions.
+import { setSearchProfile } from '../../actions/searchProfile';
+import { setHarvestPageField } from '../../actions/HarvestPage';
+
 // Components.
 import FileLoader from '../io/FileLoader';
 import PageTitle from '../common/PageTitle';
 import QueryList from '../common/QueryList';
-
-// Actions.
-import { setSearchProfile } from '../../actions/searchProfile';
-import { setHarvestPageField } from '../../actions/HarvestPage';
 
 
 // TODO: CHECK SEARCH PROFILE VALIDITY.

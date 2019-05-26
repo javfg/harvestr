@@ -4,6 +4,13 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload, faClipboard, faList } from '@fortawesome/free-solid-svg-icons';
 
+// Actions.
+import { setHarvestPageField } from '../../actions/HarvestPage';
+import { setItemList } from '../../actions/itemList';
+import PageTitle from '../common/PageTitle';
+import Tabs from '../common/Tabs';
+import Tab from '../common/Tab';
+
 // Components.
 import FileLoader from '../io/FileLoader';
 import ColumnSelector from '../io/ColumnSelector';
@@ -11,13 +18,6 @@ import ItemList from '../common/ItemList';
 
 // Utils.
 import { arrayOfStrNumbers } from '../../utils/utils';
-
-// Actions.
-import { setHarvestPageField } from '../../actions/HarvestPage';
-import { setItemList } from '../../actions/itemList';
-import PageTitle from '../common/PageTitle';
-import Tabs from '../common/Tabs';
-import Tab from '../common/Tab';
 
 
 class LoadItemList extends React.Component {

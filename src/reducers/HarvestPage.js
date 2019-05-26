@@ -1,5 +1,6 @@
-// Harvest Page Settings Reducer
-
+//
+// Harvest Page Settings Reducer.
+//
 const HarvestPageDefaultState = {
   currentStep: 1,
   currentLoadItemListTab: 0,
@@ -17,7 +18,6 @@ const HarvestPageDefaultState = {
   itemListFileHasHeader: true,
   textAareaContents: ''
 };
-
 
 export default (state = HarvestPageDefaultState, action) => {
   switch (action.type) {

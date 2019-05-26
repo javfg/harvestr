@@ -1,5 +1,6 @@
-// Search Profile Reducer
-
+//
+// Ranking Definition Reducer.
+//
 const rankingDefinitionDefaultState = [];
 
 export default (state = rankingDefinitionDefaultState, action) => {

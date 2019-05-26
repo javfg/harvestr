@@ -1,7 +1,8 @@
-import React from "react";
+import React from 'react';
 
-//Components
-import ResultItem from "./ResultItem";
+//Components.
+import ResultItem from './ResultItem';
+
 
 const ResultItemList = ({ items }) => {
   return (

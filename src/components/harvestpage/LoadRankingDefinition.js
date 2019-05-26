@@ -5,13 +5,13 @@ import { withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faFolderOpen, faFile, faHammer, faListAlt } from '@fortawesome/free-solid-svg-icons';
 
-// Components.
-import FileLoader from '../io/FileLoader';
-import PageTitle from '../common/PageTitle';
-
 // Actions.
 import { setHarvestPageField } from '../../actions/HarvestPage';
 import { setRankingDefinition } from '../../actions/RankingDefinition';
+
+// Components.
+import FileLoader from '../io/FileLoader';
+import PageTitle from '../common/PageTitle';
 
 
 // TODO: RANKING DEFINITION VALIDITY.

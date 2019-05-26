@@ -1,5 +1,6 @@
-// Search Profile Reducer
-
+//
+// Search Profile Reducer.
+//
 const searchProfileDefaultState = [];
 
 export default (state = searchProfileDefaultState, action) => {

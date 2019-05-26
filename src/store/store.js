@@ -1,14 +1,13 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
+// Reducers.
 import harvestPageReducer from '../reducers/HarvestPage';
-
 import configReducer from '../reducers/ConfigReducer';
 import itemListReducer from '../reducers/itemList';
 import rankingDefinitionReducer from '../reducers/RankingDefinition';
 import searchProfileReducer from '../reducers/searchProfile';
 import searchResultReducer from '../reducers/searcResults';
-//import searchEngineReducer from '../reducers/searchEngine'
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -28,11 +27,9 @@ const store = createStore(
     ui: combineReducers({
       harvestPage: harvestPageReducer,
     }),
-    //searchEngine: searchEngineReducer
   }),
   composeEnhancers(applyMiddleware(thunk))
 );
 
 
 export default store;
-

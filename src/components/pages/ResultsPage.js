@@ -1,11 +1,15 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 
-import ResultItemList from "../resultspage/ResultItemList";
+// Actions.
+import { setSearchResults } from '../../actions/searchResults';
 
-import { setSearchResults } from "../../actions/searchResults";
+// Components.
+import ResultItemList from '../resultspage/ResultItemList';
 
-import { exportCSV } from "../../utils/utils";
+// Utils.
+import { exportCSV } from '../../utils/utils';
+
 
 class HarvestPage extends React.Component {
   constructor(props) {

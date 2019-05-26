@@ -3,19 +3,15 @@ import { connect } from 'react-redux';
 
 import { faSeedling } from '@fortawesome/free-solid-svg-icons';
 
-// Actions
+// Actions.
 import { setHarvestPageField } from '../../actions/HarvestPage';
 
-// import LaunchSearch from './homepage/LaunchSearch';
-// import LoadSearchResults from './homepage/LoadSearchResults';
-
-// Components
+// Components.
 import LoadItemList from '../harvestpage/LoadItemList';
 import LoadSearchProfile from '../harvestpage/LoadSearchProfile';
 import LoadRankingDefinition from '../harvestpage/LoadRankingDefinition';
-import SearchSummary from '../harvestpage/SearchSummary';
-
 import PageTitle from '../common/PageTitle';
+import SearchSummary from '../harvestpage/SearchSummary';
 import Steps from '../common/Steps';
 import Step from '../common/Step';
 

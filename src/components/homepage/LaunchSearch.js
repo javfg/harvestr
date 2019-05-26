@@ -1,11 +1,12 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 
 // Selectors.
-import selectItemList from "../../../selectors/itemList";
-import selectSearchProfile from "../../../selectors/searchProfile";
-import SearchEngine from "../../../engine/searchEngine";
-import { setSearchResults } from "../../../actions/searchResults";
+import selectItemList from '../../../selectors/itemList';
+import selectSearchProfile from '../../../selectors/searchProfile';
+import SearchEngine from '../../../engine/searchEngine';
+import { setSearchResults } from '../../../actions/searchResults';
+
 
 class LaunchSearch extends React.Component {
   constructor(props) {

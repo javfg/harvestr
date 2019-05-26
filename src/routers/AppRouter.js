@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
+// Components.
 import Header from '../components/common/Header';
 
 import HarvestPage from '../components/pages/HarvestPage';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-//Components
+//Components.
 import Query from './Query';
 
 

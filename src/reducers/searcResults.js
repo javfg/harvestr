@@ -1,5 +1,6 @@
-// Search Results Reducer
-
+//
+// Search Results Reducer.
+//
 const searchResultsDefaultState = [];
 
 export default (state = searchResultsDefaultState, action) => {

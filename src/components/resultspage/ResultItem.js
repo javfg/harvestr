@@ -1,6 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import ResultQuery from "./ResultQuery";
+// Components.
+import ResultQuery from './ResultQuery';
+
 
 const ResultItem = ({ name, queries }) => {
   return (

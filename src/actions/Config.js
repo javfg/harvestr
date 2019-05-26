@@ -1,11 +1,13 @@
-import { setItemList } from "./itemList";
-import { setRankingDefinition } from "./RankingDefinition";
-import { setSearchProfile } from "./searchProfile";
+// Actions.
+import { setItemList } from './itemList';
+import { setRankingDefinition } from './RankingDefinition';
+import { setSearchProfile } from './searchProfile';
 
-import { debugStoreItemList } from "../config/debugStoreItemList";
-import { debugStoreRankingDefinition } from "../config/debugStoreRankingDefinition";
-import { debugStoreSearchProfile } from "../config/debugStoreSearchProfile";
-import { setHarvestPageField } from "./HarvestPage";
+// Debug data.
+import { debugStoreItemList } from '../config/debugStoreItemList';
+import { debugStoreRankingDefinition } from '../config/debugStoreRankingDefinition';
+import { debugStoreSearchProfile } from '../config/debugStoreSearchProfile';
+import { setHarvestPageField } from './HarvestPage';
 
 
 //

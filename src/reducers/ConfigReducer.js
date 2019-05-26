@@ -1,8 +1,9 @@
-import { config } from "../config/Config";
+import { config } from '../config/Config';
 
 
-// Config reducer
-
+//
+// Config reducer.
+//
 const defaultState = config;
 
 const configReducer = (state = defaultState, action) => {

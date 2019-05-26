@@ -4,7 +4,9 @@ import Papa from 'papaparse';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisH, faFileUpload } from '@fortawesome/free-solid-svg-icons';
 
+// Utils.
 import { readJSONFromFile } from '../../utils/file';
+
 
 export class FileLoader extends React.Component {
   constructor(props) {

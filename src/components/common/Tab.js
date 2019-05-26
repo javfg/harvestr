@@ -2,6 +2,7 @@ import React from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+
 class Tab extends React.Component {
   constructor(props) {
     super(props);
