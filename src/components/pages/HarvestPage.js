@@ -4,16 +4,20 @@ import { connect } from 'react-redux';
 import { faSeedling } from '@fortawesome/free-solid-svg-icons';
 
 // Actions
+import { setHarvestPageField } from '../../actions/HarvestPage';
+
+// import LaunchSearch from './homepage/LaunchSearch';
+// import LoadSearchResults from './homepage/LoadSearchResults';
+
+// Components
 import LoadItemList from '../harvestpage/LoadItemList';
 import LoadSearchProfile from '../harvestpage/LoadSearchProfile';
 import LoadRankingDefinition from '../harvestpage/LoadRankingDefinition';
-// import LaunchSearch from './homepage/LaunchSearch';
-// import LoadSearchResults from './homepage/LoadSearchResults';
+import SearchSummary from '../harvestpage/SearchSummary';
 
 import PageTitle from '../common/PageTitle';
 import Steps from '../common/Steps';
 import Step from '../common/Step';
-import { setHarvestPageField } from '../../actions/HarvestPage';
 
 
 class HarvestPage extends React.Component {
@@ -43,8 +47,7 @@ class HarvestPage extends React.Component {
           currentStep,
           debugHarvestPage,
           loadItemListOk,
-          loadSearchProfileOk,
-          loadRankingDefinitionOk
+          loadSearchProfileOk
         }
       }
     } = this;
@@ -86,7 +89,7 @@ class HarvestPage extends React.Component {
                 case 4:
                   return (
                     <div className="p-3 bg-light border">
-                      {/* <LaunchSearch /> */}
+                      <SearchSummary />
                     </div>
                   )
               }
