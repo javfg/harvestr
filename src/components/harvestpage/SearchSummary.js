@@ -22,22 +22,25 @@ class SearchSummary extends React.Component {
 
 
   handleLaunchSearch = async () => {
-    const searchEngine = new SearchEngine();
+    const searchEngine = new SearchEngine(
+      this.props.itemList,
+      this.props.searchProfile,
+      this.props.rankingDefinition,
+      this.props.config
+    );
 
     console.log('Launch with:',
       this.props.itemList,
       this.props.searchProfile,
-      this.props.rankingDefinition,
+      this.props.rankingDefinition
     );
 
-    const searchResults = await searchEngine.run(
-      this.props.searchProfile,
-      this.props.itemList
-    );
+    await searchEngine.run();
 
-    console.log("SEARCH DONE. RESULTS:", searchResults);
+    //const searchResults = await searchEngine.run();
 
-    this.props.setSearchResults(searchResults);
+    //console.log("SEARCH DONE. RESULTS:", searchResults);
+    //this.props.setSearchResults(searchResults);
   }
 
 
@@ -83,6 +86,7 @@ class SearchSummary extends React.Component {
 // Mapping functions.
 //
 const mapStateToProps = (state) => ({
+  config: state.config,
   harvestPage: state.ui.harvestPage,
   itemList: state.itemList,
   rankingDefinition: state.rankingDefinition,

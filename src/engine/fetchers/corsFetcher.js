@@ -1,7 +1,8 @@
-import axios from "axios";
+import fetchWithRetry from '../../utils/utils';
+
 
 export const corsFetcher = function(url) {
-  return axios.get(`https://cors-anywhere.herokuapp.com/${url}`, {
-    headers: { "X-Requested-With": "XMLHttpRequest" }
+  return fetchWithRetry(`https://cors-anywhere.herokuapp.com/${url}`, {
+    headers: { 'X-Requested-With': 'XMLHttpRequest' }
   });
 };

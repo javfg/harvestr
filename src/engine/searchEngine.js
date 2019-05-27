@@ -1,50 +1,45 @@
-// Fetcher/Parser and strategies.
-import Fetcher from "./fetcher";
-import { standardFetcher } from "./fetchers/standardFetcher";
+import Item from './model/Item';
 
-import Parser from "./parser";
-import { xmlParser } from "./parsers/xmlParser";
-import { jsonParser } from "./parsers/jsonParser";
-import { corsFetcher } from "./fetchers/corsFetcher";
-import { serverFetcher } from "./fetchers/serverFetcher";
-import { htmlParser } from "./parsers/htmlParser";
-import { csvParser } from "./parsers/csvParser";
-import { tsvParser } from "./parsers/tsvParser";
-
+//
+// Search engine class.
+//
+//
 export default class SearchEngine {
-  savedData = {};
+  constructor(itemList, searchProfile, rankingDefinition, config) {
+    this.config = config;
+    this.savedData = {};
 
-  getFetcher = fetcherFunctionName => {
-    switch (fetcherFunctionName) {
-      case "standardFetcher":
-        return standardFetcher;
-      case "corsFetcher":
-        return corsFetcher;
-      case "serverFetcher":
-        return serverFetcher;
+    this.items = itemList.map(item => new Item(item, searchProfile));
+  }
 
-      default:
-        return undefined;
-    }
-  };
 
-  getParser = parserFunctionName => {
-    switch (parserFunctionName) {
-      case "xmlParser":
-        return xmlParser;
-      case "jsonParser":
-        return jsonParser;
-      case "htmlParser":
-        return htmlParser;
-      case "csvParser":
-        return csvParser;
-      case "tsvParser":
-        return tsvParser;
+  run = async () => {
+    console.log('SearchEngine RUN', this);
 
-      default:
-        return undefined;
-    }
-  };
+    await Promise.all(this.items.map(item => item.run()));
+
+    console.log('END', this.items);
+
+    return this.items;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   processQuery = async (query, item) => {
     let url = query.url.replace(/{{ITEM}}/, item);
@@ -53,7 +48,7 @@ export default class SearchEngine {
     if (query.requires) {
       await this.savedData[query.requires];
 
-      const regexp = new RegExp(`{{${query.requires}}}`, "g");
+      const regexp = new RegExp(`{{${query.requires}}}`, 'g');
 
       url = url.replace(regexp, this.savedData[query.requires]);
     }
@@ -72,9 +67,16 @@ export default class SearchEngine {
 
     const fetch = await data;
 
+    if (fetch.status !== 200) return;
+
+    console.log('fetch', fetch);
+
+
+    const fetchText = await fetch.text();
+
     const parser = new Parser(
       this.getParser(query.parser),
-      fetch.data,
+      fetchText,
       query.fields,
       query.multiple
     );
@@ -101,7 +103,7 @@ export default class SearchEngine {
     };
   };
 
-  run = async (searchProfile, itemList) => {
+  runOld = async (searchProfile, itemList) => {
     let searchResult = [];
 
     await Promise.all(
