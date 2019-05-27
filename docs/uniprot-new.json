@@ -1,4 +1,3 @@
-export const debugStoreSearchProfile =
 [
   {
     "name": "UniProt",
@@ -141,7 +140,7 @@ export const debugStoreSearchProfile =
         "entries": [
           {
             "name": "ID",
-            "path": "uniprot/entry/dbReference[@type='Reactome']/@id",
+            "path": "uniprot/entry/dbReference[@type='Reactome']/@id"
           },
           {
             "name": "Value",
