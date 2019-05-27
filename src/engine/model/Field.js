@@ -1,19 +1,18 @@
+import Entry from '../model/Entry';
 
 
 class Field {
-  constructor(name, field, or, type, saveData, removeNewLines) {
+  constructor(name, entries) {
     this.name = name;
-    this.field = field;
-    this.or = or;
-    this.type = type;
-    this.saveData = saveData;
-    this.removeNewLines = removeNewLines;
-
     this.value = undefined;
-    this.additionalValues = [];
+    this.entries = entries.map(entry => new Entry(
+      entry.name,
+      entry.path,
+      entry.or,
+      entry.saveData,
+      entry.removeNewLines
+    ));
   }
-
-
 }
 
 

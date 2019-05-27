@@ -30,10 +30,10 @@ class Parser {
   };
 
 
-  parse = (doc, field) => {
-    console.log('Parser PARSE', this, doc.split('\n', 1)[0], field);
+  parse = (doc, entry) => {
+    console.log('Parser PARSE', this, doc.split('\n', 1)[0], entry);
 
-    return this.parseStrategy(doc, field);
+    return this.parseStrategy(doc, entry);
   }
 }
 
