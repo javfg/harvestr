@@ -29,18 +29,10 @@ class SearchSummary extends React.Component {
       this.props.config
     );
 
-    console.log('Launch with:',
-      this.props.itemList,
-      this.props.searchProfile,
-      this.props.rankingDefinition
-    );
+    // TODO: TAKE AWAY TO A 'RUNNING' PAGE.
+    const searchResults = await searchEngine.run();
 
-    await searchEngine.run();
-
-    //const searchResults = await searchEngine.run();
-
-    //console.log("SEARCH DONE. RESULTS:", searchResults);
-    //this.props.setSearchResults(searchResults);
+    this.props.setSearchResults(searchResults);
   }
 
 

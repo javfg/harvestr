@@ -1,10 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPoll, faSave } from '@fortawesome/free-solid-svg-icons';
+
 // Actions.
 import { setSearchResults } from '../../actions/searchResults';
 
 // Components.
+import PageTitle from '../common/PageTitle';
 import ResultItemList from '../resultspage/ResultItemList';
 
 // Utils.
@@ -14,37 +18,44 @@ import { exportCSV } from '../../utils/utils';
 class HarvestPage extends React.Component {
   constructor(props) {
     super(props);
-
-    this.props = props;
   }
+
 
   handleSaveHarvest = () => {
     exportCSV(this.props.searchResults);
   };
 
+
   render() {
     return (
-      <div>
-        <h2>Search results</h2>
-        <button onClick={this.handleSaveHarvest}>Save CSV</button>
-        <ResultItemList items={this.props.searchResults} />
+      <div className="container-fluid my-4">
+        <PageTitle
+          description="Results of the harvest."
+          icon={faPoll}
+          size="h1"
+          title="Results"
+        />
+
+        <ResultItemList />
+
+        <button
+          className="btn btn-primary"
+          onClick={this.handleSaveHarvest}
+        >
+          <FontAwesomeIcon icon={faSave} /> Save CSV
+        </button>
       </div>
     );
   }
 }
 
+
 //
-// Mapping functions.
+// Redux mapping functions.
 //
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return { searchResults: state.searchResults };
 };
 
-const mapDispatchToProps = dispatch => ({
-  setItemList: data => dispatch(setSearchResults(data))
-});
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(HarvestPage);
+export default connect(mapStateToProps)(HarvestPage);

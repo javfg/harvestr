@@ -9,8 +9,10 @@ const ResultQuery = ({ name, url, fields }) => {
         {fields.map((f, i) => {
           return (
             <li key={`${f}-${i}`}>
-              <strong>{f.name}:</strong>{" "}
-              {Array.isArray(f.data) ? f.data.join("; ") : f.data || "Empty"}
+              <strong>{f.name}:</strong>{" "}{f.value.name}
+              {
+                JSON.stringify(f.value, 0, null)
+              }
             </li>
           );
         })}
