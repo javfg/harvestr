@@ -21,10 +21,5 @@ export const xmlParser = function(doc, entry) {
     value.push(nodeValue);
   }
 
-  // Fill with empty value if empty; convert to single element if array has length 1.
-  if (value.length === 0) {
-    value = '';
-  }
-
-  return  { name: entry.name, value: value.length === 1 ? value[0] : value };
+  return  { name: entry.name, value };
 }

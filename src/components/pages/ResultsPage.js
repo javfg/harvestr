@@ -4,9 +4,6 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPoll, faSave } from '@fortawesome/free-solid-svg-icons';
 
-// Actions.
-import { setSearchResults } from '../../actions/searchResults';
-
 // Components.
 import PageTitle from '../common/PageTitle';
 import ResultItemList from '../resultspage/ResultItemList';

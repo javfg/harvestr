@@ -55,3 +55,11 @@ a, a:visited, a:hover, a:active {
   resize: none;
 }
 
+.small {
+  display: block;
+  line-height: 110%;
+}
+
+.table-container {
+  overflow-x: auto;
+}

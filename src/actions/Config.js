@@ -2,11 +2,13 @@
 import { setItemList } from './itemList';
 import { setRankingDefinition } from './RankingDefinition';
 import { setSearchProfile } from './searchProfile';
+import { setSearchResults } from "./searchResults";
 
 // Debug data.
 import { debugStoreItemList } from '../config/debugStoreItemList';
 import { debugStoreRankingDefinition } from '../config/debugStoreRankingDefinition';
 import { debugStoreSearchProfile } from '../config/debugStoreSearchProfile';
+import { debugStoreSearchResults } from "../config/debugStoreSearchResults";
 import { setHarvestPageField } from './HarvestPage';
 
 
@@ -34,6 +36,7 @@ export const populateStore = () => {
       dispatch(setItemList(debugStoreItemList));
       dispatch(setSearchProfile(debugStoreSearchProfile));
       dispatch(setRankingDefinition(debugStoreRankingDefinition));
+      dispatch(setSearchResults(debugStoreSearchResults));
       dispatch(setHarvestPageField({currentStep: 4}));
     }
   }

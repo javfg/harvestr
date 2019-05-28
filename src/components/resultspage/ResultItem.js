@@ -1,21 +1,26 @@
-import React from 'react';
+import ResultField from './ResultField';
 
 // Components.
-import ResultQuery from './ResultQuery';
+import React from 'react';
 
 
 const ResultItem = ({ name, queries }) => {
   return (
-    <li>
-      <strong>{name}:</strong>
-      <ul>
-        {queries.map((query, index) => {
-          return (
-            <ResultQuery key={`q-${name}-${index}-${query.name}`} {...query} />
-          );
-        })}
-      </ul>
-    </li>
+    <tr>
+      <th
+        className="border"
+        scope="row"
+      >
+        {name}
+      </th>
+      {
+        queries.map((query) =>
+          query.fields.map((field, index) =>
+            <ResultField key={`field-${field.name}-${index}`} {...field} />
+          )
+        )
+      }
+    </tr>
   );
 };
 

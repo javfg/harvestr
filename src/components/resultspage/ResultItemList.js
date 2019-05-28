@@ -15,20 +15,64 @@ class ResultItemList extends React.Component {
   render () {
     const { searchResults } = this.props;
 
-    return (
-      <ul
-        style={{
-          whiteSpace: "nowrap",
-          overflow: "hidden",
-          textOverflow: "ellipsis"
-        }}
-      >
-        {searchResults.map((item, index) => {
-          console.log('item', item);
+    //console.log('searchResults', JSON.stringify(searchResults));
 
-          return (<ResultItem key={`i-${index}-${item.name}`} {...item} />);
-        })}
-      </ul>
+    if (searchResults.length === 0) {
+      return (
+        <p>No items</p>
+      )
+    }
+
+    // TODO: TABLE WIDTH
+    return (
+      <div className="table-container">
+        <table className="table table-sm table-borderless">
+          <thead className="text-center">
+            <tr>
+              <th
+                rowSpan={2}
+                className="bg-light border align-middle"
+              >
+                Item
+              </th>
+              {
+                searchResults[0].queries.map((query) =>
+                  <th
+                    className="bg-light border"
+                    colSpan={query.fields.length}
+                    key={`{header-query-${query.name}`}
+                    scope="col"
+                  >
+                    {query.name}
+                  </th>
+                )
+              }
+            </tr>
+            <tr>
+              {
+                searchResults[0].queries.map((query) =>
+                  query.fields.map((field) =>
+                    <th
+                      className="bg-light border font-weight-lighter align-middle"
+                      key={`{header-${field.name}`}
+                      scope="col"
+                    >
+                      <small className="small">{field.name}</small>
+                    </th>
+                  )
+                )
+              }
+            </tr>
+          </thead>
+          <tbody>
+            {
+              searchResults.map((item, index) =>
+                <ResultItem key={`item-${index}-${item.name}`} {...item} />
+              )
+            }
+          </tbody>
+        </table>
+      </div>
     );
   }
 }

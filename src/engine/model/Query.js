@@ -27,11 +27,8 @@ class Query {
 
   parseEntry = (doc, entry) => this.parser.parse(doc, entry);
 
-  resolveField = (field, fieldData) => {
-    const finalValue = fieldData.map(entry => ({name: entry.name, value: entry.value}));
-
-    field.value = finalValue.length === 1 ? finalValue[0] : finalValue;
-  }
+  resolveField = (field, fieldData) =>
+    field.value = fieldData.map(entry => ({name: entry.name, value: entry.value}));
 
 
   run = async (item) => {
