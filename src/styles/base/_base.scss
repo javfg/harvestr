@@ -31,11 +31,6 @@ $magic-color: #4169e1;
 
 $border-radius: 0;
 
-
-html {
-  overflow-y: scroll;
-}
-
 * {
   box-sizing: border-box;
   font-family: Noto Sans;
@@ -60,6 +55,9 @@ a, a:visited, a:hover, a:active {
   line-height: 110%;
 }
 
-.table-container {
-  overflow-x: auto;
+// Text ellipsis mixin:
+@mixin ellipsis() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

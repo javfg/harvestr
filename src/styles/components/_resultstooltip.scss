@@ -1,0 +1,40 @@
+.results-tooltip {
+  background-color: $light;
+  border: 1px solid $grey;
+  max-width: 50%;
+  position: absolute;
+  z-index: 10;
+  box-shadow: 0 0 10px 0 $dark;
+}
+
+.results-tooltip-text {
+  @include ellipsis;
+}
+
+// Button animations.
+.results-tooltip-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.results-tooltip-enter-active {
+  opacity: 1;
+  pointer-events: none;
+  transform: translateX(0);
+  transition: opacity 250ms, transform 250ms !important;
+}
+
+.results-tooltip-exit {
+  opacity: 1;
+}
+
+.results-tooltip-exit-active {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.9);
+  transition: opacity 250ms, transform 250ms !important;
+}
+
+.results-tooltip-exit-done {
+  visibility: hidden;
+}

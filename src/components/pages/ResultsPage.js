@@ -2,14 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPoll, faSave } from '@fortawesome/free-solid-svg-icons';
+import { faPoll, faSave, faFileCsv } from '@fortawesome/free-solid-svg-icons';
 
 // Components.
 import PageTitle from '../common/PageTitle';
-import ResultItemList from '../resultspage/ResultItemList';
+import ResultsItemList from '../resultspage/ResultsItemList';
+import ResultsTooltip from '../resultspage/ResultsTooltip';
 
 // Utils.
-import { exportCSV } from '../../utils/utils';
+//import { exportCSV } from '../../utils/utils';
 
 
 class HarvestPage extends React.Component {
@@ -18,30 +19,65 @@ class HarvestPage extends React.Component {
   }
 
 
-  handleSaveHarvest = () => {
-    exportCSV(this.props.searchResults);
+  handleExportCSV = () => {
+    // TODO:
+    //exportCSV(this.props.searchResults);
+    console.log('export CSV');
+  }
+
+  handleSaveHarvestResults = () => {
+    // TODO:
+    console.log('save harvest results');
+  };
+
+  handleLoadHarvestResults = () => {
+    // TODO:
+    console.log('load harvest results');
   };
 
 
   render() {
+    const { handleExportCSV, handleLoadHarvestResults, handleSaveHarvestResults } = this;
+
     return (
-      <div className="container-fluid my-4">
-        <PageTitle
-          description="Results of the harvest."
-          icon={faPoll}
-          size="h1"
-          title="Results"
-        />
+      <>
+        <div className="container-fluid my-4">
+          <div className="row">
+            <div className="col col-xs-12 col-sm-4 col-md-4">
+              <PageTitle
+                description="Results of the harvest."
+                icon={faPoll}
+                size="h1"
+                title="Results"
+              />
+            </div>
 
-        <ResultItemList />
+            <div className="col col-xs-12 col-sm-8 col-md-8 mt-2 text-right">
+              <button
+                className="btn btn-primary mr-4"
+                onClick={handleLoadHarvestResults}
+              >
+                <FontAwesomeIcon icon={faSave} /> Load Results
+              </button>
+              <button
+                className="btn btn-primary mr-2"
+                onClick={handleSaveHarvestResults}
+              >
+                <FontAwesomeIcon icon={faSave} /> Save Results
+              </button>
+              <button
+                className="btn btn-primary"
+                onClick={handleExportCSV}
+              >
+                <FontAwesomeIcon icon={faFileCsv} /> Export CSV
+              </button>
+            </div>
+          </div>
 
-        <button
-          className="btn btn-primary"
-          onClick={this.handleSaveHarvest}
-        >
-          <FontAwesomeIcon icon={faSave} /> Save CSV
-        </button>
-      </div>
+          <ResultsItemList />
+        </div>
+        <ResultsTooltip />
+      </>
     );
   }
 }

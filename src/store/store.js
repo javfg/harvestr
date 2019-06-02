@@ -8,6 +8,7 @@ import itemListReducer from '../reducers/itemList';
 import rankingDefinitionReducer from '../reducers/RankingDefinition';
 import searchProfileReducer from '../reducers/searchProfile';
 import searchResultReducer from '../reducers/searcResults';
+import resultsTooltipReducer from "../reducers/ResultsTooltip";
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -26,6 +27,9 @@ const store = createStore(
     searchResults: searchResultReducer,
     ui: combineReducers({
       harvestPage: harvestPageReducer,
+      resultsPage: combineReducers({
+        resultsTooltip: resultsTooltipReducer
+      })
     }),
   }),
   composeEnhancers(applyMiddleware(thunk))

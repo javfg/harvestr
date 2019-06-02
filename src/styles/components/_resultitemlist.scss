@@ -1,0 +1,31 @@
+.table-container {
+  position: absolute;
+  top: 12rem;
+  bottom: 1rem;
+  left: .5rem;
+  right: .5rem;
+  overflow: scroll;
+}
+
+.td-normal {
+  min-width: 10rem;
+  max-width: 20rem;
+}
+
+.results-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  span {
+    @include ellipsis;
+  }
+}
+
+// Smaller button for tooltips.
+.btn-mini {
+  padding: .5rem .25rem !important;
+  margin-left: .5rem;
+  height: .75rem;
+  line-height: 0 !important;
+}
