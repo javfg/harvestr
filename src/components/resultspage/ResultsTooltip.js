@@ -5,6 +5,7 @@ import { CSSTransition } from 'react-transition-group';
 
 // Components.
 import Field from "../common/Field";
+import ResultsEntryList from './ResultsEntryList';
 
 
 class ResultsTooltip extends React.Component {
@@ -12,10 +13,22 @@ class ResultsTooltip extends React.Component {
     super(props);
 
     this.tooltipRef = React.createRef();
+
+    this.state = {
+      style: {
+        left: this.props.resultsTooltip.posX,
+        top: this.props.resultsTooltip.posY
+      }
+    }
   }
 
 
-  render() {
+  componentDidUpdate = () => {
+    this.calculateTooltipStyle();
+  }
+
+
+  calculateTooltipStyle = () => {
     const {
       props: { resultsTooltip },
       tooltipRef
@@ -32,10 +45,23 @@ class ResultsTooltip extends React.Component {
       (window.innerHeight / 2) > resultsTooltip.posY ? resultsTooltip.posY + 20 :
       resultsTooltip.posY - tooltipHeight;
 
-    const resultsTooltipStyle = {
+    const style = {
       left: tooltipPosX,
-      top: tooltipPosY,
+      top: tooltipPosY
     }
+
+    // Update only if coords have changed.
+    if (this.state.style.left !== style.left || this.state.style.top !== style.top) {
+      this.setState({style});
+    }
+  };
+
+
+  render() {
+    const {
+      props: { resultsTooltip },
+      state: { style }
+    } = this;
 
     return (
       <CSSTransition
@@ -44,20 +70,22 @@ class ResultsTooltip extends React.Component {
         timeout={250}
       >
         <div
-          className="results-tooltip"
-          style={resultsTooltipStyle}
+          className="results-tooltip container-fluid"
+          style={style}
           ref={this.tooltipRef}
         >
 
           <div className="row">
-            <div className="col align-self-center text-center">
+            <div className="col align-self-center text-center px-2">
               <Field name={resultsTooltip.name}/>
             </div>
           </div>
 
-          <p className="results-tooltip-text mb-0">
-            values: {JSON.stringify(resultsTooltip.contents)}
-          </p>
+          <div className="row">
+            <div className="col">
+              <ResultsEntryList entries={resultsTooltip.contents} />
+            </div>
+          </div>
         </div>
       </CSSTransition>
     );

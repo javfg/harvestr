@@ -61,3 +61,9 @@ a, a:visited, a:hover, a:active {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.text-small {
+  display: block;
+  line-height: 1;
+  font-size: 80%;
+}
