@@ -4,5 +4,7 @@ export const config = {
   serverFetcherUrl: 'http://localhost:8081',
 
   retryAttempts: 1,
-  retryDelay: 1000
+  retryDelay: 1000,
+
+  shortTableResultsElementsToShow: 2
 };

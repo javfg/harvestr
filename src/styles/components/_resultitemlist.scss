@@ -9,7 +9,6 @@
 
 .td-normal {
   min-width: 5rem;
-  max-width: 20rem;
 }
 
 .results-field {
@@ -37,11 +36,28 @@
 }
 
 .results-entry-table {
-  table-layout: fixed;
+  table-layout: auto;
 }
 
 .table-xs {
   td {
     padding: 0 .1rem;
   }
+}
+
+.text-xs {
+  display: block;
+  line-height: 1.1;
+  font-size: 60%;
+  word-wrap: break-word;
+  word-break: break-all;
+  max-width: 20rem;
+}
+
+.might-overflow:hover {
+  text-overflow: clip;
+  word-wrap: break-word;
+  word-break: break-all;
+  white-space: normal;
+  min-width: 20rem;
 }

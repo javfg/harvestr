@@ -70,12 +70,12 @@ class ResultsTooltip extends React.Component {
         timeout={250}
       >
         <div
-          className="results-tooltip"
+          className="results-tooltip container-mini"
           style={style}
           ref={this.tooltipRef}
         >
 
-          <div className="row">
+          <div className="row no-gutters">
             <div className="col align-self-center text-center px-2 mb-2">
               <Field name={resultsTooltip.name}/>
             </div>
@@ -96,9 +96,9 @@ class ResultsTooltip extends React.Component {
 //
 // Redux mapping functions.
 //
-const mapStateToProps = (state) => {
-  return { resultsTooltip: state.ui.resultsPage.resultsTooltip };
-};
+const mapStateToProps = (state) => ({
+  resultsTooltip: state.ui.resultsPage.resultsTooltip
+})
 
 
 export default connect(mapStateToProps)(ResultsTooltip);

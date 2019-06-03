@@ -48,7 +48,11 @@ class ResultsEntryList extends React.Component {
                     className="border"
                     key={`entrylist-tr-${entry}-${index}`}
                   >
-                    <ResultsEntry key={`resultsentry-${entry}-${index}`} entry={entry} />
+                    <ResultsEntry
+                      key={`resultsentry-${entry}-${index}`}
+                      entry={entry}
+                      mightOverflow={entriesNotShown <= 0}
+                    />
                   </tr>
                 );
               })

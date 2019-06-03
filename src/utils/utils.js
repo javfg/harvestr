@@ -3,6 +3,9 @@ import { config } from '../config/Config';
 
 const arrayOfStrNumbers = l => [...Array(l + 1).keys()].splice(1).map(e => e.toString());
 
+const rem2px = rem => rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+const px2rem = px => px / parseFloat(getComputedStyle(document.documentElement).fontSize);
+
 
 const fetchWithRetry = async (input, init = {}) => {
   let result;
@@ -60,4 +63,4 @@ const exportCSV = searchResults => {
   document.body.removeChild(link);
 };
 
-export { arrayOfStrNumbers, fetchWithRetry, exportCSV };
+export { arrayOfStrNumbers, rem2px, px2rem, fetchWithRetry, exportCSV };

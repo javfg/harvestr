@@ -19,9 +19,9 @@ class ResultsField extends React.Component {
   handleMouseOverDetailsButton = (e) => {
     const {
       props: {
+        name,
         resultsTooltip: { lockedVisible },
         setResultsTooltipSettings,
-        name,
         value
       }
     } = this;
@@ -68,25 +68,29 @@ class ResultsField extends React.Component {
       handleClickDetailsButton,
       handleMouseOutDetailsButton,
       handleMouseOverDetailsButton,
-      props: { value },
+      props: { config, value },
       state: { lockedVisible }
     } = this;
 
     return (
       <>
         <td
-          className={`border text-break td-normal`}
+          className={`border td-normal`}
         >
           <div className="results-field">
-            <ResultsEntryList entries={value} limit={2} />
-            <button
-              className={`btn btn-mini ${lockedVisible ? 'btn-primary' : 'btn-dark'}`}
-              onMouseOver={handleMouseOverDetailsButton}
-              onMouseOut={handleMouseOutDetailsButton}
-              onClick={handleClickDetailsButton}
-            >
-              +
-            </button>
+            <ResultsEntryList entries={value} limit={config.shortTableResultsElementsToShow} />
+            {
+              value.length > config.shortTableResultsElementsToShow && (
+                <button
+                  className={`btn btn-mini ${lockedVisible ? 'btn-primary' : 'btn-dark'}`}
+                  onMouseOver={handleMouseOverDetailsButton}
+                  onMouseOut={handleMouseOutDetailsButton}
+                  onClick={handleClickDetailsButton}
+                >
+                  +
+                </button>
+              )
+            }
           </div>
         </td>
       </>
@@ -98,6 +102,7 @@ class ResultsField extends React.Component {
 // Redux mapping functions.
 //
 const mapStateToProps = (state) => ({
+  config: state.config,
   resultsTooltip: state.ui.resultsPage.resultsTooltip
 });
 
