@@ -16,6 +16,8 @@ class Query {
 
     this.fields = fields.map(field => new Field(
       field.name,
+      field.path,
+      field.or,
       field.entries
     ));
   }
@@ -25,10 +27,7 @@ class Query {
 
   fetch = () => this.fetcher.fetch(this.url);
 
-  parseEntry = (doc, entry) => this.parser.parse(doc, entry);
-
-  resolveField = (field, fieldData) =>
-    field.value = fieldData.map(entry => ({name: entry.name, value: entry.value}));
+  parseField = (doc, field) => this.parser.parse(doc, field);
 
 
   run = async (item) => {
@@ -48,21 +47,14 @@ class Query {
 
     console.log('Query -> fetchedDocument', fetchedDocument.split('\n', 1)[0]);
 
-    // For every field.
+    // Parse every field.
     this.fields.forEach(field => {
-      let fieldData = [];
-
-      // For every entry.
-      field.entries.forEach((entry) => {
-        console.log('Query -> entry', entry);
-
-        fieldData.push(this.parseEntry(fetchedDocument, entry));
-      });
-
-      this.resolveField(field, fieldData);
+      console.log('Query -> field', field);
+      field.value = this.parseField(fetchedDocument, field);
     });
 
     this.fields.forEach(field => console.log('field', field.name, field.value));
+    console.log('Query -> this', this);
   }
 }
 

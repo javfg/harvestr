@@ -18,6 +18,8 @@ export default class SearchEngine {
 
     await Promise.all(this.items.map(item => item.run()));
 
+    console.log('this.items', JSON.stringify(this.items));
+
     return this.items;
   }
 

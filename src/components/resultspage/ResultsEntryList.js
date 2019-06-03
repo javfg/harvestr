@@ -13,7 +13,7 @@ class ResultsEntryList extends React.Component {
   render() {
     const { entries } = this.props;
 
-    console.log('props', entries);
+    console.log('entries', entries);
 
     if (!entries) {
       return null;
@@ -28,7 +28,7 @@ class ResultsEntryList extends React.Component {
                 <th
                   className="bg-light border font-weight-lighter align-middle text-small"
                   key={`entrylist-${index}`}
-                  scope="row"
+                  scope="col"
                 >
                   {entry.name}
                 </th>
@@ -38,7 +38,7 @@ class ResultsEntryList extends React.Component {
         </thead>
         <tbody>
           {
-            // TODO: TABLE IS ROWS NOT COLS. WHAT.
+
           }
         </tbody>
       </table>

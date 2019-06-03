@@ -76,7 +76,7 @@ class ResultsTooltip extends React.Component {
         >
 
           <div className="row">
-            <div className="col align-self-center text-center px-2">
+            <div className="col align-self-center text-center px-2 mb-2">
               <Field name={resultsTooltip.name}/>
             </div>
           </div>
