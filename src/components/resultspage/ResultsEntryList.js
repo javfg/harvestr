@@ -11,37 +11,52 @@ class ResultsEntryList extends React.Component {
 
 
   render() {
-    const { entries } = this.props;
+    const { entries, limit } = this.props;
 
-    console.log('entries', entries);
-
-    if (!entries) {
+    if (!entries || entries.length === 0) {
       return null;
     }
 
-    return (
-      <table className="table table-sm">
-        <thead>
-          <tr>
-            {
-              entries.map((entry, index) =>
-                <th
-                  className="bg-light border font-weight-lighter align-middle text-small"
-                  key={`entrylist-${index}`}
-                  scope="col"
-                >
-                  {entry.name}
-                </th>
-              )
-            }
-          </tr>
-        </thead>
-        <tbody>
-          {
+    const limitedEntries = limit ? entries.slice(0, limit) : entries;
+    const entriesNotShown = entries.length - limit;
 
-          }
-        </tbody>
-      </table>
+    return (
+      <div className="results-field__table">
+        <table className="table table-sm results-entry-table mb-0">
+          {}
+          <thead>
+            <tr>
+              {
+                (entries[0].length > 1) && (
+                  entries[0].map((entry, index) =>
+                    <th
+                      className="bg-light border font-weight-lighter align-middle"
+                      key={`entrylist-header-entrylist-tr-${entry}-${index}`}
+                    >
+                      <span className="text-xs">{entry.name}</span>
+                    </th>
+                  )
+                )
+              }
+            </tr>
+          </thead>
+          <tbody>
+            {
+              limitedEntries.map((entry, index) => {
+                return (
+                  <tr
+                    className="border"
+                    key={`entrylist-tr-${entry}-${index}`}
+                  >
+                    <ResultsEntry key={`resultsentry-${entry}-${index}`} entry={entry} />
+                  </tr>
+                );
+              })
+            }
+          </tbody>
+        </table>
+        { (limit && entriesNotShown > 0) && (<span className="text-xs text-muted text-right">...{entriesNotShown} more</span>) }
+      </div>
     );
   }
 }

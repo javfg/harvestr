@@ -8,12 +8,16 @@ class ResultsEntry extends React.Component {
 
 
   render() {
-    //console.log('this.props', this.props);
-
-    const { value } = this.props;
+    const { entry } = this.props;
 
     return (
-      'hi'
+      entry.map((entryField, index) =>
+        <td
+          key={`entryfield-${entryField}-${index}`}
+        >
+          <span className="text-xs">{entryField.value}</span>
+        </td>
+      )
     );
   }
 }

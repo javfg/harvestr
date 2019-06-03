@@ -4,6 +4,9 @@ import { connect } from "react-redux";
 // Actions.
 import { setResultsTooltipSettings } from "../../actions/resultsTooltip";
 
+// Components.
+import ResultsEntryList from './ResultsEntryList';
+
 
 class ResultsField extends React.Component {
   constructor(props) {
@@ -75,15 +78,7 @@ class ResultsField extends React.Component {
           className={`border text-break td-normal`}
         >
           <div className="results-field">
-            <span>
-              {
-                value.length === 1 ? (
-                  value[0].value.join(', ')
-                ) : (
-                  JSON.stringify(value)
-                )
-              }
-            </span>
+            <ResultsEntryList entries={value} limit={2} />
             <button
               className={`btn btn-mini ${lockedVisible ? 'btn-primary' : 'btn-dark'}`}
               onMouseOver={handleMouseOverDetailsButton}

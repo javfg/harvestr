@@ -64,6 +64,12 @@ a, a:visited, a:hover, a:active {
 
 .text-small {
   display: block;
-  line-height: 1;
+  line-height: 1.2;
   font-size: 80%;
+}
+
+.text-xs {
+  display: block;
+  line-height: 1.1;
+  font-size: 60%;
 }

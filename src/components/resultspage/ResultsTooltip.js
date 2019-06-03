@@ -65,12 +65,12 @@ class ResultsTooltip extends React.Component {
 
     return (
       <CSSTransition
-        classNames='results-tooltip'
+        classNames="results-tooltip"
         in={resultsTooltip.lockedVisible ? true : resultsTooltip.hoverVisible}
         timeout={250}
       >
         <div
-          className="results-tooltip container-fluid"
+          className="results-tooltip"
           style={style}
           ref={this.tooltipRef}
         >

@@ -8,7 +8,7 @@
 }
 
 .td-normal {
-  min-width: 10rem;
+  min-width: 5rem;
   max-width: 20rem;
 }
 
@@ -20,12 +20,28 @@
   span {
     @include ellipsis;
   }
+
+  .results-field__table {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 // Smaller button for tooltips.
 .btn-mini {
+  align-self: start;
   padding: .5rem .25rem !important;
   margin-left: .5rem;
   height: .75rem;
   line-height: 0 !important;
+}
+
+.results-entry-table {
+  table-layout: fixed;
+}
+
+.table-xs {
+  td {
+    padding: 0 .1rem;
+  }
 }
