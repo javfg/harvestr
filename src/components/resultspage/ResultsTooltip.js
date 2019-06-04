@@ -11,6 +11,8 @@ import Field from "../common/Field";
 import ResultsEntryList from './ResultsEntryList';
 import { setResultsTooltipSettings } from '../../actions/resultsTooltip';
 
+// Utils.
+import { successToast } from "../../utils/dialogs";
 
 class ResultsTooltip extends React.Component {
   constructor(props) {
@@ -63,8 +65,21 @@ class ResultsTooltip extends React.Component {
   handleClickCopyToClipboard = () => {
     const { resultsTooltip } = this.props;
 
-    console.log('resultsTooltip',resultsTooltip);
+    const cols = resultsTooltip.entries.map(entry => `"${entry.name}"`).join(',');
+    const rows = [...Array(resultsTooltip.entries[0].value.length).keys()].map((index) =>
+      resultsTooltip.entries.map(entry => `"${entry.value[index]}"`).join(',')
+    );
 
+    const textToCopy = `${cols}\r\n${rows.join('\r\n')}`;
+
+    const dummy = document.createElement('textarea');
+    document.body.appendChild(dummy);
+    dummy.value = textToCopy;
+    dummy.select();
+    document.execCommand('copy');
+    document.body.removeChild(dummy);
+
+    successToast('Copied to clipboard');
   }
 
   handleTooltipTransitionExited = () => {
@@ -94,10 +109,10 @@ class ResultsTooltip extends React.Component {
         >
 
           <div className="row no-gutters">
-            <div className="col align-self-center text-center px-2 mb-2">
+            <div className="col col-10 align-self-center text-center px-2 mb-2">
               <Field name={resultsTooltip.name}/>
             </div>
-            <div className="col align-self-right text-right">
+            <div className="col col-2 align-self-right text-right">
               <button
                 className="btn btn-sm btn-dark line-height-1"
                 title="Copy to clipboard as csv"
