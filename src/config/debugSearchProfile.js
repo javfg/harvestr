@@ -182,42 +182,22 @@ export const debugSearchProfile =
             "name": "BioGRID Interaction ID",
             "linkTo": "https://thebiogrid.org/{{value}}",
             "path": 0
-          }
-        ]
-      },
-      {
-        "name": "Interactor A",
-        "entries": [
+          },
           {
             "name": "Interactor A",
             "linkTo": "https://thebiogrid.org/{{value}}",
             "path": 5
-          }
-        ]
-      },
-      {
-        "name": "Interactor B",
-        "entries": [
+          },
           {
             "name": "Interactor B",
             "linkTo": "https://thebiogrid.org/{{value}}",
             "path": 6
-          }
-        ]
-      },
-      {
-        "name": "PubMed ID",
-        "entries": [
+          },
           {
             "name": "PubMed ID",
             "linkTo": "https://www.ncbi.nlm.nih.gov/pubmed/{{value}}",
             "path": 14
-          }
-        ]
-      },
-      {
-        "name": "Score",
-        "entries": [
+          },
           {
             "name": "Score",
             "path": 18
