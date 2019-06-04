@@ -15,7 +15,8 @@ export const debugStoreSearchProfile =
         "name": "Accession",
         "field": "uniprot.entry.accession",
         "type": "text",
-        "multiple": true
+        "multiple": true,
+        "linkTo": "https://uniprot.org/uniprot/{{value}}"
       },
       {
         "name": "Gene name",

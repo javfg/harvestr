@@ -15,6 +15,7 @@ export const debugStoreSearchProfile =
         "path": "uniprot/entry/accession",
         "entries": [
           {
+            "linkTo": "https://uniprot.org/uniprot/{{value}}",
             "name": "Accession",
             "path": "."
           }
