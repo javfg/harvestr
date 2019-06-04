@@ -2,10 +2,11 @@ import Entry from '../model/Entry';
 
 
 class Field {
-  constructor(name, path, or, entries) {
+  constructor(name, path, or, entries, saveData) {
     this.name = name;
     this.path = path;
     this.or = or;
+    this.saveData = saveData;
 
     this.value = undefined;
 

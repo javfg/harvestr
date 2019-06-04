@@ -9,7 +9,7 @@ export default class SearchEngine {
     this.config = config;
     this.savedData = {};
 
-    this.items = itemList.map(item => new Item(item, searchProfile));
+    this.items = itemList.map(item => new Item(item, searchProfile, this.savedData));
   }
 
 

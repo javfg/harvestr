@@ -6,6 +6,89 @@ export const debugSearchProfile =
     "fetcher": "standardFetcher",
     "parser": "xmlParser",
     "saveData": [
+      "GENENAME"
+    ],
+    "fields": [
+      {
+        "name": "Gene name",
+        "path": "uniprot/entry/gene",
+        "saveData": "GENENAME",
+        "entries": [
+          {
+            "name": "Gene name",
+            "path": "name[@type='primary']",
+            "saveData": "GENENAME"
+          }
+        ]
+      },
+    ]
+  },
+  {
+    "name": "Biogrid",
+    "urlTemplate": "https://webservice.thebiogrid.org/interactions/?geneList={{GENENAME}}&taxId=9606&accessKey=8b95f31461c48d27eb8cce6e8f1caa15",
+    "fetcher": "standardFetcher",
+    "parser": "tsvParser",
+    "requires": "GENENAME",
+    "fields": [
+      {
+        "name": "BioGRID Interaction ID",
+        "entries": [
+          {
+            "name": "BioGRID Interaction ID",
+            "linkTo": "https://thebiogrid.org/{{value}}",
+            "path": 0
+          }
+        ]
+      },
+      {
+        "name": "Interactor A",
+        "entries": [
+          {
+            "name": "Interactor A",
+            "linkTo": "https://thebiogrid.org/{{value}}",
+            "path": 5
+          }
+        ]
+      },
+      {
+        "name": "Interactor B",
+        "entries": [
+          {
+            "name": "Interactor B",
+            "linkTo": "https://thebiogrid.org/{{value}}",
+            "path": 6
+          }
+        ]
+      },
+      {
+        "name": "PubMed ID",
+        "entries": [
+          {
+            "name": "PubMed ID",
+            "linkTo": "https://www.ncbi.nlm.nih.gov/pubmed/{{value}}",
+            "path": 14
+          }
+        ]
+      },
+      {
+        "name": "Score",
+        "entries": [
+          {
+            "name": "Score",
+            "path": 18
+          }
+        ]
+      }
+    ]
+  }
+]
+/*[
+  {
+    "name": "UniProt",
+    "urlTemplate": "https://www.uniprot.org/uniprot/{{ITEM}}.xml",
+    "fetcher": "standardFetcher",
+    "parser": "xmlParser",
+    "saveData": [
       "GENENAME",
       "SEQUENCE"
     ],
@@ -165,34 +248,6 @@ export const debugSearchProfile =
         ]
       }
     ]
-  },
-  {
-    "name": "Biogrid",
-    "urlTemplate": "https://webservice.thebiogrid.org/interactions/?geneList={{GENENAME}}&accessKey=8b95f31461c48d27eb8cce6e8f1caa15",
-    "fetcher": "standardFetcher",
-    "parser": "tsvParser",
-    "requires": "GENENAME",
-    "fields": [
-      {
-        "name": "BioGRID Interaction ID",
-        "field": 0
-      },
-      {
-        "name": "Interactor A",
-        "field": 5
-      },
-      {
-        "name": "Interactor B",
-        "field": 6
-      },
-      {
-        "name": "Pubmed ID",
-        "field": 14
-      },
-      {
-        "name": "Score",
-        "field": 18
-      }
-    ]
   }
 ]
+*/
