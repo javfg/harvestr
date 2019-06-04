@@ -88,7 +88,7 @@ class ResultsTooltip extends React.Component {
             </div>
           </div>
 
-          <div className="row">
+          <div className="row no-gutters">
             <div className="col">
               <ResultsEntryList entries={resultsTooltip.entries} />
             </div>
