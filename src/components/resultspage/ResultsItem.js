@@ -1,4 +1,5 @@
 import ResultsField from './ResultsField';
+import { connect } from "react-redux";
 
 // Components.
 import React from 'react';
@@ -11,7 +12,7 @@ class ResultsItem extends React.Component {
 
   render() {
     const {
-      props: { name, queries }
+      props: { name, queries, resultsPage: { contractedQueries } }
     } = this;
 
     return (
@@ -23,19 +24,27 @@ class ResultsItem extends React.Component {
           {name}
         </th>
         {
-          queries.map((query) =>
-            query.fields.map((field, index) =>
-              <ResultsField
-                key={`field-${field.name}-${index}`}
-                {...field}
-              />
+          queries
+            .filter(query => !contractedQueries.includes(query.name))
+            .map((query) =>
+              query.fields.map((field, index) =>
+                <ResultsField
+                  key={`field-${field.name}-${index}`}
+                  {...field}
+                />
+              )
             )
-          )
         }
       </tr>
     );
   }
 }
 
+//
+// Redux mapping functions.
+//
+const mapStateToProps = (state) => ({
+  resultsPage: state.ui.resultsPage.main
+});
 
-export default ResultsItem;
+export default connect(mapStateToProps)(ResultsItem);

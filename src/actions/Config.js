@@ -19,6 +19,7 @@ import { setHarvestPageField } from './HarvestPage';
 // Get config environment.
 export const getConfigFromEnv = () => (dispatch) => {
   const config = {
+    // eslint-disable-next-line no-undef
     debug: process.env.DEBUG === 'true'
   }
 

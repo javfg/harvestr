@@ -39,11 +39,11 @@ class ResultsTooltip extends React.Component {
     const tooltipWidth = tooltipRef.current ? tooltipRef.current.offsetWidth : 0;
 
     const tooltipPosX =
-      (window.innerWidth / 2) > resultsTooltip.posX ? resultsTooltip.posX + 20 :
+      (window.innerWidth / 2) > resultsTooltip.posX ? resultsTooltip.posX + 14 :
       resultsTooltip.posX - tooltipWidth;
 
     const tooltipPosY =
-      (window.innerHeight / 2) > resultsTooltip.posY ? resultsTooltip.posY + 20 :
+      (window.innerHeight / 2) > resultsTooltip.posY ? resultsTooltip.posY + 14 :
       resultsTooltip.posY - tooltipHeight;
 
     const style = {

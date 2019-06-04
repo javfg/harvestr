@@ -1,8 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 
-//Components.
+// Actions.
+import { setResultsPageField } from "../../actions/ResultsPage";
+
+// Components.
 import ResultsItem from './ResultsItem';
 
 
@@ -12,8 +17,30 @@ class ResultsItemList extends React.Component {
   }
 
 
+  handleContractClick = (queryName) => {
+    const {
+      setResultsPageField,
+      resultsPage: { contractedQueries }
+    } = this.props;
+
+    const contractedQueriesSet = new Set(contractedQueries);
+
+    contractedQueriesSet.has(queryName)
+      ? contractedQueriesSet.delete(queryName)
+      : contractedQueriesSet.add(queryName);
+
+    setResultsPageField({contractedQueries: Array.from(contractedQueriesSet)})
+  };
+
+
   render () {
-    const { searchResults } = this.props;
+    const {
+      handleContractClick,
+      props: {
+        searchResults,
+        resultsPage: { contractedQueries }
+      }
+    } = this;
 
     if (searchResults.length === 0) {
       return (
@@ -42,23 +69,33 @@ class ResultsItemList extends React.Component {
                       scope="col"
                     >
                       {query.name}
+                      <button
+                        className="btn btn-xs btn-primary"
+                        onClick={() => handleContractClick(query.name)}
+                      >
+                        { contractedQueries.includes(query.name)
+                          ? <FontAwesomeIcon icon={faPlus} />
+                          : <FontAwesomeIcon icon={faMinus} />}
+                      </button>
                     </th>
                   )
                 }
               </tr>
               <tr>
                 {
-                  searchResults[0].queries.map((query) =>
-                    query.fields.map((field) =>
-                      <th
-                        className={`bg-light border font-weight-lighter align-middle`}
-                        key={`{header-${field.name}`}
-                        scope="col"
-                      >
-                        <small className="small">{field.name}</small>
-                      </th>
+                  searchResults[0].queries
+                    .filter(query => !contractedQueries.includes(query.name))
+                    .map((query) =>
+                      query.fields.map((field) =>
+                        <th
+                          className={`bg-light border font-weight-lighter align-middle`}
+                          key={`{header-${field.name}`}
+                          scope="col"
+                        >
+                          <small className="small">{field.name}</small>
+                        </th>
+                      )
                     )
-                  )
                 }
               </tr>
             </thead>
@@ -83,9 +120,14 @@ class ResultsItemList extends React.Component {
 //
 // Redux mapping functions.
 //
-const mapStateToProps = (state) => {
-  return { searchResults: state.searchResults };
-};
+const mapStateToProps = (state) => ({
+  resultsPage: state.ui.resultsPage.main,
+  searchResults: state.searchResults
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setResultsPageField: (newState) => dispatch(setResultsPageField(newState)),
+})
 
 
-export default connect(mapStateToProps)(ResultsItemList);
+export default connect(mapStateToProps, mapDispatchToProps)(ResultsItemList);

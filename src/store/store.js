@@ -8,6 +8,7 @@ import itemListReducer from '../reducers/itemList';
 import rankingDefinitionReducer from '../reducers/RankingDefinition';
 import searchProfileReducer from '../reducers/searchProfile';
 import searchResultReducer from '../reducers/searcResults';
+import resultsPageReducer from "../reducers/ResultsPage";
 import resultsTooltipReducer from "../reducers/ResultsTooltip";
 
 
@@ -28,6 +29,7 @@ const store = createStore(
     ui: combineReducers({
       harvestPage: harvestPageReducer,
       resultsPage: combineReducers({
+        main: resultsPageReducer,
         resultsTooltip: resultsTooltipReducer
       })
     }),

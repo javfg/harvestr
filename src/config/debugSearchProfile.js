@@ -166,33 +166,33 @@ export const debugSearchProfile =
       }
     ]
   },
-  // {
-  //   "name": "Biogrid",
-  //   "urlTemplate": "https://webservice.thebiogrid.org/interactions/?geneList={{GENENAME}}&accessKey=8b95f31461c48d27eb8cce6e8f1caa15",
-  //   "fetcher": "standardFetcher",
-  //   "parser": "tsvParser",
-  //   "requires": "GENENAME",
-  //   "fields": [
-  //     {
-  //       "name": "BioGRID Interaction ID",
-  //       "field": 0
-  //     },
-  //     {
-  //       "name": "Interactor A",
-  //       "field": 5
-  //     },
-  //     {
-  //       "name": "Interactor B",
-  //       "field": 6
-  //     },
-  //     {
-  //       "name": "Pubmed ID",
-  //       "field": 14
-  //     },
-  //     {
-  //       "name": "Score",
-  //       "field": 18
-  //     }
-  //   ]
-  // }
+  {
+    "name": "Biogrid",
+    "urlTemplate": "https://webservice.thebiogrid.org/interactions/?geneList={{GENENAME}}&accessKey=8b95f31461c48d27eb8cce6e8f1caa15",
+    "fetcher": "standardFetcher",
+    "parser": "tsvParser",
+    "requires": "GENENAME",
+    "fields": [
+      {
+        "name": "BioGRID Interaction ID",
+        "field": 0
+      },
+      {
+        "name": "Interactor A",
+        "field": 5
+      },
+      {
+        "name": "Interactor B",
+        "field": 6
+      },
+      {
+        "name": "Pubmed ID",
+        "field": 14
+      },
+      {
+        "name": "Score",
+        "field": 18
+      }
+    ]
+  }
 ]

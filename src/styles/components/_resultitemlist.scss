@@ -27,12 +27,16 @@
 }
 
 // Smaller button for tooltips.
-.btn-mini {
+.btn-xs {
   align-self: start;
-  padding: .5rem .25rem !important;
+  padding: 0 .1rem !important;
   margin-left: .5rem;
-  height: .75rem;
+  height: .9rem;
   line-height: 0 !important;
+
+  svg {
+    padding: .1rem 0;
+  }
 }
 
 .results-entry-table {
