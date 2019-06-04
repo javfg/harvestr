@@ -14,6 +14,7 @@ export const xmlParser = function(doc, field) {
   let fieldNode;
   let fieldData = [];
 
+  // eslint-disable-next-line no-cond-assign
   while (fieldNode = fieldNodes.iterateNext()) {
     fieldData.push(field.entries.map(entry => {
       const entryNode = xmlDoc.evaluate(entry.path, fieldNode).iterateNext();

@@ -1,12 +1,12 @@
 
 
 class Entry {
-  constructor(name, path, or, saveData, removeNewLines) {
+  constructor(name, path, saveData, removeNewLines, linkTo) {
     this.name = name;
     this.path = path;
-    this.or = or;
     this.saveData = saveData;
     this.removeNewLines = removeNewLines;
+    this.linkTo = linkTo;
 
     this.value = undefined;
   }

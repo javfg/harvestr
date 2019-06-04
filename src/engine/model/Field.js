@@ -14,7 +14,8 @@ class Field {
         entry.name,
         entry.path,
         entry.saveData,
-        entry.removeNewLines
+        entry.removeNewLines,
+        entry.linkTo
       ));
     }
   }
