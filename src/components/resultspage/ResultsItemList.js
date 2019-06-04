@@ -63,7 +63,7 @@ class ResultsItemList extends React.Component {
                 {
                   searchResults[0].queries.map((query) =>
                     <th
-                      className="bg-light border text-left"
+                      className="bg-light border text-left ellipsis"
                       colSpan={query.fields.length}
                       key={`{header-query-${query.name}`}
                       scope="col"

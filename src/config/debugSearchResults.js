@@ -877,6 +877,117 @@ export const debugSearchResults = [
             ]
           }
         ]
+      },
+      {
+        "name": "PubMed",
+        "urlTemplate": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&term={{GENENAME}}%20AND20%antithrombin",
+        "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&term=CTSD%20AND20%antithrombin",
+        "fetcher": {},
+        "parser": {},
+        "requires": "GENENAME",
+        "savedData": {
+          "GENENAME": "KRT1",
+          "SEQUENCE": "MSRQFSSRSGYRSGGGFSSGSAGIINYQRRTTSSSTRRSGGGGGRFSSCGGGGGSFGAGGGFGSRSLVNLGGSKSISISVARGGGRGSGFGGGYGGGGFGGGGFGGGGFGGGGIGGGGFGGFGSGGGGFGGGGFGGGGYGGGYGPVCPPGGIQEVTINQSLLQPLNVEIDPEIQKVKSREREQIKSLNNQFASFIDKVRFLEQQNQVLQTKWELLQQVDTSTRTHNLEPYFESFINNLRRRVDQLKSDQSRLDSELKNMQDMVEDYRNKYEDEINKRTNAENEFVTIKKDVDGAYMTKVDLQAKLDNLQQEIDFLTALYQAELSQMQTQISETNVILSMDNNRSLDLDSIIAEVKAQYEDIAQKSKAEAESLYQSKYEELQITAGRHGDSVRNSKIEISELNRVIQRLRSEIDNVKKQISNLQQSISDAEQRGENALKDAKNKLNDLEDALQQAKEDLARLLRDYQELMNTKLALDLEIATYRTLLEGEESRMSGECAPNVSVSVSTSHTTISGGGSRGGGGGGYGSGGSSYGSGGGSYGSGGGGGGGRGSYGSGGSSYGSGGGSYGSGGGGGGHGSYGSGSSSGGYRGGSGGGGGGSSGGRGSGGGSSGGSIGGRGSSSGGVKSSGGSSSVKFVSTTYSGVTR"
+        },
+        "fields": [
+          {
+            "name": "gene AND antithombin",
+            "path": "eSearchResult/IdList/Id",
+            "entries": [
+              {
+                "name": "First 20 entries",
+                "path": ".",
+                "linkTo": "https://www.ncbi.nlm.nih.gov/pmc/articles/{{value}}",
+                "value": [
+                  "6528971",
+                  "6522536",
+                  "6518646",
+                  "6527601",
+                  "6507066",
+                  "6513971",
+                  "6502342",
+                  "6504811",
+                  "6494930",
+                  "6483937",
+                  "6483183",
+                  "6491462",
+                  "6481912",
+                  "6475859",
+                  "6514647",
+                  "6466682",
+                  "6515384",
+                  "6481455",
+                  "6461621",
+                  "6481222"
+                ],
+                "links": [
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6528971",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6522536",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6518646",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6527601",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6507066",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6513971",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6502342",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6504811",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6494930",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6483937",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6483183",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6491462",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6481912",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6475859",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6514647",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6466682",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6515384",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6481455",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6461621",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6481222"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "count",
+            "path": "eSearchResult/Count",
+            "entries": [
+              {
+                "name": "Count",
+                "path": ".",
+                "value": [
+                  "1634"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "TM Predictor",
+        "urlTemplate": "http://tm.life.nthu.edu.tw/result.php?seq={{SEQUENCE}}&submit=Submit",
+        "url": "http://tm.life.nthu.edu.tw/result.php?seq=MQPSSLLPLALCLLAAPASALVRIPLHKFTSIRRTMSEVGGSVEDLIAKGPVSKYSQAVPAVTEGPIPEVLKNYMDAQYYGEIGIGTPPQCFTVVFDTGSSNLWVPSIHCKLLDIACWIHHKYNSDKSSTYVKNGTSFDIHYGSGSLSGYLSQDTVSVPCQSASSASALGGVKVERQVFGEATKQPGITFIAAKFDGILGMAYPRISVNNVLPVFDNLMQQKLVDQNIFSFYLSRDPDAQPGGELMLGGTDSKYYKGSLSYLNVTRKAYWQVHLDQVEVASGLTLCKEGCEAIVDTGTSLMVGPVDEVRELQKAIGAVPLIQGEYMIPCEKVSTLPAITLKLGGKGYKLSPEDYTLKVSQAGKTLCLSGFMGMDIPPPSGPLWILGDVFIGRYYTVFDRDNNRVGFAEAARL&submit=Submit",
+        "fetcher": {},
+        "parser": {},
+        "requires": "SEQUENCE",
+        "savedData": {
+          "GENENAME": "KRT1",
+          "SEQUENCE": "MSRQFSSRSGYRSGGGFSSGSAGIINYQRRTTSSSTRRSGGGGGRFSSCGGGGGSFGAGGGFGSRSLVNLGGSKSISISVARGGGRGSGFGGGYGGGGFGGGGFGGGGFGGGGIGGGGFGGFGSGGGGFGGGGFGGGGYGGGYGPVCPPGGIQEVTINQSLLQPLNVEIDPEIQKVKSREREQIKSLNNQFASFIDKVRFLEQQNQVLQTKWELLQQVDTSTRTHNLEPYFESFINNLRRRVDQLKSDQSRLDSELKNMQDMVEDYRNKYEDEINKRTNAENEFVTIKKDVDGAYMTKVDLQAKLDNLQQEIDFLTALYQAELSQMQTQISETNVILSMDNNRSLDLDSIIAEVKAQYEDIAQKSKAEAESLYQSKYEELQITAGRHGDSVRNSKIEISELNRVIQRLRSEIDNVKKQISNLQQSISDAEQRGENALKDAKNKLNDLEDALQQAKEDLARLLRDYQELMNTKLALDLEIATYRTLLEGEESRMSGECAPNVSVSVSTSHTTISGGGSRGGGGGGYGSGGSSYGSGGGSYGSGGGGGGGRGSYGSGGSSYGSGGGSYGSGGGGGGHGSYGSGSSSGGYRGGSGGGGGGSSGGRGSGGGSSGGSIGGRGSSSGGVKSSGGSSSVKFVSTTYSGVTR"
+        },
+        "fields": [
+          {
+            "name": "TM Index",
+            "entries": [
+              {
+                "name": "TM Index",
+                "path": {
+                  "searchString": "Tm Index (TI)",
+                  "betweenTags": "font"
+                },
+                "value": [
+                  "1.6347780322492"
+                ]
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -2176,6 +2287,117 @@ export const debugSearchResults = [
             ]
           }
         ]
+      },
+      {
+        "name": "PubMed",
+        "urlTemplate": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&term={{GENENAME}}%20AND20%antithrombin",
+        "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&term=AFP%20AND20%antithrombin",
+        "fetcher": {},
+        "parser": {},
+        "requires": "GENENAME",
+        "savedData": {
+          "GENENAME": "KRT1",
+          "SEQUENCE": "MSRQFSSRSGYRSGGGFSSGSAGIINYQRRTTSSSTRRSGGGGGRFSSCGGGGGSFGAGGGFGSRSLVNLGGSKSISISVARGGGRGSGFGGGYGGGGFGGGGFGGGGFGGGGIGGGGFGGFGSGGGGFGGGGFGGGGYGGGYGPVCPPGGIQEVTINQSLLQPLNVEIDPEIQKVKSREREQIKSLNNQFASFIDKVRFLEQQNQVLQTKWELLQQVDTSTRTHNLEPYFESFINNLRRRVDQLKSDQSRLDSELKNMQDMVEDYRNKYEDEINKRTNAENEFVTIKKDVDGAYMTKVDLQAKLDNLQQEIDFLTALYQAELSQMQTQISETNVILSMDNNRSLDLDSIIAEVKAQYEDIAQKSKAEAESLYQSKYEELQITAGRHGDSVRNSKIEISELNRVIQRLRSEIDNVKKQISNLQQSISDAEQRGENALKDAKNKLNDLEDALQQAKEDLARLLRDYQELMNTKLALDLEIATYRTLLEGEESRMSGECAPNVSVSVSTSHTTISGGGSRGGGGGGYGSGGSSYGSGGGSYGSGGGGGGGRGSYGSGGSSYGSGGGSYGSGGGGGGHGSYGSGSSSGGYRGGSGGGGGGSSGGRGSGGGSSGGSIGGRGSSSGGVKSSGGSSSVKFVSTTYSGVTR"
+        },
+        "fields": [
+          {
+            "name": "gene AND antithombin",
+            "path": "eSearchResult/IdList/Id",
+            "entries": [
+              {
+                "name": "First 20 entries",
+                "path": ".",
+                "linkTo": "https://www.ncbi.nlm.nih.gov/pmc/articles/{{value}}",
+                "value": [
+                  "6536965",
+                  "6546098",
+                  "6536975",
+                  "6537392",
+                  "6537162",
+                  "6535836",
+                  "6532194",
+                  "6532185",
+                  "6532169",
+                  "6529888",
+                  "6528268",
+                  "6528264",
+                  "6527707",
+                  "6525464",
+                  "6522485",
+                  "6522042",
+                  "6530434",
+                  "6522768",
+                  "6521485",
+                  "6520385"
+                ],
+                "links": [
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6536965",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6546098",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6536975",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6537392",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6537162",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6535836",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6532194",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6532185",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6532169",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6529888",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6528268",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6528264",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6527707",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6525464",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6522485",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6522042",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6530434",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6522768",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6521485",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6520385"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "count",
+            "path": "eSearchResult/Count",
+            "entries": [
+              {
+                "name": "Count",
+                "path": ".",
+                "value": [
+                  "20691"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "TM Predictor",
+        "urlTemplate": "http://tm.life.nthu.edu.tw/result.php?seq={{SEQUENCE}}&submit=Submit",
+        "url": "http://tm.life.nthu.edu.tw/result.php?seq=MKWVESIFLIFLLNFTESRTLHRNEYGIASILDSYQCTAEISLADLATIFFAQFVQEATYKEVSKMVKDALTAIEKPTGDEQSSGCLENQLPAFLEELCHEKEILEKYGHSDCCSQSEEGRHNCFLAHKKPTPASIPLFQVPEPVTSCEAYEEDRETFMNKFIYEIARRHPFLYAPTILLWAARYDKIIPSCCKAENAVECFQTKAATVTKELRESSLLNQHACAVMKNFGTRTFQAITVTKLSQKFTKVNFTEIQKLVLDVAHVHEHCCRGDVLDCLQDGEKIMSYICSQQDTLSNKITECCKLTTLERGQCIIHAENDEKPEGLSPNLNRFLGDRDFNQFSSGEKNIFLASFVHEYSRRHPQLAVSVILRVAKGYQELLEKCFQTENPLECQDKGEEELQKYIQESQALAKRSCGLFQKLGEYYLQNAFLVAYTKKAPQLTSSELMAITRKMAATAATCCQLSEDKLLACGEGAADIIIGHLCIRHEMTPVNPGVGQCCTSSYANRRPCFSSLVVDETYVPPAFSDDKFIFHKDLCQAQGVALQTMKQEFLINLVKQKPQITEEQLEAVIADFSGLLEKCCQGQEQEVCFAEEGKRRQNESFIRCELFSLILTDLTLFVN&submit=Submit",
+        "fetcher": {},
+        "parser": {},
+        "requires": "SEQUENCE",
+        "savedData": {
+          "GENENAME": "KRT1",
+          "SEQUENCE": "MSRQFSSRSGYRSGGGFSSGSAGIINYQRRTTSSSTRRSGGGGGRFSSCGGGGGSFGAGGGFGSRSLVNLGGSKSISISVARGGGRGSGFGGGYGGGGFGGGGFGGGGFGGGGIGGGGFGGFGSGGGGFGGGGFGGGGYGGGYGPVCPPGGIQEVTINQSLLQPLNVEIDPEIQKVKSREREQIKSLNNQFASFIDKVRFLEQQNQVLQTKWELLQQVDTSTRTHNLEPYFESFINNLRRRVDQLKSDQSRLDSELKNMQDMVEDYRNKYEDEINKRTNAENEFVTIKKDVDGAYMTKVDLQAKLDNLQQEIDFLTALYQAELSQMQTQISETNVILSMDNNRSLDLDSIIAEVKAQYEDIAQKSKAEAESLYQSKYEELQITAGRHGDSVRNSKIEISELNRVIQRLRSEIDNVKKQISNLQQSISDAEQRGENALKDAKNKLNDLEDALQQAKEDLARLLRDYQELMNTKLALDLEIATYRTLLEGEESRMSGECAPNVSVSVSTSHTTISGGGSRGGGGGGYGSGGSSYGSGGGSYGSGGGGGGGRGSYGSGGSSYGSGGGSYGSGGGGGGHGSYGSGSSSGGYRGGSGGGGGGSSGGRGSGGGSSGGSIGGRGSSSGGVKSSGGSSSVKFVSTTYSGVTR"
+        },
+        "fields": [
+          {
+            "name": "TM Index",
+            "entries": [
+              {
+                "name": "TM Index",
+                "path": {
+                  "searchString": "Tm Index (TI)",
+                  "betweenTags": "font"
+                },
+                "value": [
+                  "0.80038690391103"
+                ]
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -3247,6 +3469,117 @@ export const debugSearchResults = [
                   "-",
                   "-",
                   "-"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "PubMed",
+        "urlTemplate": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&term={{GENENAME}}%20AND20%antithrombin",
+        "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&term=KRT10%20AND20%antithrombin",
+        "fetcher": {},
+        "parser": {},
+        "requires": "GENENAME",
+        "savedData": {
+          "GENENAME": "KRT1",
+          "SEQUENCE": "MSRQFSSRSGYRSGGGFSSGSAGIINYQRRTTSSSTRRSGGGGGRFSSCGGGGGSFGAGGGFGSRSLVNLGGSKSISISVARGGGRGSGFGGGYGGGGFGGGGFGGGGFGGGGIGGGGFGGFGSGGGGFGGGGFGGGGYGGGYGPVCPPGGIQEVTINQSLLQPLNVEIDPEIQKVKSREREQIKSLNNQFASFIDKVRFLEQQNQVLQTKWELLQQVDTSTRTHNLEPYFESFINNLRRRVDQLKSDQSRLDSELKNMQDMVEDYRNKYEDEINKRTNAENEFVTIKKDVDGAYMTKVDLQAKLDNLQQEIDFLTALYQAELSQMQTQISETNVILSMDNNRSLDLDSIIAEVKAQYEDIAQKSKAEAESLYQSKYEELQITAGRHGDSVRNSKIEISELNRVIQRLRSEIDNVKKQISNLQQSISDAEQRGENALKDAKNKLNDLEDALQQAKEDLARLLRDYQELMNTKLALDLEIATYRTLLEGEESRMSGECAPNVSVSVSTSHTTISGGGSRGGGGGGYGSGGSSYGSGGGSYGSGGGGGGGRGSYGSGGSSYGSGGGSYGSGGGGGGHGSYGSGSSSGGYRGGSGGGGGGSSGGRGSGGGSSGGSIGGRGSSSGGVKSSGGSSSVKFVSTTYSGVTR"
+        },
+        "fields": [
+          {
+            "name": "gene AND antithombin",
+            "path": "eSearchResult/IdList/Id",
+            "entries": [
+              {
+                "name": "First 20 entries",
+                "path": ".",
+                "linkTo": "https://www.ncbi.nlm.nih.gov/pmc/articles/{{value}}",
+                "value": [
+                  "6525452",
+                  "6498588",
+                  "6458264",
+                  "6438035",
+                  "6426889",
+                  "6408450",
+                  "6396089",
+                  "6393366",
+                  "6385416",
+                  "6372603",
+                  "6498511",
+                  "6384931",
+                  "6362306",
+                  "6346531",
+                  "6346103",
+                  "6337739",
+                  "6335434",
+                  "6340995",
+                  "6330957",
+                  "6343446"
+                ],
+                "links": [
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6525452",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6498588",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6458264",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6438035",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6426889",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6408450",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6396089",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6393366",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6385416",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6372603",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6498511",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6384931",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6362306",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6346531",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6346103",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6337739",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6335434",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6340995",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6330957",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6343446"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "count",
+            "path": "eSearchResult/Count",
+            "entries": [
+              {
+                "name": "Count",
+                "path": ".",
+                "value": [
+                  "679"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "TM Predictor",
+        "urlTemplate": "http://tm.life.nthu.edu.tw/result.php?seq={{SEQUENCE}}&submit=Submit",
+        "url": "http://tm.life.nthu.edu.tw/result.php?seq=MSVRYSSSKHYSSSRSGGGGGGGGCGGGGGVSSLRISSSKGSLGGGFSSGGFSGGSFSRGSSGGGCFGGSSGGYGGLGGFGGGSFRGSYGSSSFGGSYGGIFGGGSFGGGSFGGGSFGGGGFGGGGFGGGFGGGFGGDGGLLSGNEKVTMQNLNDRLASYLDKVRALEESNYELEGKIKEWYEKHGNSHQGEPRDYSKYYKTIDDLKNQILNLTTDNANILLQIDNARLAADDFRLKYENEVALRQSVEADINGLRRVLDELTLTKADLEMQIESLTEELAYLKKNHEEEMKDLRNVSTGDVNVEMNAAPGVDLTQLLNNMRSQYEQLAEQNRKDAEAWFNEKSKELTTEIDNNIEQISSYKSEITELRRNVQALEIELQSQLALKQSLEASLAETEGRYCVQLSQIQAQISALEEQLQQIRAETECQNTEYQQLLDIKIRLENEIQTYRSLLEGEGSSGGGGRGGGSFGGGYGGGSSGGGSSGGGHGGGHGGSSGGGYGGGSSGGGSSGGGYGGGSSSGGHGGSSSGGYGGGSSGGGGGGYGGGSSGGGSSSGGGYGGGSSSGGHKSSSSGSVGESSSKGPRY&submit=Submit",
+        "fetcher": {},
+        "parser": {},
+        "requires": "SEQUENCE",
+        "savedData": {
+          "GENENAME": "KRT1",
+          "SEQUENCE": "MSRQFSSRSGYRSGGGFSSGSAGIINYQRRTTSSSTRRSGGGGGRFSSCGGGGGSFGAGGGFGSRSLVNLGGSKSISISVARGGGRGSGFGGGYGGGGFGGGGFGGGGFGGGGIGGGGFGGFGSGGGGFGGGGFGGGGYGGGYGPVCPPGGIQEVTINQSLLQPLNVEIDPEIQKVKSREREQIKSLNNQFASFIDKVRFLEQQNQVLQTKWELLQQVDTSTRTHNLEPYFESFINNLRRRVDQLKSDQSRLDSELKNMQDMVEDYRNKYEDEINKRTNAENEFVTIKKDVDGAYMTKVDLQAKLDNLQQEIDFLTALYQAELSQMQTQISETNVILSMDNNRSLDLDSIIAEVKAQYEDIAQKSKAEAESLYQSKYEELQITAGRHGDSVRNSKIEISELNRVIQRLRSEIDNVKKQISNLQQSISDAEQRGENALKDAKNKLNDLEDALQQAKEDLARLLRDYQELMNTKLALDLEIATYRTLLEGEESRMSGECAPNVSVSVSTSHTTISGGGSRGGGGGGYGSGGSSYGSGGGSYGSGGGGGGGRGSYGSGGSSYGSGGGSYGSGGGGGGHGSYGSGSSSGGYRGGSGGGGGGSSGGRGSGGGSSGGSIGGRGSSSGGVKSSGGSSSVKFVSTTYSGVTR"
+        },
+        "fields": [
+          {
+            "name": "TM Index",
+            "entries": [
+              {
+                "name": "TM Index",
+                "path": {
+                  "searchString": "Tm Index (TI)",
+                  "betweenTags": "font"
+                },
+                "value": [
+                  "1.4549386230321"
                 ]
               }
             ]
@@ -4480,6 +4813,117 @@ export const debugSearchResults = [
                   "-",
                   "-",
                   "-"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "PubMed",
+        "urlTemplate": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&term={{GENENAME}}%20AND20%antithrombin",
+        "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&term=KRT1%20AND20%antithrombin",
+        "fetcher": {},
+        "parser": {},
+        "requires": "GENENAME",
+        "savedData": {
+          "GENENAME": "KRT1",
+          "SEQUENCE": "MSRQFSSRSGYRSGGGFSSGSAGIINYQRRTTSSSTRRSGGGGGRFSSCGGGGGSFGAGGGFGSRSLVNLGGSKSISISVARGGGRGSGFGGGYGGGGFGGGGFGGGGFGGGGIGGGGFGGFGSGGGGFGGGGFGGGGYGGGYGPVCPPGGIQEVTINQSLLQPLNVEIDPEIQKVKSREREQIKSLNNQFASFIDKVRFLEQQNQVLQTKWELLQQVDTSTRTHNLEPYFESFINNLRRRVDQLKSDQSRLDSELKNMQDMVEDYRNKYEDEINKRTNAENEFVTIKKDVDGAYMTKVDLQAKLDNLQQEIDFLTALYQAELSQMQTQISETNVILSMDNNRSLDLDSIIAEVKAQYEDIAQKSKAEAESLYQSKYEELQITAGRHGDSVRNSKIEISELNRVIQRLRSEIDNVKKQISNLQQSISDAEQRGENALKDAKNKLNDLEDALQQAKEDLARLLRDYQELMNTKLALDLEIATYRTLLEGEESRMSGECAPNVSVSVSTSHTTISGGGSRGGGGGGYGSGGSSYGSGGGSYGSGGGGGGGRGSYGSGGSSYGSGGGSYGSGGGGGGHGSYGSGSSSGGYRGGSGGGGGGSSGGRGSGGGSSGGSIGGRGSSSGGVKSSGGSSSVKFVSTTYSGVTR"
+        },
+        "fields": [
+          {
+            "name": "gene AND antithombin",
+            "path": "eSearchResult/IdList/Id",
+            "entries": [
+              {
+                "name": "First 20 entries",
+                "path": ".",
+                "linkTo": "https://www.ncbi.nlm.nih.gov/pmc/articles/{{value}}",
+                "value": [
+                  "6531451",
+                  "6525452",
+                  "6530347",
+                  "6498588",
+                  "6474260",
+                  "6458173",
+                  "6458264",
+                  "6426889",
+                  "6443345",
+                  "6408450",
+                  "6396089",
+                  "6393837",
+                  "6412696",
+                  "6402716",
+                  "6384931",
+                  "6362306",
+                  "6383728",
+                  "6401410",
+                  "6353949",
+                  "6463476"
+                ],
+                "links": [
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6531451",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6525452",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6530347",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6498588",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6474260",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6458173",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6458264",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6426889",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6443345",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6408450",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6396089",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6393837",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6412696",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6402716",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6384931",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6362306",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6383728",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6401410",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6353949",
+                  "https://www.ncbi.nlm.nih.gov/pmc/articles/6463476"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "count",
+            "path": "eSearchResult/Count",
+            "entries": [
+              {
+                "name": "Count",
+                "path": ".",
+                "value": [
+                  "1040"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "TM Predictor",
+        "urlTemplate": "http://tm.life.nthu.edu.tw/result.php?seq={{SEQUENCE}}&submit=Submit",
+        "url": "http://tm.life.nthu.edu.tw/result.php?seq=MSRQFSSRSGYRSGGGFSSGSAGIINYQRRTTSSSTRRSGGGGGRFSSCGGGGGSFGAGGGFGSRSLVNLGGSKSISISVARGGGRGSGFGGGYGGGGFGGGGFGGGGFGGGGIGGGGFGGFGSGGGGFGGGGFGGGGYGGGYGPVCPPGGIQEVTINQSLLQPLNVEIDPEIQKVKSREREQIKSLNNQFASFIDKVRFLEQQNQVLQTKWELLQQVDTSTRTHNLEPYFESFINNLRRRVDQLKSDQSRLDSELKNMQDMVEDYRNKYEDEINKRTNAENEFVTIKKDVDGAYMTKVDLQAKLDNLQQEIDFLTALYQAELSQMQTQISETNVILSMDNNRSLDLDSIIAEVKAQYEDIAQKSKAEAESLYQSKYEELQITAGRHGDSVRNSKIEISELNRVIQRLRSEIDNVKKQISNLQQSISDAEQRGENALKDAKNKLNDLEDALQQAKEDLARLLRDYQELMNTKLALDLEIATYRTLLEGEESRMSGECAPNVSVSVSTSHTTISGGGSRGGGGGGYGSGGSSYGSGGGSYGSGGGGGGGRGSYGSGGSSYGSGGGSYGSGGGGGGHGSYGSGSSSGGYRGGSGGGGGGSSGGRGSGGGSSGGSIGGRGSSSGGVKSSGGSSSVKFVSTTYSGVTR&submit=Submit",
+        "fetcher": {},
+        "parser": {},
+        "requires": "SEQUENCE",
+        "savedData": {
+          "GENENAME": "KRT1",
+          "SEQUENCE": "MSRQFSSRSGYRSGGGFSSGSAGIINYQRRTTSSSTRRSGGGGGRFSSCGGGGGSFGAGGGFGSRSLVNLGGSKSISISVARGGGRGSGFGGGYGGGGFGGGGFGGGGFGGGGIGGGGFGGFGSGGGGFGGGGFGGGGYGGGYGPVCPPGGIQEVTINQSLLQPLNVEIDPEIQKVKSREREQIKSLNNQFASFIDKVRFLEQQNQVLQTKWELLQQVDTSTRTHNLEPYFESFINNLRRRVDQLKSDQSRLDSELKNMQDMVEDYRNKYEDEINKRTNAENEFVTIKKDVDGAYMTKVDLQAKLDNLQQEIDFLTALYQAELSQMQTQISETNVILSMDNNRSLDLDSIIAEVKAQYEDIAQKSKAEAESLYQSKYEELQITAGRHGDSVRNSKIEISELNRVIQRLRSEIDNVKKQISNLQQSISDAEQRGENALKDAKNKLNDLEDALQQAKEDLARLLRDYQELMNTKLALDLEIATYRTLLEGEESRMSGECAPNVSVSVSTSHTTISGGGSRGGGGGGYGSGGSSYGSGGGSYGSGGGGGGGRGSYGSGGSSYGSGGGSYGSGGGGGGHGSYGSGSSSGGYRGGSGGGGGGSSGGRGSGGGSSGGSIGGRGSSSGGVKSSGGSSSVKFVSTTYSGVTR"
+        },
+        "fields": [
+          {
+            "name": "TM Index",
+            "entries": [
+              {
+                "name": "TM Index",
+                "path": {
+                  "searchString": "Tm Index (TI)",
+                  "betweenTags": "font"
+                },
+                "value": [
+                  "1.8817590998252"
                 ]
               }
             ]

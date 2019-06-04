@@ -1,4 +1,10 @@
+// Models.
 import Item from './model/Item';
+
+// Utils.
+import AsyncItemQueue from '../utils/AsyncQueue';
+import { config } from '../config/Config';
+
 
 //
 // Search engine class.
@@ -14,12 +20,9 @@ export default class SearchEngine {
 
 
   run = async () => {
-    console.log('SearchEngine RUN', this);
+    const asyncItemQueue = new AsyncItemQueue(this.items, config.itemConcurrency);
 
-    await Promise.all(this.items.map(item => item.run()));
-
-    console.log('this.items', JSON.stringify(this.items));
-
+    await asyncItemQueue.run();
 
     return this.items;
   }

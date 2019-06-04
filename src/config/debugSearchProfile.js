@@ -1,4 +1,23 @@
 export const debugSearchProfile =
+
+// [{
+//   "name": "UniProt",
+//   "urlTemplate": "https://www.uniprot.org/uniprot/{{ITEM}}.xml",
+//   "fetcher": "standardFetcher",
+//   "parser": "xmlParser",
+//   "saveData": [],
+//   "fields": [{
+//     "name": "accession",
+//     "path": "uniprot/entry/accession",
+//     "entries": [{
+//       "linkTo": "https://uniprot.org/uniprot/{{value}}",
+//       "name": "Accession",
+//       "path": "."
+//     }]
+//   }]
+// }];
+
+
 [
   {
     "name": "UniProt",
@@ -206,34 +225,56 @@ export const debugSearchProfile =
       }
     ]
   },
+  // {
+  //   "name": "PubMed",
+  //   "urlTemplate": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&term={{GENENAME}}%20AND20%antithrombin&api_key=b64927930264c4b75419b258a995db456707",
+  //   "fetcher": "standardFetcher",
+  //   "parser": "xmlParser",
+  //   "requires": "GENENAME",
+  //   "fields": [
+  //     {
+  //       "name": "gene AND antithombin",
+  //       "path": "eSearchResult/IdList/Id",
+  //       "entries": [
+  //         {
+  //           "name": "First 20 entries",
+  //           "path": ".",
+  //           "linkTo": "https://www.ncbi.nlm.nih.gov/pmc/articles/{{value}}"
+  //         }
+  //       ]
+  //     },
+  //     {
+  //       "name": "count",
+  //       "path": "eSearchResult/Count",
+  //       "entries" : [
+  //         {
+  //           "name": "Count",
+  //           "path": "."
+  //         }
+  //       ]
+  //     }
+  //   ]
+  // },
   {
-    "name": "PubMed",
-    "urlTemplate": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&term={{GENENAME}}%20AND20%antithrombin",
-    "fetcher": "standardFetcher",
-    "parser": "xmlParser",
-    "requires": "GENENAME",
+    "name": "TM Predictor",
+    "urlTemplate": "http://tm.life.nthu.edu.tw/result.php?seq={{SEQUENCE}}&submit=Submit",
+    "fetcher": "serverFetcher",
+    "parser": "htmlParser",
+    "requires": "SEQUENCE",
     "fields": [
       {
-        "name": "gene AND antithombin",
-        "path": "eSearchResult/IdList/Id",
+        "name": "TM Index",
         "entries": [
           {
-            "name": "First 20 entries",
-            "path": ".",
-            "linkTo": "https://www.ncbi.nlm.nih.gov/pmc/articles/{{value}}"
+            "name": "TM Index",
+            "path": {
+              "searchString": "Tm Index (TI)",
+              "betweenTags": "font"
+            }
           }
         ]
-      },
-      {
-        "name": "count",
-        "path": "eSearchResult/Count",
-        "entries" : [
-          {
-            "name": "Count",
-            "path": "."
-          }
-        ]
+
       }
     ]
-  }
-]
+  },
+];

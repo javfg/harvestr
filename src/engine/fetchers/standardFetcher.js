@@ -11,8 +11,11 @@ const fetchWithRetry = async (input, init = {}) => {
       result = await fetch(input, init);
       break;
     } catch (e) {
-      console.error('Error fetching', input, 'retrying after', config.retryDelay);
-      await new Promise(resolve => setTimeout(resolve, config.retryDelay));
+      const randomDelay = Math.floor(Math.random() * (config.retryMaxDelay - config.retryMaxDelay + 1) + config.retryMinDelay);
+
+      console.error('Error fetching', input, 'retrying after', randomDelay);
+
+      await new Promise(resolve => setTimeout(resolve, randomDelay));
       if (--retryAttempts == 0) throw e;
     }
   }

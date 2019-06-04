@@ -65,3 +65,7 @@
   white-space: normal;
   min-width: 20rem;
 }
+
+.ellipsis {
+  @include ellipsis();
+}

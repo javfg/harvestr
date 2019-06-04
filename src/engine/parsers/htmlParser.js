@@ -1,11 +1,9 @@
-export const htmlParser = function(doc, field, multiple) {
-  try {
-    return doc
-      .split(field.searchString)[1]
-      .split(`<${field.betweenTags}`)[1]
-      .split(`>`)[1]
-      .split(`</${field.betweenTags}`)[0];
-  } catch (e) {
-    console.log("e", e);
-  }
+export const htmlParser = function(doc, field) {
+  field.entries.map(entry => {
+    entry.value = [doc
+    .split(entry.path.searchString)[1]
+    .split(`<${entry.path.betweenTags}`)[1]
+    .split(`>`)[1]
+    .split(`</${entry.path.betweenTags}`)[0]];
+  });
 };
