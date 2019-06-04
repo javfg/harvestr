@@ -18,7 +18,11 @@ export const xmlParser = function(doc, field) {
   while (fieldNode = fieldNodes.iterateNext()) {
     fieldData.push(field.entries.map(entry => {
       const entryNode = xmlDoc.evaluate(entry.path, fieldNode).iterateNext();
-      const value = entryNode ? entry.removeNewLines ? entryNode.textContent.replace(/\r?\n|\r/g, '') : entryNode.textContent : '';
+      const value = entryNode
+        ? entry.removeNewLines
+          ? entryNode.textContent.replace(/\r?\n|\r/g, '')
+          : entryNode.textContent
+        : '';
 
       entry['value'].push(value);
 

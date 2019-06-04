@@ -91,7 +91,7 @@ export const debugStoreSearchProfile =
           {
             "name": "Disgenet ID",
             "path": ".",
-            "linkTo": "http://disgenetorg/search?q={{value}}",
+            "linkTo": "http://disgenet.org/search?q={{value}}",
             "saveData": "DISGENET"
           }
         ]

@@ -11,39 +11,43 @@
     "fields": [
       {
         "name": "accession",
+        "path": "uniprot/entry/accession",
         "entries": [
           {
             "name": "Accession",
-            "path": "uniprot/entry/accession"
+            "path": "."
           }
         ]
       },
       {
         "name": "Gene name",
+        "path": "uniprot/entry/gene/name",
         "entries": [
           {
             "name": "Gene name",
-            "path": "uniprot/entry/gene/name",
+            "path": ".",
             "saveData": "GENENAME"
           }
         ]
       },
       {
         "name": "Full name",
+        "path": "uniprot/entry/protein/submittedName/fullName",
+        "or": "uniprot/entry/protein/recommendedName/fullName",
         "entries": [
           {
             "name": "Full name",
-            "path": "uniprot/entry/protein/submittedName/fullName",
-            "or": "uniprot/entry/protein/recommendedName/fullName"
+            "path": "."
           }
         ]
       },
       {
         "name": "Sequence",
+        "path": "uniprot/entry/sequence",
         "entries": [
           {
             "name": "Sequence",
-            "path": "uniprot/entry/sequence",
+            "path": ".",
             "removeNewLines": true,
             "saveData": "SEQUENCE"
           }
@@ -51,37 +55,41 @@
       },
       {
         "name": "Molecular function",
+        "path": "uniprot/entry/dbReference/property[starts-with(@value, 'F:')]/..",
         "entries": [
           {
             "name": "GO ID",
-            "path": "uniprot/entry/dbReference/property[starts-with(@value, 'F:')]/../@id",
+            "path": "@id",
             "linkTo": "https://www.ebi.ac.uk/QuickGO/term/{{value}}"
           },
           {
             "name": "Description",
-            "path": "uniprot/entry/dbReference/property[starts-with(@value, 'F:')]/@value"
+            "path": "property[@type='term']/@value"
           }
         ]
       },
       {
         "name": "Subcellular location",
+        "path": "uniprot/entry/dbReference/property[starts-with(@value, 'C:')]/..",
         "entries": [
           {
           "name": "GO ID",
-          "path": "uniprot/entry/dbReference/property[starts-with(@value, 'C:')]/../@id",
+          "path": "@id",
           "linkTo": "https://www.ebi.ac.uk/QuickGO/term/{{value}}"
           },
           {
             "name": "Description",
-            "path": "uniprot/entry/dbReference/property[starts-with(@value, 'C:')]/@value"
+            "path": "property[starts-with(@value, 'C:')]/@value"
           }
         ]
       },
       {
         "name": "Disgenet ID",
+        "path": "uniprot/entry/dbReference[@type='DisGeNET']/@id",
         "entries": [
           {
-            "path": "uniprot/entry/dbReference[@type='DisGeNET']/@id",
+            "name": "Disgenet ID",
+            "path": ".",
             "linkTo": "http://disgenetorg/search?q={{value}}",
             "saveData": "DISGENET"
           }
@@ -89,62 +97,68 @@
       },
       {
         "name": "BioGrid ID",
+        "path": "uniprot/entry/dbReference[@type='BioGrid']/@id",
         "entries": [
           {
-            "path": "uniprot/entry/dbReference[@type='BioGrid']/@id",
+            "name": "BioGrid ID",
+            "path": ".",
             "linkTo": "https://thebiogrid.org/{{value}}"
           }
         ]
       },
       {
         "name": "Glycosylation sites",
+        "path": "uniprot/entry/feature[@type='glycosylation site']",
         "entries": [
           {
             "name": "description",
-            "path": "uniprot/entry/feature[@type='glycosylation site']/@description"
+            "path": "@description"
           },
           {
             "name": "position",
-            "path": "uniprot/entry/feature[@type='glycosylation site']/location/position/@position"
+            "path": "location/position/@position"
           }
         ]
       },
       {
         "name": "Disulfide bonds",
+        "path": "uniprot/entry/feature[@type='disulfide bond']/location",
         "entries": [
           {
             "name": "Begin",
-            "path": "uniprot/entry/feature[@type='disulfide bond']/location/begin/@position"
+            "path": "begin/@position"
           },
           {
             "name": "End",
-            "path": "uniprot/entry/feature[@type='disulfide bond']/location/end/@position"
+            "path": "end/@position"
           },
           {
             "name": "Position",
-            "path": "uniprot/entry/feature[@type='disulfide bond']/location/position/@position"
+            "path": "position/@position"
           }
         ]
       },
       {
         "name": "Tissue specificity",
+        "path": "uniprot/entry/comment[@type='tissue specificity']/text",
         "entries": [
           {
             "name": "Tissue specificity",
-            "path": "uniprot/entry/comment[@type='tissue specificity']/text"
+            "path": "."
           }
         ]
       },
       {
         "name": "Reactome pathways",
+        "path": "uniprot/entry/dbReference[@type='Reactome']",
         "entries": [
           {
             "name": "ID",
-            "path": "uniprot/entry/dbReference[@type='Reactome']/@id"
+            "path": "@id"
           },
           {
             "name": "Value",
-            "path": "uniprot/entry/dbReference[@type='Reactome']/property[@type='pathway name']/@value"
+            "path": "property[@type='pathway name']/@value"
           }
         ]
       }

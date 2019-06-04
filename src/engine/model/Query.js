@@ -48,13 +48,16 @@ class Query {
     console.log('Query -> fetchedDocument', fetchedDocument.split('\n', 1)[0]);
 
     // Parse every field.
-    this.fields.forEach(field => {
-      console.log('Query -> field', field);
-      field.value = this.parseField(fetchedDocument, field);
-    });
+    this.fields.forEach(field => this.parseField(fetchedDocument, field));
 
-    this.fields.forEach(field => console.log('field', field.name, field.value));
-    console.log('Query -> this', this);
+    // Parse extra entry info, like linkTo.
+    this.fields.forEach(field => {
+      field.entries.forEach(entry => {
+        if (entry.linkTo) {
+          entry['links'] = entry.value.map((_, index) => entry.linkTo.replace(/{{value}}/, entry.value[index]));
+        }
+      });
+    });
   }
 }
 

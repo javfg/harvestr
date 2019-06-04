@@ -3,7 +3,7 @@
 //
 const ResultsTooltipDefaultState = {
   name: undefined,
-  contents: undefined,
+  entries: [],
   growX: 'right',
   growY: 'bottom',
   posX: 0,

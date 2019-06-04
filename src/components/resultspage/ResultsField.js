@@ -22,7 +22,7 @@ class ResultsField extends React.Component {
         name,
         resultsTooltip: { lockedVisible },
         setResultsTooltipSettings,
-        value
+        entries
       }
     } = this;
 
@@ -35,7 +35,7 @@ class ResultsField extends React.Component {
 
     setResultsTooltipSettings({
       name,
-      contents: value,
+      entries,
       posX: buttonBoundingRect.left,
       posY: buttonBoundingRect.top,
       hoverVisible: true
@@ -68,7 +68,7 @@ class ResultsField extends React.Component {
       handleClickDetailsButton,
       handleMouseOutDetailsButton,
       handleMouseOverDetailsButton,
-      props: { config, value },
+      props: { config, entries },
       state: { lockedVisible }
     } = this;
 
@@ -78,9 +78,9 @@ class ResultsField extends React.Component {
           className={`border td-normal`}
         >
           <div className="results-field">
-            <ResultsEntryList entries={value} limit={config.shortTableResultsElementsToShow} />
+            <ResultsEntryList entries={entries} limit={config.shortTableResultsElementsToShow} />
             {
-              value.length > config.shortTableResultsElementsToShow && (
+              entries[0].value.length > config.shortTableResultsElementsToShow && (
                 <button
                   className={`btn btn-mini ${lockedVisible ? 'btn-primary' : 'btn-dark'}`}
                   onMouseOver={handleMouseOverDetailsButton}

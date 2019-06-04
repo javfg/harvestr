@@ -83,7 +83,7 @@ class ResultsTooltip extends React.Component {
 
           <div className="row">
             <div className="col">
-              <ResultsEntryList entries={resultsTooltip.contents} />
+              <ResultsEntryList entries={resultsTooltip.entries} />
             </div>
           </div>
         </div>
