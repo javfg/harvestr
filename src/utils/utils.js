@@ -6,24 +6,6 @@ const arrayOfStrNumbers = l => [...Array(l + 1).keys()].splice(1).map(e => e.toS
 const rem2px = rem => rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
 const px2rem = px => px / parseFloat(getComputedStyle(document.documentElement).fontSize);
 
-
-const fetchWithRetry = async (input, init = {}) => {
-  let result;
-
-  try {
-    result = await fetch(input, init);
-  } catch (e) {
-    // TODO: retry attempts.
-    console.log('Error fetching', input, 'retrying after', config.retryDelay);
-
-    await new Promise(resolve => setTimeout(resolve, config.retryDelay));
-    result = await fetch(input, init);
-  }
-
-  return result;
-}
-
-
 const exportCSV = searchResults => {
   const escape = text => {
     if (Array.isArray(text)) {
@@ -63,4 +45,4 @@ const exportCSV = searchResults => {
   document.body.removeChild(link);
 };
 
-export { arrayOfStrNumbers, rem2px, px2rem, fetchWithRetry, exportCSV };
+export { arrayOfStrNumbers, rem2px, px2rem, exportCSV };

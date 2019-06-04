@@ -205,5 +205,35 @@ export const debugSearchProfile =
         ]
       }
     ]
+  },
+  {
+    "name": "PubMed",
+    "urlTemplate": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&term={{GENENAME}}%20AND20%antithrombin",
+    "fetcher": "standardFetcher",
+    "parser": "xmlParser",
+    "requires": "GENENAME",
+    "fields": [
+      {
+        "name": "gene AND antithombin",
+        "path": "eSearchResult/IdList/Id",
+        "entries": [
+          {
+            "name": "First 20 entries",
+            "path": ".",
+            "linkTo": "https://www.ncbi.nlm.nih.gov/pmc/articles/{{value}}"
+          }
+        ]
+      },
+      {
+        "name": "count",
+        "path": "eSearchResult/Count",
+        "entries" : [
+          {
+            "name": "Count",
+            "path": "."
+          }
+        ]
+      }
+    ]
   }
 ]
