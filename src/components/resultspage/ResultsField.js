@@ -62,7 +62,6 @@ class ResultsField extends React.Component {
   }
 
 
-
   render() {
     const {
       handleClickDetailsButton,

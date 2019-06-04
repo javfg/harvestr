@@ -6,6 +6,7 @@ import { CSSTransition } from 'react-transition-group';
 // Components.
 import Field from "../common/Field";
 import ResultsEntryList from './ResultsEntryList';
+import { setResultsTooltipSettings } from '../../actions/resultsTooltip';
 
 
 class ResultsTooltip extends React.Component {
@@ -56,9 +57,14 @@ class ResultsTooltip extends React.Component {
     }
   };
 
+  handleTooltipTransitionExited = () => {
+    this.props.setResultsTooltipSettings({posX: 0, posY: 0});
+  }
+
 
   render() {
     const {
+      handleTooltipTransitionExited,
       props: { resultsTooltip },
       state: { style }
     } = this;
@@ -68,6 +74,7 @@ class ResultsTooltip extends React.Component {
         classNames="results-tooltip"
         in={resultsTooltip.lockedVisible ? true : resultsTooltip.hoverVisible}
         timeout={250}
+        onExited={handleTooltipTransitionExited}
       >
         <div
           className="results-tooltip container-mini"
@@ -100,5 +107,9 @@ const mapStateToProps = (state) => ({
   resultsTooltip: state.ui.resultsPage.resultsTooltip
 })
 
+const mapDispatchToProps = (dispatch) => ({
+  setResultsTooltipSettings: (settings) => dispatch(setResultsTooltipSettings(settings))
+})
 
-export default connect(mapStateToProps)(ResultsTooltip);
+
+export default connect(mapStateToProps, mapDispatchToProps)(ResultsTooltip);
