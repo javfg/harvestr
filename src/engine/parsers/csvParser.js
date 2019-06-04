@@ -1,7 +1,3 @@
-export const csvParser = function(doc) {
-  try {
-    return doc.length === 0 ? "EMPTY" : doc;
-  } catch (e) {
-    console.log("e", e);
-  }
-};
+import { dsvParser } from './dsvParser';
+
+export const csvParser = (doc, field) => new dsvParser(doc, field, ',');
