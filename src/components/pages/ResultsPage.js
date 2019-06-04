@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPoll, faSave, faFileCsv } from '@fortawesome/free-solid-svg-icons';
+import { faPoll, faSave, faFileCsv, faFolderOpen } from '@fortawesome/free-solid-svg-icons';
 
 // Components.
 import PageTitle from '../common/PageTitle';
@@ -57,7 +57,7 @@ class HarvestPage extends React.Component {
                 className="btn btn-primary mr-4"
                 onClick={handleLoadHarvestResults}
               >
-                <FontAwesomeIcon icon={faSave} /> Load Results
+                <FontAwesomeIcon icon={faFolderOpen} /> Load Results
               </button>
               <button
                 className="btn btn-primary mr-2"

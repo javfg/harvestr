@@ -20,6 +20,8 @@ export const xmlParser = function(doc, field) {
       const entryNode = xmlDoc.evaluate(entry.path, fieldNode).iterateNext();
       const value = entryNode ? entry.removeNewLines ? entryNode.textContent.replace(/\r?\n|\r/g, '') : entryNode.textContent : '';
 
+      entry['value'].push(value);
+
       return {name: entry.name, value};
     }));
   }

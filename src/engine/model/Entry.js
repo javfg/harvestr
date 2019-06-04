@@ -8,7 +8,7 @@ class Entry {
     this.removeNewLines = removeNewLines;
     this.linkTo = linkTo;
 
-    this.value = undefined;
+    this.value = [];
   }
 }
 
