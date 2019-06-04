@@ -139,3 +139,8 @@
 .border-2 {
   border-width:2px !important;
 }
+
+// Bug in btn-sm.
+.btn-sm {
+  border-radius: $border-radius !important;
+}

@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 
 import { CSSTransition } from 'react-transition-group';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClipboard } from '@fortawesome/free-solid-svg-icons';
+
 // Components.
 import Field from "../common/Field";
 import ResultsEntryList from './ResultsEntryList';
@@ -57,6 +60,13 @@ class ResultsTooltip extends React.Component {
     }
   };
 
+  handleClickCopyToClipboard = () => {
+    const { resultsTooltip } = this.props;
+
+    console.log('resultsTooltip',resultsTooltip);
+
+  }
+
   handleTooltipTransitionExited = () => {
     this.props.setResultsTooltipSettings({posX: 0, posY: 0});
   }
@@ -64,6 +74,7 @@ class ResultsTooltip extends React.Component {
 
   render() {
     const {
+      handleClickCopyToClipboard,
       handleTooltipTransitionExited,
       props: { resultsTooltip },
       state: { style }
@@ -85,6 +96,15 @@ class ResultsTooltip extends React.Component {
           <div className="row no-gutters">
             <div className="col align-self-center text-center px-2 mb-2">
               <Field name={resultsTooltip.name}/>
+            </div>
+            <div className="col align-self-right text-right">
+              <button
+                className="btn btn-sm btn-dark line-height-1"
+                title="Copy to clipboard as csv"
+                onClick={handleClickCopyToClipboard}
+              >
+                <FontAwesomeIcon icon={faClipboard} />
+              </button>
             </div>
           </div>
 
