@@ -1,4 +1,4 @@
-export const debugStoreSearchProfile =
+export const debugSearchProfile =
 [
   {
     "name": "UniProt",
@@ -23,11 +23,11 @@ export const debugStoreSearchProfile =
       },
       {
         "name": "Gene name",
-        "path": "uniprot/entry/gene/name",
+        "path": "uniprot/entry/gene",
         "entries": [
           {
             "name": "Gene name",
-            "path": ".",
+            "path": "name[@type='primary']",
             "saveData": "GENENAME"
           }
         ]
@@ -165,5 +165,34 @@ export const debugStoreSearchProfile =
         ]
       }
     ]
-  }
+  },
+  // {
+  //   "name": "Biogrid",
+  //   "urlTemplate": "https://webservice.thebiogrid.org/interactions/?geneList={{GENENAME}}&accessKey=8b95f31461c48d27eb8cce6e8f1caa15",
+  //   "fetcher": "standardFetcher",
+  //   "parser": "tsvParser",
+  //   "requires": "GENENAME",
+  //   "fields": [
+  //     {
+  //       "name": "BioGRID Interaction ID",
+  //       "field": 0
+  //     },
+  //     {
+  //       "name": "Interactor A",
+  //       "field": 5
+  //     },
+  //     {
+  //       "name": "Interactor B",
+  //       "field": 6
+  //     },
+  //     {
+  //       "name": "Pubmed ID",
+  //       "field": 14
+  //     },
+  //     {
+  //       "name": "Score",
+  //       "field": 18
+  //     }
+  //   ]
+  // }
 ]

@@ -1,4 +1,4 @@
-export const debugStoreSearchResults = [
+export const debugSearchResults = [
   {
     "name": "P07339",
     "queries": [
@@ -20,9 +20,14 @@ export const debugStoreSearchResults = [
               {
                 "name": "Accession",
                 "path": ".",
+                "linkTo": "https://uniprot.org/uniprot/{{value}}",
                 "value": [
                   "P07339",
                   "Q6IB57"
+                ],
+                "links": [
+                  "https://uniprot.org/uniprot/P07339",
+                  "https://uniprot.org/uniprot/Q6IB57"
                 ]
               }
             ]
@@ -322,8 +327,12 @@ export const debugStoreSearchResults = [
               {
                 "name": "Accession",
                 "path": ".",
+                "linkTo": "https://uniprot.org/uniprot/{{value}}",
                 "value": [
                   "J3KMX3"
+                ],
+                "links": [
+                  "https://uniprot.org/uniprot/J3KMX3"
                 ]
               }
             ]
@@ -583,10 +592,16 @@ export const debugStoreSearchResults = [
               {
                 "name": "Accession",
                 "path": ".",
+                "linkTo": "https://uniprot.org/uniprot/{{value}}",
                 "value": [
                   "P13645",
                   "Q14664",
                   "Q8N175"
+                ],
+                "links": [
+                  "https://uniprot.org/uniprot/P13645",
+                  "https://uniprot.org/uniprot/Q14664",
+                  "https://uniprot.org/uniprot/Q8N175"
                 ]
               }
             ]
@@ -845,6 +860,7 @@ export const debugStoreSearchResults = [
               {
                 "name": "Accession",
                 "path": ".",
+                "linkTo": "https://uniprot.org/uniprot/{{value}}",
                 "value": [
                   "P04264",
                   "B2RA01",
@@ -853,6 +869,15 @@ export const debugStoreSearchResults = [
                   "Q14720",
                   "Q6GSJ0",
                   "Q9H298"
+                ],
+                "links": [
+                  "https://uniprot.org/uniprot/P04264",
+                  "https://uniprot.org/uniprot/B2RA01",
+                  "https://uniprot.org/uniprot/P85925",
+                  "https://uniprot.org/uniprot/P86104",
+                  "https://uniprot.org/uniprot/Q14720",
+                  "https://uniprot.org/uniprot/Q6GSJ0",
+                  "https://uniprot.org/uniprot/Q9H298"
                 ]
               }
             ]

@@ -1,4 +1,4 @@
-export const debugStoreSearchProfile =
+export const debugSearchProfile =
 [
   {
     "name": "UniProt",

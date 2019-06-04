@@ -5,10 +5,10 @@ import { setSearchProfile } from './searchProfile';
 import { setSearchResults } from "./searchResults";
 
 // Debug data.
-import { debugStoreItemList } from '../config/debugStoreItemList';
-import { debugStoreRankingDefinition } from '../config/debugStoreRankingDefinition';
-import { debugStoreSearchProfile } from '../config/debugStoreSearchProfile';
-import { debugStoreSearchResults } from "../config/debugStoreSearchResults";
+import { debugItemList } from '../config/debugItemList';
+import { debugRankingDefinition } from '../config/debugRankingDefinition';
+import { debugSearchProfile } from '../config/debugSearchProfile';
+import { debugSearchResults } from "../config/debugSearchResults";
 import { setHarvestPageField } from './HarvestPage';
 
 
@@ -33,10 +33,10 @@ export const populateStore = () => {
 
     // Debug settings.
     if (config.debug) {
-      dispatch(setItemList(debugStoreItemList));
-      dispatch(setSearchProfile(debugStoreSearchProfile));
-      dispatch(setRankingDefinition(debugStoreRankingDefinition));
-      dispatch(setSearchResults(debugStoreSearchResults));
+      dispatch(setItemList(debugItemList));
+      dispatch(setSearchProfile(debugSearchProfile));
+      dispatch(setRankingDefinition(debugRankingDefinition));
+      dispatch(setSearchResults(debugSearchResults));
       dispatch(setHarvestPageField({currentStep: 4}));
     }
   }
