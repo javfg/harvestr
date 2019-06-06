@@ -31,7 +31,7 @@ class Parser {
 
 
   parse = (doc, entry) => {
-    console.log('Parser PARSE', this, doc.split('\n', 1)[0], entry);
+    console.log('Parser PARSE', this, doc ? doc.split('\n', 1)[0] : '' , entry);
 
     return this.parseStrategy(doc, entry);
   }

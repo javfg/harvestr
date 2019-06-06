@@ -29,6 +29,7 @@ class Query {
 
   // Replaces patterns in urls.
   resolveUrl = (item) => {
+    console.log('Query REQUIRES', this.url, this.requires);
     if (this.requires) {
       console.log('Query RESOLVE ->', this.requires, 'TO', this.savedData[this.requires]);
 
@@ -77,7 +78,7 @@ class Query {
     console.log('Query -> url', this.url);
 
     // Step 3: If provides, create promise in savedData.
-    const fetchPromise = this.fetch();
+    const fetchPromise = this.fetcher.fetch(this.url);
 
     if (this.saveData) {
       this.saveData.forEach(sd => (this.savedData[sd] = fetchPromise));
@@ -85,7 +86,7 @@ class Query {
 
     // Step 4: Fetch.
     const document = await fetchPromise;
-    console.log('Query -> fetchedDocument', document.split('\n', 1)[0]);
+    console.log('Query -> fetchedDocument', document ? document.split('\n', 1)[0] : '');
 
     // Step 5: Parse every field.
     this.fields.forEach(field => this.parseField(document, field));
@@ -115,25 +116,3 @@ class Query {
 
 
 export default Query;
-
-
-    // // If requisites, await and replace them.
-    // if (query.requires) {
-    //   await this.savedData[query.requires];
-
-    //   const regexp = new RegExp(`{{${query.requires}}}`, 'g');
-
-    //   url = url.replace(regexp, this.savedData[query.requires]);
-    // }
-
-    // const fetcher = new Fetcher(
-    //   this.getFetcher(query.fetcher),
-    //   url,
-    //   this.cache
-    // );
-    // const data = fetcher.fetch();
-
-    // // Save data promise.
-    // if (query.saveData) {
-    //   query.saveData.forEach(sd => (this.savedData[sd] = data));
-    // }

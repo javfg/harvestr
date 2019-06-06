@@ -16,11 +16,11 @@ const fetchWithRetry = async (input, init = {}) => {
       console.error('Error fetching', input, 'retrying after', randomDelay);
 
       await new Promise(resolve => setTimeout(resolve, randomDelay));
-      if (--retryAttempts == 0) throw e;
+      if (--retryAttempts === 0) return '';
     }
   }
 
-  return result;
+  return result.text();
 }
 
 

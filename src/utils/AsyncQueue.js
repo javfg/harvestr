@@ -11,16 +11,16 @@ class AsyncItemQueue {
     let currentBundle = 0;
 
     while (currentBundle < bundles) {
-      console.log(`<--------- FETCHING ITEM BUNDLE ${currentBundle} OF ${bundles} --------->`);
+      console.log(`<--------- FETCHING ITEM BUNDLE ${currentBundle + 1} OF ${bundles} --------->`);
 
       const lowerRange = currentBundle * this.concurrency;
       const upperRange = (currentBundle + 1) * this.concurrency;
 
-      itemPromises.push(
-        this.items.slice(lowerRange, upperRange).map(item => item.run())
-      );
+      await Promise.all(this.items.slice(lowerRange, upperRange).map(item => item.run()));
 
-      await Promise.all(itemPromises);
+      console.log('DONE, delaying for 1sec until next batch');
+      await new Promise (resolve => setTimeout(resolve, 1000));
+
       currentBundle++;
     }
   };

@@ -8,8 +8,6 @@ class Field {
     this.or = or;
     this.saveData = saveData;
 
-    this.value = undefined;
-
     if (entries) {
       this.entries = entries.map(entry => new Entry(
         entry.name,

@@ -24,6 +24,9 @@ export default class SearchEngine {
 
     await asyncItemQueue.run();
 
+    console.log('searchEngine DONE!');
+    console.log('this.items', JSON.stringify(this.items));
+
     return this.items;
   }
 }
