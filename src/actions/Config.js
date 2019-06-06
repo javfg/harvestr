@@ -2,15 +2,16 @@
 import { setItemList } from './itemList';
 import { setRankingDefinition } from './RankingDefinition';
 import { setSearchProfile } from './searchProfile';
-import { setSearchResults } from "./searchResults";
+import { setSearchResults } from './searchResults';
+import { setHarvestPageField } from './HarvestPage';
+import { setResultsPageField } from './ResultsPage';
 
 // Debug data.
 import { debugItemList } from '../config/debugItemList';
 import { debugRankingDefinition } from '../config/debugRankingDefinition';
 import { debugSearchProfile } from '../config/debugSearchProfile';
-import { debugSearchResults } from "../config/debugSearchResults";
-import { setHarvestPageField } from './HarvestPage';
-
+import { debugSearchResults } from '../config/debugSearchResults';
+import { debugResultsPage } from '../config/debugResultsPage';
 
 //
 // config actions.
@@ -39,6 +40,7 @@ export const populateStore = () => {
       dispatch(setRankingDefinition(debugRankingDefinition));
       dispatch(setSearchResults(debugSearchResults));
       dispatch(setHarvestPageField({currentStep: 4}));
+      dispatch(setResultsPageField(debugResultsPage));
     }
   }
 }

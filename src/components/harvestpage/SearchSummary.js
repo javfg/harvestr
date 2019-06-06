@@ -33,6 +33,7 @@ class SearchSummary extends React.Component {
     const searchResults = await searchEngine.run();
 
     this.props.setSearchResults(searchResults);
+    this.props.setResultsPageField({currentPage: 0, totalPages: Math.ceil(searchResults / 10), pageSize: 10})
   }
 
 
@@ -86,7 +87,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setSearchResults: (searchResults) => dispatch(setSearchResults(searchResults))
+  setSearchResults: (searchResults) => dispatch(setSearchResults(searchResults)),
+  setResultsPageField: (settings) => dispatch(setResultsPageField(settings))
 });
 
 
