@@ -1,5 +1,5 @@
 import ResultsField from './ResultsField';
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
 // Components.
 import React from 'react';

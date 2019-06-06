@@ -3,9 +3,7 @@
 //
 
 // Set searchProfile.
-export const setSearchProfile = (searchProfile) => {
-  return {
-    type: 'SET_SEARCHPROFILE',
-    searchProfile
-  };
-};
+export const setSearchProfile = (searchProfile) => ({
+  type: 'SET_SEARCHPROFILE',
+  searchProfile
+});

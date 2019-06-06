@@ -19,14 +19,7 @@ class Item {
   }
 
 
-  run = async () => {
-    console.log('Item RUN', this, this.name);
-
-    const itemPromise = Promise.all(this.queries.map(query => query.run(this.name)));
-
-    console.log('itemPromise', itemPromise);
-    return itemPromise;
-  }
+  run = async () => Promise.all(this.queries.map(query => query.run(this.name)));
 }
 
 

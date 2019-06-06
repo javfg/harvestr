@@ -3,9 +3,7 @@
 //
 
 // Set rankingDefinition.
-export const setRankingDefinition = (rankingDefinition) => {
-  return {
-    type: 'SET_RANKINGDEFINITION',
-    rankingDefinition
-  };
-};
+export const setRankingDefinition = (rankingDefinition) => ({
+  type: 'SET_RANKINGDEFINITION',
+  rankingDefinition
+});

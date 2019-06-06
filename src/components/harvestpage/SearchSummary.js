@@ -5,14 +5,22 @@ import { withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSeedling, faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 
+import withReactContent from 'sweetalert2-react-content';
+import Swal from 'sweetalert2';
+
 // Actions.
 import { setSearchResults } from '../../actions/searchResults';
+import { setProgressBarField } from '../../actions/ProgressBar';
+import { setResultsPageField } from '../../actions/ResultsPage';
 
 // Components.
 import PageTitle from '../common/PageTitle';
+import ProgressBar from '../common/ProgressBar';
 
 // Search engine.
 import SearchEngine from '../../engine/searchEngine';
+
+
 
 
 class SearchSummary extends React.Component {
@@ -22,6 +30,10 @@ class SearchSummary extends React.Component {
 
 
   handleLaunchSearch = async () => {
+    const {
+      progressBar: { currentMessage, currentProgress }
+    } = this.props;
+
     const searchEngine = new SearchEngine(
       this.props.itemList,
       this.props.searchProfile,
@@ -29,11 +41,40 @@ class SearchSummary extends React.Component {
       this.props.config
     );
 
-    // TODO: TAKE AWAY TO A 'RUNNING' PAGE.
+    const progressModal = withReactContent(Swal);
+
+    // TODO: FIX THIS FUCKING SHIT.
+    progressModal.mixin({
+      title: 'Harvest in progress',
+      html: (
+        <div>
+          <ProgressBar
+            currentMessage={currentMessage}
+            currentProgress={currentProgress}
+          />
+          {currentProgress === 100 && (
+            <button
+            >
+              <FontAwesomeIcon icon={faSeedling} className="mr-2" />
+              Review harvest
+            </button>
+          )}
+        </div>
+      ),
+      showCancelButton: false,
+      showConfirmButton: false,
+      allowOutsideClick: false
+    }).fire({});
+
     const searchResults = await searchEngine.run();
 
     this.props.setSearchResults(searchResults);
-    this.props.setResultsPageField({currentPage: 0, totalPages: Math.ceil(searchResults / 10), pageSize: 10})
+    this.props.setResultsPageField({
+      harvestDone: true,
+      currentPage: 0,
+      totalPages: Math.ceil(searchResults / 10),
+      pageSize: 10
+    });
   }
 
 
@@ -83,12 +124,14 @@ const mapStateToProps = (state) => ({
   harvestPage: state.ui.harvestPage,
   itemList: state.itemList,
   rankingDefinition: state.rankingDefinition,
+  progressBar: state.ui.resultsPage.progressBar,
   searchProfile: state.searchProfile
 });
 
 const mapDispatchToProps = dispatch => ({
   setSearchResults: (searchResults) => dispatch(setSearchResults(searchResults)),
-  setResultsPageField: (settings) => dispatch(setResultsPageField(settings))
+  setResultsPageField: (newState) => dispatch(setResultsPageField(newState)),
+  setProgressBarField: (newState) => dispatch(setProgressBarField(newState))
 });
 
 

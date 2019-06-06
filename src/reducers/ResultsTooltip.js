@@ -15,7 +15,7 @@ const ResultsTooltipDefaultState = {
 export default (state = ResultsTooltipDefaultState, action) => {
   switch (action.type) {
     case 'SET_RESULTSTOOLTIP':
-      return {...state, ...action.settings};
+      return {...state, ...action.newState};
 
     default:
       return state;

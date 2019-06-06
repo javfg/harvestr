@@ -29,9 +29,8 @@ class Query {
 
   // Replaces patterns in urls.
   resolveUrl = (item) => {
-    console.log('Query REQUIRES', this.url, this.requires);
     if (this.requires) {
-      console.log('Query RESOLVE ->', this.requires, 'TO', this.savedData[this.requires]);
+      console.log('Query requirement ->', this.requires, '->', this.savedData[this.requires].slice(0, 64));
 
       const requiresRegexp = new RegExp(`{{${this.requires}}}`, 'g');
       this.url = this.url.replace(requiresRegexp, this.savedData[this.requires]);
@@ -75,7 +74,6 @@ class Query {
 
     // Step 2: Resolve URL.
     this.resolveUrl(item);
-    console.log('Query -> url', this.url);
 
     // Step 3: If provides, create promise in savedData.
     const fetchPromise = this.fetcher.fetch(this.url);
@@ -86,7 +84,7 @@ class Query {
 
     // Step 4: Fetch.
     const document = await fetchPromise;
-    console.log('Query -> fetchedDocument', document ? document.split('\n', 1)[0] : '');
+    console.log('Query -> fetch', document.slice(0, 64));
 
     // Step 5: Parse every field.
     this.fields.forEach(field => this.parseField(document, field));

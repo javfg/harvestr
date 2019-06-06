@@ -22,7 +22,6 @@ const jsx = (
   </Provider>
 );
 
-
 // Launch initialization actions. For now:
 //   - Get config.
 //   - Populate store.
@@ -30,7 +29,6 @@ const jsx = (
   await store.dispatch(getConfigFromEnv());
   await store.dispatch(populateStore());
 })()
-
 
 // Render app.
 ReactDOM.render(jsx, document.getElementById('app'));

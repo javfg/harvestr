@@ -3,6 +3,7 @@
 //
 const ResultsPageDefaultState = {
   contractedQueries: [],
+  harvestDone: false,
   totalPages: 0,
   currentPage: 0,
   pageSize: 10

@@ -8,8 +8,9 @@ import itemListReducer from '../reducers/itemList';
 import rankingDefinitionReducer from '../reducers/RankingDefinition';
 import searchProfileReducer from '../reducers/searchProfile';
 import searchResultReducer from '../reducers/searcResults';
-import resultsPageReducer from "../reducers/ResultsPage";
-import resultsTooltipReducer from "../reducers/ResultsTooltip";
+import resultsPageReducer from '../reducers/ResultsPage';
+import resultsTooltipReducer from '../reducers/ResultsTooltip';
+import progressBarReducer from '../reducers/ProgressBar';
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -30,7 +31,8 @@ const store = createStore(
       harvestPage: harvestPageReducer,
       resultsPage: combineReducers({
         main: resultsPageReducer,
-        resultsTooltip: resultsTooltipReducer
+        resultsTooltip: resultsTooltipReducer,
+        progressBar: progressBarReducer
       })
     }),
   }),

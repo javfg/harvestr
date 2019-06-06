@@ -1,8 +1,8 @@
 import React from 'react';
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
 // Actions.
-import { setResultsTooltipSettings } from "../../actions/resultsTooltip";
+import { setResultsTooltip } from '../../actions/ResultsTooltip';
 
 // Components.
 import ResultsEntryList from './ResultsEntryList';
@@ -21,7 +21,7 @@ class ResultsField extends React.Component {
       props: {
         name,
         resultsTooltip: { lockedVisible },
-        setResultsTooltipSettings,
+        setResultsTooltip,
         entries
       }
     } = this;
@@ -33,7 +33,7 @@ class ResultsField extends React.Component {
 
     const buttonBoundingRect = e.target.getBoundingClientRect();
 
-    setResultsTooltipSettings({
+    setResultsTooltip({
       name,
       entries,
       posX: buttonBoundingRect.left,
@@ -43,12 +43,12 @@ class ResultsField extends React.Component {
   };
 
   handleMouseOutDetailsButton = () => {
-    this.props.setResultsTooltipSettings({hoverVisible: false});
+    this.props.setResultsTooltip({hoverVisible: false});
   }
 
   handleClickDetailsButton = () => {
     const {
-      setResultsTooltipSettings,
+      setResultsTooltip,
       resultsTooltip: { lockedVisible }
     } = this.props;
 
@@ -58,7 +58,7 @@ class ResultsField extends React.Component {
     }
 
     this.setState({lockedVisible: !this.state.lockedVisible});
-    setResultsTooltipSettings({lockedVisible: !lockedVisible});
+    setResultsTooltip({lockedVisible: !lockedVisible});
   }
 
 
@@ -106,7 +106,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setResultsTooltipSettings: (settings) => dispatch(setResultsTooltipSettings(settings))
+  setResultsTooltip: (newState) => dispatch(setResultsTooltip(newState))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ResultsField);

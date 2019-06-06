@@ -3,9 +3,7 @@
 //
 
 // Set searchResults.
-export const setSearchResults = (searchResults) => {
-  return {
-    type: 'SET_SEARCHRESULTS',
-    searchResults
-  };
-};
+export const setSearchResults = (searchResults) => ({
+  type: 'SET_SEARCHRESULTS',
+  searchResults
+});

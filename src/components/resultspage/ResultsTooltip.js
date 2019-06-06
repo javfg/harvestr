@@ -1,5 +1,5 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 
 import { CSSTransition } from 'react-transition-group';
 
@@ -7,12 +7,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClipboard } from '@fortawesome/free-solid-svg-icons';
 
 // Components.
-import Field from "../common/Field";
+import Field from '../common/Field';
 import ResultsEntryList from './ResultsEntryList';
-import { setResultsTooltipSettings } from '../../actions/resultsTooltip';
+import { setResultsTooltip } from '../../actions/ResultsTooltip';
 
 // Utils.
-import { successToast } from "../../utils/dialogs";
+import { successToast } from '../../utils/dialogs';
 
 class ResultsTooltip extends React.Component {
   constructor(props) {
@@ -83,7 +83,7 @@ class ResultsTooltip extends React.Component {
   }
 
   handleTooltipTransitionExited = () => {
-    this.props.setResultsTooltipSettings({posX: 0, posY: 0});
+    this.props.setResultsTooltip({posX: 0, posY: 0});
   }
 
 
@@ -143,7 +143,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  setResultsTooltipSettings: (settings) => dispatch(setResultsTooltipSettings(settings))
+  setResultsTooltip: (settings) => dispatch(setResultsTooltip(settings))
 })
 
 

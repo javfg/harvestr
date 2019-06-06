@@ -5,8 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 
 // Actions.
-import { setResultsPageField } from "../../actions/ResultsPage";
-import { setResultsTooltipSettings } from '../../actions/resultsTooltip';
+import { setResultsPageField } from '../../actions/ResultsPage';
+import { setResultsTooltip } from '../../actions/ResultsTooltip';
 
 // Components.
 import Paginator from '../common/Paginator';
@@ -38,8 +38,7 @@ class ResultsItemList extends React.Component {
   };
 
   handleChangePage = (currentPage) => {
-    console.log('currentPage', currentPage);
-    this.props.setResultsTooltipSettings({lockedVisible: false});
+    this.props.setResultsTooltip({lockedVisible: false});
     this.props.setResultsPageField({currentPage});
   }
 
@@ -146,7 +145,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   setResultsPageField: (newState) => dispatch(setResultsPageField(newState)),
-  setResultsTooltipSettings: (newState) => dispatch(setResultsTooltipSettings(newState))
+  setResultsTooltip: (newState) => dispatch(setResultsTooltip(newState))
 })
 
 

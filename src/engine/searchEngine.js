@@ -2,8 +2,9 @@
 import Item from './model/Item';
 
 // Utils.
-import AsyncItemQueue from '../utils/AsyncQueue';
+import AsyncItemQueue from './model/AsyncQueue';
 import { config } from '../config/Config';
+import ProgressBarController from './model/ProgressBarController';
 
 
 //
@@ -20,11 +21,11 @@ export default class SearchEngine {
 
 
   run = async () => {
-    const asyncItemQueue = new AsyncItemQueue(this.items, config.itemConcurrency);
+    const progressBarController = new ProgressBarController();
+    const asyncItemQueue = new AsyncItemQueue(this.items, config.itemConcurrency, progressBarController);
 
     await asyncItemQueue.run();
 
-    console.log('searchEngine DONE!');
     console.log('this.items', JSON.stringify(this.items));
 
     return this.items;

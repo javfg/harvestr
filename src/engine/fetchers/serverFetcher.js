@@ -1,4 +1,4 @@
-import { standardFetcher } from "./standardFetcher";
+import { standardFetcher } from './standardFetcher';
 
 export const serverFetcher = (serverFetcherUrl) => function(url) {
   const requestUrl = `${serverFetcherUrl}/query?address=${encodeURIComponent(url)}`;

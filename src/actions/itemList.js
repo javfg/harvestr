@@ -3,9 +3,7 @@
 //
 
 // Set itemList.
-export const setItemList = (itemList) => {
-  return {
-    type: 'SET_ITEMLIST',
-    itemList
-  };
-};
+export const setItemList = (itemList) => ({
+  type: 'SET_ITEMLIST',
+  itemList
+});
