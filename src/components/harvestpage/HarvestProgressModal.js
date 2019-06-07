@@ -17,12 +17,21 @@ import StatsBox from '../common/Stats';
 class HarvestProgressModal extends React.Component {
   constructor(props) {
     super(props);
+
+    this.goToResultsButton = React.createRef();
   }
 
 
   handleClickGoToResults = () => {
     this.props.setHarvestProgressModalField({visible: false});
     this.props.history.push('/results');
+  }
+
+
+  componentDidUpdate = () => {
+    if (this.props.harvestProgressModal.harvestDone) {
+      this.goToResultsButton.focus();
+    }
   }
 
 
@@ -60,6 +69,7 @@ class HarvestProgressModal extends React.Component {
 
           <ProgressBar currentProgress={currentProgress} />
           <button
+            ref={(button) => {this.goToResultsButton = button;}}
             className="btn btn-primary"
             disabled={!harvestDone}
             onClick={handleClickGoToResults}

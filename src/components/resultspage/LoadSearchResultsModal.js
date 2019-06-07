@@ -37,6 +37,7 @@ class LoadSearchResultsModal extends React.Component {
             <StatsBox stats={stats} />
           </>
           <button
+            autoFocus
             className="btn btn-primary"
             onClick={handleClickCloseModal}
           >
