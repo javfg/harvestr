@@ -67,7 +67,7 @@ class ResultsEntryList extends React.Component {
         {
           (limit && valuesNotShownCount > 0) && (
             <span className="text-xs text-muted text-right">
-              <FontAwesomeIcon icon={faMinus} />
+              <FontAwesomeIcon icon={faMinus} className="mr-1" />
               {valuesNotShownCount} more
             </span>
           )}
