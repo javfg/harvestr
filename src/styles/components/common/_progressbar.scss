@@ -1,0 +1,25 @@
+.progressbar {
+  border-radius: $border-radius;
+  background-color: $light;
+  border: 1px solid $grey;
+  height: 14px;
+  position: relative;
+  text-align: center;
+  width: 302px;
+}
+
+.progressbar-fill {
+  height: 12px;
+  background-color: $primary;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  transition: width 100ms ease-in-out;
+}
+
+.progressbar-label {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  z-index: 12;
+}

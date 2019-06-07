@@ -47,12 +47,29 @@
 
 
 // Other badges.
-.badge-service {
-  background-color: $crafted-color;
+.badge-item {
+  color: $legendary-color !important;
+  border: 1px solid $legendary-color;
+}
+
+.badge-query {
+  color: $set-color !important;
+  border: 1px solid $set-color;
 }
 
 .badge-field {
-  background-color: $magic-color;
+  color: $rare-color !important;
+  border: 1px solid $rare-color;
+}
+
+.badge-entry {
+  color: $magic-color !important;
+  border: 1px solid $magic-color;
+}
+
+.badge-value {
+  color: $normal-color !important;
+  border: 1px solid $normal-color;
 }
 
 
@@ -67,7 +84,7 @@
 }
 
 .border-tooltip {
-  border: 1px solid $crafted-color !important;
+  border: 1px solid $legendary-color !important;
 }
 
 // Button animations.

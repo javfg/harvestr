@@ -15,19 +15,47 @@ export default class SearchEngine {
   constructor(itemList, searchProfile, rankingDefinition, config) {
     this.config = config;
     this.savedData = {};
+    this.stats = {items: 0, queries: 0, fields: 0, entries: 0, values: 0};
 
     this.items = itemList.map(item => new Item(item, searchProfile, this.savedData));
   }
 
 
-  run = async () => {
-    const progressBarController = new ProgressBarController();
-    const asyncItemQueue = new AsyncItemQueue(this.items, config.itemConcurrency, progressBarController);
+  calculateStats = () => {
+    this.items.forEach(item => {
+      this.stats.items++;
+      item.queries.forEach(query => {
+        this.stats.queries++;
+        query.fields.forEach(field => {
+          this.stats.fields++;
+          field.entries.forEach(entry => {
+            this.stats.entries++;
+            this.stats.values += entry.value.length;
+          });
+        });
+      });
+    });
+  }
 
+
+  run = async () => {
+    const progressBar = new ProgressBarController();
+    const asyncItemQueue = new AsyncItemQueue(this.items, config.itemConcurrency, progressBar);
+
+    progressBar.show();
+    progressBar.done(false);
+    progressBar.setCurrentMessage('Starting...');
+
+    // Run the harvest.
     await asyncItemQueue.run();
 
-    console.log('this.items', JSON.stringify(this.items));
+    // Calculate harvest stats.
+    progressBar.setCurrentMessage('Calculating stats...');
 
-    return this.items;
+    this.calculateStats();
+
+    progressBar.done(true);
+
+    return {items: this.items, stats: this.stats};
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 
 //Components.
-import Item from './Item';
+import Badge from './Badge';
 
 
 const ItemList = ({ items }) => (
@@ -10,7 +10,7 @@ const ItemList = ({ items }) => (
   ) : (
     <div className="row">
       <div className="col">
-        {items.map(i => <Item key={i} name={i}/> )}
+        {items.map(i => <Badge key={i} name={i} type="item" />)}
       </div>
     </div>
   )

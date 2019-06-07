@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClipboard } from '@fortawesome/free-solid-svg-icons';
 
 // Components.
-import Field from '../common/Field';
+import Badge from '../common/Badge';
 import ResultsEntryList from './ResultsEntryList';
 import { setResultsTooltip } from '../../actions/ResultsTooltip';
 
@@ -110,7 +110,7 @@ class ResultsTooltip extends React.Component {
 
           <div className="row no-gutters">
             <div className="col col-10 align-self-center text-center px-2 mb-2">
-              <Field name={resultsTooltip.name}/>
+              <Badge name={resultsTooltip.name} type="field" />
             </div>
             <div className="col col-2 align-self-right text-right">
               <button

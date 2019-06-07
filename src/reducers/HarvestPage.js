@@ -16,7 +16,8 @@ const HarvestPageDefaultState = {
   itemListFile: undefined,
   itemListFileContents: undefined,
   itemListFileHasHeader: true,
-  textAareaContents: ''
+  textAareaContents: '',
+  harvestDone: false
 };
 
 export default (state = HarvestPageDefaultState, action) => {

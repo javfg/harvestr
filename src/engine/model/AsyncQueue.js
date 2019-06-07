@@ -17,15 +17,21 @@ class AsyncItemQueue {
       const lowerRange = currentBundle * this.concurrency;
       const upperRange = (currentBundle + 1) * this.concurrency;
 
+      const itemNames = this.items.slice(lowerRange, upperRange).map(item => item.name);
+      this.progressBar.setCurrentMessage('Processing items');
+      this.progressBar.setCurrentItems(itemNames);
+
       await Promise.all(this.items.slice(lowerRange, upperRange).map(item => item.run()));
 
-      console.log('<--------- BATCH DONE, delaying for 1sec before next batch --------->');
-      await new Promise (resolve => setTimeout(resolve, 1000));
+      console.log('<--------- BATCH DONE, delaying before next batch --------->');
+      await new Promise (resolve => setTimeout(resolve, 100));
 
       currentBundle++;
 
       this.progressBar.setCurrentProgress(currentBundle);
     }
+
+    this.progressBar.setCurrentItems([]);
   };
 }
 

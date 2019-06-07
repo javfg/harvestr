@@ -8,11 +8,12 @@ class ProgressBar extends React.Component {
 
 
   render() {
-    const { currentMessage, currentProgress } = this.props;
+    const { currentProgress, showLabel } = this.props;
 
     return(
-      <div>
-        {currentMessage}-{currentProgress}%
+      <div className="progressbar">
+        <div className="progressbar-fill" style={{width: `${currentProgress * 3}px`}}></div>
+        {showLabel && <small className="progressbar-label">{currentProgress}%</small>}
       </div>
     );
   }

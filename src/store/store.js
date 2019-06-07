@@ -10,7 +10,7 @@ import searchProfileReducer from '../reducers/searchProfile';
 import searchResultReducer from '../reducers/searcResults';
 import resultsPageReducer from '../reducers/ResultsPage';
 import resultsTooltipReducer from '../reducers/ResultsTooltip';
-import progressBarReducer from '../reducers/ProgressBar';
+import harvestProgressModalReducer from '../reducers/HarvestProgressModal';
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -29,10 +29,10 @@ const store = createStore(
     searchResults: searchResultReducer,
     ui: combineReducers({
       harvestPage: harvestPageReducer,
+      harvestProgressModal: harvestProgressModalReducer,
       resultsPage: combineReducers({
         main: resultsPageReducer,
         resultsTooltip: resultsTooltipReducer,
-        progressBar: progressBarReducer
       })
     }),
   }),

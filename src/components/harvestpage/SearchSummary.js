@@ -2,20 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
+import { CSSTransition } from 'react-transition-group';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSeedling, faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 
-import withReactContent from 'sweetalert2-react-content';
-import Swal from 'sweetalert2';
-
 // Actions.
-import { setSearchResults } from '../../actions/searchResults';
-import { setProgressBarField } from '../../actions/ProgressBar';
+import { setHarvestProgressModalField } from '../../actions/HarvestProgressModal';
 import { setResultsPageField } from '../../actions/ResultsPage';
+import { setSearchResults } from '../../actions/searchResults';
 
 // Components.
+import HarvestProgressModal from './HarvestProgressModal';
 import PageTitle from '../common/PageTitle';
-import ProgressBar from '../common/ProgressBar';
 
 // Search engine.
 import SearchEngine from '../../engine/searchEngine';
@@ -30,9 +29,7 @@ class SearchSummary extends React.Component {
 
 
   handleLaunchSearch = async () => {
-    const {
-      progressBar: { currentMessage, currentProgress }
-    } = this.props;
+    this.props.setHarvestProgressModalField({visible: true});
 
     const searchEngine = new SearchEngine(
       this.props.itemList,
@@ -41,39 +38,14 @@ class SearchSummary extends React.Component {
       this.props.config
     );
 
-    const progressModal = withReactContent(Swal);
-
-    // TODO: FIX THIS FUCKING SHIT.
-    progressModal.mixin({
-      title: 'Harvest in progress',
-      html: (
-        <div>
-          <ProgressBar
-            currentMessage={currentMessage}
-            currentProgress={currentProgress}
-          />
-          {currentProgress === 100 && (
-            <button
-            >
-              <FontAwesomeIcon icon={faSeedling} className="mr-2" />
-              Review harvest
-            </button>
-          )}
-        </div>
-      ),
-      showCancelButton: false,
-      showConfirmButton: false,
-      allowOutsideClick: false
-    }).fire({});
-
     const searchResults = await searchEngine.run();
 
-    this.props.setSearchResults(searchResults);
+    this.props.setSearchResults(searchResults.items);
     this.props.setResultsPageField({
-      harvestDone: true,
       currentPage: 0,
-      totalPages: Math.ceil(searchResults / 10),
-      pageSize: 10
+      totalPages: Math.ceil(searchResults.items.length / 10),
+      pageSize: 10,
+      stats: searchResults.stats
     });
   }
 
@@ -81,6 +53,9 @@ class SearchSummary extends React.Component {
   render() {
     const {
       handleLaunchSearch,
+      props: {
+        harvestProgressModal: { visible }
+      }
       //props: { itemList, rankingDefinition, searchProfile  }
     } = this;
 
@@ -110,6 +85,15 @@ class SearchSummary extends React.Component {
             </button>
           </div>
         </div>
+
+        <CSSTransition
+          in={visible}
+          timeout={2500}
+          classNames='modal'
+          unmountOnExit
+        >
+          <HarvestProgressModal />
+        </CSSTransition>
       </>
     );
   }
@@ -122,16 +106,19 @@ class SearchSummary extends React.Component {
 const mapStateToProps = (state) => ({
   config: state.config,
   harvestPage: state.ui.harvestPage,
+  harvestProgressModal: state.ui.harvestProgressModal,
   itemList: state.itemList,
   rankingDefinition: state.rankingDefinition,
-  progressBar: state.ui.resultsPage.progressBar,
   searchProfile: state.searchProfile
 });
 
 const mapDispatchToProps = dispatch => ({
+
+  // For testing.
+  setHarvestProgressModalField: (newState) => dispatch(setHarvestProgressModalField(newState)),
+
   setSearchResults: (searchResults) => dispatch(setSearchResults(searchResults)),
   setResultsPageField: (newState) => dispatch(setResultsPageField(newState)),
-  setProgressBarField: (newState) => dispatch(setProgressBarField(newState))
 });
 
 
