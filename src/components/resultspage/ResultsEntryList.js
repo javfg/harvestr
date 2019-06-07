@@ -1,5 +1,8 @@
 import React from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMinus, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+
 // Components.
 import ResultsEntry from './ResultsEntry';
 
@@ -33,7 +36,10 @@ class ResultsEntryList extends React.Component {
                       className="bg-light border font-weight-lighter align-middle"
                       key={`entrylist-header-entrylist-tr-${entry}-${index}`}
                     >
-                      <span className="text-xs">{entry.name}</span>
+                      <span className="text-xs">
+                        <FontAwesomeIcon icon={faEllipsisH} className="mr-1" />
+                        {entry.name}
+                      </span>
                     </th>
                   )
                 )
@@ -58,7 +64,13 @@ class ResultsEntryList extends React.Component {
             }
           </tbody>
         </table>
-        { (limit && valuesNotShownCount > 0) && (<span className="text-xs text-muted text-right">...{valuesNotShownCount} more</span>) }
+        {
+          (limit && valuesNotShownCount > 0) && (
+            <span className="text-xs text-muted text-right">
+              <FontAwesomeIcon icon={faMinus} />
+              {valuesNotShownCount} more
+            </span>
+          )}
       </div>
     );
   }

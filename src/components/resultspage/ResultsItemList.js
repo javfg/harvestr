@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faMinus, faCubes, faSearch, faList } from '@fortawesome/free-solid-svg-icons';
 
 // Actions.
 import { setResultsPageField } from '../../actions/ResultsPage';
@@ -75,7 +75,7 @@ class ResultsItemList extends React.Component {
                     rowSpan={2}
                     className="bg-light border align-middle"
                   >
-                    Item
+                    <FontAwesomeIcon icon={faCubes} /> Item
                   </th>
                   {
                     searchResults[0].queries.map((query) =>
@@ -85,9 +85,10 @@ class ResultsItemList extends React.Component {
                         key={`{header-query-${query.name}`}
                         scope="col"
                       >
+                        <FontAwesomeIcon icon={faSearch} className="mr-1" />
                         {query.name}
                         <button
-                          className="btn btn-xs btn-primary"
+                          className="btn btn-xs btn-dark"
                           onClick={() => handleContractClick(query.name)}
                         >
                           { contractedQueries.includes(query.name)
@@ -109,7 +110,12 @@ class ResultsItemList extends React.Component {
                             key={`{header-${field.name}`}
                             scope="col"
                           >
-                            <small className="small">{field.name}</small>
+                            <div className="d-flex align-items-center">
+                              <FontAwesomeIcon icon={faList} className="mr-1" />
+                              <small className="small">
+                                {field.name}
+                              </small>
+                            </div>
                           </th>
                         )
                       )
