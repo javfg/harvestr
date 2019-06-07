@@ -5,6 +5,7 @@ class Item {
   constructor(name, queries, savedData) {
     this.name = name;
     this.savedData = savedData;
+    this.score = 0;
 
     this.queries = queries.map(query => new Query(
       query.name,
