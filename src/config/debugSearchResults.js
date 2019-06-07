@@ -1,4 +1,6 @@
-export const debugSearchResults = [
+export const debugSearchResults = []
+
+/*
 	{
 		"name": "P04114",
 		"savedData": {
@@ -67043,3 +67045,4 @@ export const debugSearchResults = [
 		]
 	}
 ]
+*/

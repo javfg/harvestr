@@ -146,7 +146,11 @@ class ResultsItemList extends React.Component {
 //
 const mapStateToProps = (state) => ({
   resultsPage: state.ui.resultsPage.main,
-  searchResults: selectSearchResults(state.searchResults, state.ui.resultsPage.main.currentPage, state.ui.resultsPage.main.pageSize)
+  searchResults: selectSearchResults(
+    state.harvest.searchResults,
+    state.ui.resultsPage.main.currentPage,
+    state.ui.resultsPage.main.pageSize
+  )
 });
 
 const mapDispatchToProps = (dispatch) => ({

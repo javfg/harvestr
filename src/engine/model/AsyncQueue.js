@@ -18,7 +18,7 @@ class AsyncItemQueue {
       const upperRange = (currentBundle + 1) * this.concurrency;
 
       const itemNames = this.items.slice(lowerRange, upperRange).map(item => item.name);
-      this.progressBar.setCurrentMessage('Processing items');
+      this.progressBar.setCurrentMessage(`Processing item bundle ${currentBundle + 1} out of ${bundles}...`);
       this.progressBar.setCurrentItems(itemNames);
 
       await Promise.all(this.items.slice(lowerRange, upperRange).map(item => item.run()));

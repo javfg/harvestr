@@ -129,7 +129,7 @@ class LoadRankingDefinition extends React.Component {
 const mapStateToProps = (state) => {
   return {
     harvestPage: state.ui.harvestPage,
-    rankingDefinition: state.rankingDefinition
+    rankingDefinition: state.harvest.rankingDefinition
   };
 };
 

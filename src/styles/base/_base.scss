@@ -76,3 +76,9 @@ a, a:visited, a:hover, a:active {
 .line-height-1 {
   line-height: 1 !important;
 }
+
+.input-hidden {
+  width: 0px;
+  height: 0px;
+  overflow: hidden;
+}

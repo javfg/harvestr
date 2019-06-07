@@ -11,6 +11,7 @@ import { setHarvestProgressModalField } from '../../actions/HarvestProgressModal
 // Components.
 import Badge from '../common/Badge';
 import ProgressBar from '../common/ProgressBar';
+import StatsBox from '../common/Stats';
 
 
 class HarvestProgressModal extends React.Component {
@@ -30,7 +31,7 @@ class HarvestProgressModal extends React.Component {
       handleClickGoToResults,
       props: {
         harvestProgressModal: { currentItems, currentMessage, currentProgress, harvestDone },
-        resultsPage: { stats }
+        details: { stats }
       }
     } = this;
 
@@ -53,23 +54,7 @@ class HarvestProgressModal extends React.Component {
           ) : (
             <>
               <h1><FontAwesomeIcon icon={faCheck} className="text-success mr-2" />Done</h1>
-              <div className="modal-stats align-items-center">
-                <div className="mb-1">
-                  <Badge name={`${stats.items} Items`} type="item" />
-                </div>
-                <div className="mb-1">
-                  <Badge name={`${stats.queries} Queries`} type="query" />
-                </div>
-                <div className="mb-1">
-                  <Badge name={`${stats.fields} Fields`} type="field" />
-                </div>
-                <div className="mb-1">
-                  <Badge name={`${stats.entries} Entries`} type="entry" />
-                </div>
-                <div className="mb-1">
-                  <Badge name={`${stats.values} Values`} type="value" />
-                </div>
-              </div>
+              <StatsBox stats={stats} />
             </>
           )}
 
@@ -90,7 +75,7 @@ class HarvestProgressModal extends React.Component {
 
 const mapStateToProps = (state) => ({
   harvestProgressModal: state.ui.harvestProgressModal,
-  resultsPage: state.ui.resultsPage.main
+  details: state.harvest.details
 });
 
 const mapDispatchToProps = dispatch => ({

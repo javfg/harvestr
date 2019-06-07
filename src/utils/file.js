@@ -19,4 +19,13 @@ const readJSONFromFile = async (file) => {
   }
 }
 
-export { readJSONFromFile };
+const download = (fileName, content, contentType) => {
+  const fileA = document.createElement('a');
+  const file = new Blob([JSON.stringify(content, null, 2)], {type: contentType});
+
+  fileA.href = URL.createObjectURL(file);
+  fileA.download = fileName;
+  fileA.click();
+}
+
+export { download, readJSONFromFile };

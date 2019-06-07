@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 // Reducers.
 import harvestPageReducer from '../reducers/HarvestPage';
 import configReducer from '../reducers/ConfigReducer';
+import detailsReducer from '../reducers/Details';
 import itemListReducer from '../reducers/itemList';
 import rankingDefinitionReducer from '../reducers/RankingDefinition';
 import searchProfileReducer from '../reducers/searchProfile';
@@ -23,10 +24,13 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   combineReducers({
     config: configReducer,
-    itemList: itemListReducer,
-    rankingDefinition: rankingDefinitionReducer,
-    searchProfile: searchProfileReducer,
-    searchResults: searchResultReducer,
+    harvest: combineReducers({
+      details: detailsReducer,
+      itemList: itemListReducer,
+      rankingDefinition: rankingDefinitionReducer,
+      searchProfile: searchProfileReducer,
+      searchResults: searchResultReducer,
+    }),
     ui: combineReducers({
       harvestPage: harvestPageReducer,
       harvestProgressModal: harvestProgressModalReducer,

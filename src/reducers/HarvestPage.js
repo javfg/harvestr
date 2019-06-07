@@ -6,6 +6,7 @@ const HarvestPageDefaultState = {
   currentLoadItemListTab: 0,
   itemList: [],
   debugHarvestPage: true,
+  harvestDone: false,
   loadItemListOk: false,
   loadSearchProfileOk: false,
   launchSearchOk: false,
@@ -17,7 +18,6 @@ const HarvestPageDefaultState = {
   itemListFileContents: undefined,
   itemListFileHasHeader: true,
   textAareaContents: '',
-  harvestDone: false
 };
 
 export default (state = HarvestPageDefaultState, action) => {

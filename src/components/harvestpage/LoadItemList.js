@@ -216,7 +216,7 @@ class LoadItemList extends React.Component {
 //
 const mapStateToProps = (state) => ({
   harvestPage: state.ui.harvestPage,
-  itemList: state.itemList
+  itemList: state.harvest.itemList
 });
 
 const mapDispatchToProps = (dispatch) => ({

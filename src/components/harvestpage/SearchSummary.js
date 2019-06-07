@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSeedling, faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 
 // Actions.
+import { setDetailsField } from '../../actions/Details';
 import { setHarvestProgressModalField } from '../../actions/HarvestProgressModal';
 import { setResultsPageField } from '../../actions/ResultsPage';
 import { setSearchResults } from '../../actions/searchResults';
@@ -40,12 +41,12 @@ class SearchSummary extends React.Component {
 
     const searchResults = await searchEngine.run();
 
+    this.props.setDetailsField({stats: searchResults.stats});
     this.props.setSearchResults(searchResults.items);
     this.props.setResultsPageField({
       currentPage: 0,
       totalPages: Math.ceil(searchResults.items.length / 10),
-      pageSize: 10,
-      stats: searchResults.stats
+      pageSize: 10
     });
   }
 
@@ -105,18 +106,17 @@ class SearchSummary extends React.Component {
 //
 const mapStateToProps = (state) => ({
   config: state.config,
+  details: state.harvest.details,
   harvestPage: state.ui.harvestPage,
   harvestProgressModal: state.ui.harvestProgressModal,
-  itemList: state.itemList,
-  rankingDefinition: state.rankingDefinition,
-  searchProfile: state.searchProfile
+  itemList: state.harvest.itemList,
+  rankingDefinition: state.harvest.rankingDefinition,
+  searchProfile: state.harvest.searchProfile
 });
 
 const mapDispatchToProps = dispatch => ({
-
-  // For testing.
+  setDetailsField: (newState) => dispatch(setDetailsField(newState)),
   setHarvestProgressModalField: (newState) => dispatch(setHarvestProgressModalField(newState)),
-
   setSearchResults: (searchResults) => dispatch(setSearchResults(searchResults)),
   setResultsPageField: (newState) => dispatch(setResultsPageField(newState)),
 });

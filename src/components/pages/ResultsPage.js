@@ -1,15 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { CSSTransition } from 'react-transition-group';
+
+import Moment from 'moment';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPoll, faSave, faFileCsv, faFolderOpen } from '@fortawesome/free-solid-svg-icons';
 
+// Actions.
+import { setDetailsField } from '../../actions/Details';
+import { setResultsPageField } from '../../actions/ResultsPage';
+import { setSearchResults } from '../../actions/searchResults';
+
 // Components.
+import LoadSearchResultsModal from '../resultspage/LoadSearchResultsModal';
 import PageTitle from '../common/PageTitle';
 import ResultsItemList from '../resultspage/ResultsItemList';
 import ResultsTooltip from '../resultspage/ResultsTooltip';
 
 // Utils.
+import { download, readJSONFromFile } from '../../utils/file';
 //import { exportCSV } from '../../utils/utils';
 
 
@@ -26,18 +37,36 @@ class HarvestPage extends React.Component {
   }
 
   handleSaveHarvestResults = () => {
-    // TODO:
-    console.log('save harvest results');
+    const { details, searchResults } = this.props;
+    const fileName = `${details.name}-results-${Moment().format('HH-mm-ss-DD-MM-YYYY')}`;
+    const contents = {details, searchResults};
+
+    download(fileName, contents, 'application/json');
   };
 
-  handleLoadHarvestResults = () => {
-    // TODO:
-    console.log('load harvest results');
+
+  handleClickLoadResults = () => {
+    document.getElementById('inputfile').click();
+  };
+
+  handleLoadHarvestResults = async (event) => {
+    const { setDetailsField, setResultsPageField, setSearchResults } = this.props;
+    const results = await readJSONFromFile(event.target.files[0]);
+
+    setDetailsField(results.details);
+    setResultsPageField({loadResultsModalVisible: true});
+    setSearchResults(results.searchResults);
   };
 
 
   render() {
-    const { handleExportCSV, handleLoadHarvestResults, handleSaveHarvestResults } = this;
+    const {
+      handleClickLoadResults,
+      handleExportCSV,
+      handleLoadHarvestResults,
+      handleSaveHarvestResults,
+      props: { resultsPage : { loadResultsModalVisible } }
+    } = this;
 
     return (
       <>
@@ -53,9 +82,12 @@ class HarvestPage extends React.Component {
             </div>
 
             <div className="col col-xs-12 col-sm-8 col-md-8 mt-2 text-right">
+              <div className="input-hidden">
+                <input type="file" id="inputfile" tabIndex="-1" onChange={handleLoadHarvestResults}/>
+              </div>
               <button
                 className="btn btn-primary mr-4"
-                onClick={handleLoadHarvestResults}
+                onClick={handleClickLoadResults}
               >
                 <FontAwesomeIcon icon={faFolderOpen} /> Load Results
               </button>
@@ -77,6 +109,14 @@ class HarvestPage extends React.Component {
           <ResultsItemList />
         </div>
         <ResultsTooltip />
+        <CSSTransition
+          in={loadResultsModalVisible}
+          timeout={2500}
+          classNames='modal'
+          unmountOnExit
+        >
+          <LoadSearchResultsModal />
+        </CSSTransition>
       </>
     );
   }
@@ -86,9 +126,17 @@ class HarvestPage extends React.Component {
 //
 // Redux mapping functions.
 //
-const mapStateToProps = (state) => {
-  return { searchResults: state.searchResults };
-};
+const mapStateToProps = (state) => ({
+  details: state.harvest.details,
+  resultsPage: state.ui.resultsPage.main,
+  searchResults: state.harvest.searchResults
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setDetailsField: (newState) => dispatch(setDetailsField(newState)),
+  setResultsPageField: (newState) => dispatch(setResultsPageField(newState)),
+  setSearchResults: (searchResults) => dispatch(setSearchResults(searchResults))
+});
 
 
-export default connect(mapStateToProps)(HarvestPage);
+export default connect(mapStateToProps, mapDispatchToProps)(HarvestPage);

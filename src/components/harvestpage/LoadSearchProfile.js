@@ -127,7 +127,7 @@ class LoadSearchProfile extends React.Component {
 const mapStateToProps = (state) => {
   return {
     harvestPage: state.ui.harvestPage,
-    searchProfile: state.searchProfile
+    searchProfile: state.harvest.searchProfile
   };
 };
 
