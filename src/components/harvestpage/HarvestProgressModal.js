@@ -45,8 +45,8 @@ class HarvestProgressModal extends React.Component {
                 The items&apos; queries are being fetched, processed, and sorted according to
                 the ranking. Please stand by.
               </p>
+              <small className="text-muted mr-2">{ currentMessage }</small>
               <div className="modal-message">
-                <small className="text-muted mr-2">{ currentMessage }</small>
                 { currentItems.map(itemName => <Badge key={`item-${itemName}`} name={itemName} type="item" />) }
               </div>
             </>

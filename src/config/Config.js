@@ -3,7 +3,7 @@ export const config = {
 
   serverFetcherUrl: 'http://localhost:8081',
 
-  itemConcurrency: 3,
+  itemConcurrency: 5,
   retryAttempts: 5,
   retryMinDelay: 1000,
   retryMaxDelay: 5000,

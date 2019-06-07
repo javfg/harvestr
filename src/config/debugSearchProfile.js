@@ -1,24 +1,4 @@
-export const debugSearchProfile =
-
-// [{
-//   "name": "UniProt",
-//   "urlTemplate": "https://www.uniprot.org/uniprot/{{ITEM}}.xml",
-//   "fetcher": "standardFetcher",
-//   "parser": "xmlParser",
-//   "saveData": [],
-//   "fields": [{
-//     "name": "accession",
-//     "path": "uniprot/entry/accession",
-//     "entries": [{
-//       "linkTo": "https://uniprot.org/uniprot/{{value}}",
-//       "name": "Accession",
-//       "path": "."
-//     }]
-//   }]
-// }];
-
-
-[
+export const debugSearchProfile = [
   {
     "name": "UniProt",
     "urlTemplate": "https://www.uniprot.org/uniprot/{{ITEM}}.xml",
