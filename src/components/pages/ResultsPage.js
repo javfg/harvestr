@@ -51,11 +51,16 @@ class HarvestPage extends React.Component {
 
   handleLoadHarvestResults = async (event) => {
     const { setDetailsField, setResultsPageField, setSearchResults } = this.props;
-    const results = await readJSONFromFile(event.target.files[0]);
+    const loadedJSON = await readJSONFromFile(event.target.files[0]);
 
-    setDetailsField(results.details);
-    setResultsPageField({loadResultsModalVisible: true});
-    setSearchResults(results.searchResults);
+    setDetailsField(loadedJSON.details);
+    setSearchResults(loadedJSON.searchResults);
+    setResultsPageField({
+      currentPage: 0,
+      loadResultsModalVisible: true,
+      totalPages: Math.ceil(loadedJSON.searchResults.length / 10),
+      pageSize: 10
+    });
   };
 
 
