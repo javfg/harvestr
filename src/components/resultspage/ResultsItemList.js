@@ -68,7 +68,7 @@ class ResultsItemList extends React.Component {
         />
         <div className="table-container">
           <div className="table-scroll">
-            <table className="table table-sm table-borderless">
+            <table className="table table-sm table-borderless table-hover">
               <thead className="text-center">
                 <tr>
                   <th

@@ -82,3 +82,7 @@ a, a:visited, a:hover, a:active {
   height: 0px;
   overflow: hidden;
 }
+
+.border-radius {
+  border-radius: $border-radius !important;
+}
