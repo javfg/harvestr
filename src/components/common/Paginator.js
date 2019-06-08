@@ -43,7 +43,7 @@ class Paginator extends React.Component {
           <ul className="pagination pagination-sm m-0">
             <li className={`page-item ${currentPage === 0 ? 'disabled' : ''}`}>
               <a
-                className="page-link border-radius"
+                className="page-link paginator-link border-radius"
                 href="#!"
                 onClick={() => {handleNavigate(0)}}
               >
@@ -52,7 +52,7 @@ class Paginator extends React.Component {
             </li>
             <li className={`page-item ${currentPage === 0 ? 'disabled' : ''}`}>
               <a
-                className="page-link border-radius"
+                className="page-link paginator-link border-radius"
                 href="#!"
                 onClick={() => {handleNavigate(Math.max(currentPage - 1, 0))}}
               >
@@ -67,7 +67,7 @@ class Paginator extends React.Component {
                   className={`page-item paginator-link ${pageLink === currentPage ? 'active' : ''}`}
                 >
                   <a
-                    className={`page-link border-radius ${pageLink === currentPage ? 'active' : ''}`}
+                    className={`page-link paginator-link border-radius ${pageLink === currentPage ? 'active' : ''}`}
                     href="#!"
                     onClick={() => {handleNavigate(pageLink)}}
                     key={`${pageLink}-navigate`}
@@ -80,7 +80,7 @@ class Paginator extends React.Component {
 
             <li className={`page-item ${currentPage === totalPages - 1 ? 'disabled' : ''}`}>
               <a
-                className="page-link border-radius" href="#!"
+                className="page-link paginator-link border-radius" href="#!"
                 onClick={() => {handleNavigate(Math.min(currentPage + 1, (totalPages - 1)))}}
               >
                 <FontAwesomeIcon icon={faAngleRight} />
@@ -88,7 +88,7 @@ class Paginator extends React.Component {
             </li>
             <li className={`page-item ${currentPage === totalPages - 1 ? 'disabled' : ''}`}>
               <a
-                className="page-link border-radius" href="#!"
+                className="page-link paginator-link border-radius" href="#!"
                 onClick={() => {handleNavigate(totalPages - 1)}}
               >
                 <FontAwesomeIcon icon={faAngleDoubleRight} />

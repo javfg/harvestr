@@ -63,7 +63,7 @@ class ResultsItemList extends React.Component {
         <Paginator
           currentPage={currentPage}
           totalPages={totalPages}
-          pageWindow={7}
+          pageWindow={5}
           pageChangeHandler={handleChangePage}
         />
         <div className="table-container">
