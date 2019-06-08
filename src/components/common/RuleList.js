@@ -10,9 +10,10 @@ const RuleList = ({ rules }) => (
   ) : (
     <div className="row">
       <div className="col">
-        {rules.map((rule, index) =>
-          <Badge key={`${rule.name}-${index}`} name={rule.name} type="rule" />
-        )}
+        {rules.map((rule, index) => {
+          const {name, ...details} = rule;
+          return <Badge key={`${name}-${index}`} name={name} details={details} type="rule" />
+        })}
       </div>
     </div>
   )

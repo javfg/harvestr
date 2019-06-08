@@ -10,7 +10,9 @@ const ItemList = ({ items }) => (
   ) : (
     <div className="row">
       <div className="col">
-        {items.map(i => <Badge key={i} name={i} type="item" />)}
+        {items.map(item => {
+          return <Badge key={`item-${item}`} name={item} type="item" />
+        })}
       </div>
     </div>
   )

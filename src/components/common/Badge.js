@@ -13,6 +13,9 @@ import {
 // Components.
 import Tooltip from './Tooltip';
 
+// Utils.
+import { translate } from '../../utils/labels';
+
 
 class Badge extends React.Component {
   constructor(props) {
@@ -58,8 +61,10 @@ class Badge extends React.Component {
       icon,
       handleMouseOut,
       handleMouseOver,
-      props: { type, name }
+      props: { details = {}, type, name, noTooltip  }
     } = this;
+
+    const typeLabel = type.charAt(0).toUpperCase() + type.slice(1);
 
     return (
       <>
@@ -71,12 +76,36 @@ class Badge extends React.Component {
         >
           <FontAwesomeIcon icon={icon} className="mr-1" />{name}
         </span>
-        <Tooltip
-          ref={this.tooltipRef}
-          margin={1}
-        >
-          <div className="tooltip-badge-box">{name}: {type}</div>
-        </Tooltip>
+        {!noTooltip && (
+          <Tooltip
+            ref={this.tooltipRef}
+            margin={1}
+          >
+            <div className="tooltip-badge-title">
+              <span className={`badge badge-dark badge-${type} mx-2`}>
+                <FontAwesomeIcon icon={icon} className="mr-1" /><strong>{typeLabel}</strong>
+              </span>
+              <span><strong>{name}</strong></span>
+            </div>
+            {Object.keys(details).length > 0 && (
+              <div className="tooltip-badge-body">
+                {Object.keys(details).map((detail, index) => {
+                  // Merge arrays.
+                  let detailLabel = details[detail];
+                  if (Array.isArray(detailLabel)) {
+                    detailLabel = detailLabel.join('; ');
+                  }
+
+                  return (
+                    <div className="tooltip-badge-details" key={`detail-${detail}-${index}`}>
+                      <strong>{translate(detail)}: </strong>{translate(detailLabel)}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </Tooltip>
+        )}
       </>
     );
   }

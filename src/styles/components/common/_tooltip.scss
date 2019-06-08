@@ -1,8 +1,9 @@
 .tooltip-box {
   position: fixed;
   background-color: $light;
-  border: 1px solid $grey;
+  border: 1px solid $dark;
   box-shadow: 0 0 15px 0 $dark;
+  max-width: 75%;
   visibility: hidden;
   z-index: 10;
 }
