@@ -110,7 +110,7 @@ class ResultsTooltip extends React.Component {
 
           <div className="row no-gutters">
             <div className="col col-10 align-self-center text-center px-2 mb-2">
-              <Badge name={resultsTooltip.name} type="field" />
+              <Badge name={resultsTooltip.name} type="field" noTooltip />
             </div>
             <div className="col col-2 align-self-right text-right">
               <button

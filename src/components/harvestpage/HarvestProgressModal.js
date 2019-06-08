@@ -11,7 +11,7 @@ import { setHarvestProgressModalField } from '../../actions/HarvestProgressModal
 // Components.
 import Badge from '../common/Badge';
 import ProgressBar from '../common/ProgressBar';
-import StatsBox from '../common/Stats';
+import StatsBox from '../common/StatsBox';
 
 
 class HarvestProgressModal extends React.Component {

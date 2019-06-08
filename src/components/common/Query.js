@@ -21,7 +21,7 @@ const Query = ({ name, fields, ...details }) => (
       details['entries'] = (
         <div className="tooltip-badge-entries">
           {entries.map(entry =>
-            <Badge key={`entry-${entry.name}`} type="entry" name={entry.name} noTooltip={true} />
+            <Badge key={`entry-${entry.name}`} type="entry" name={entry.name} noTooltip />
           )}
         </div>
       );

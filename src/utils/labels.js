@@ -1,6 +1,8 @@
 const labels = {
   csvParser: 'CSV',
   dsvParser: 'DSV',
+  entry: 'Entry',
+  entries: 'Entries',
   fetcher: 'Fetch strategy',
   field: 'Field',
   htmlParser: 'HTML',

@@ -8,7 +8,7 @@ import { faCheck, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { setResultsPageField } from '../../actions/ResultsPage';
 
 // Components.
-import StatsBox from '../common/Stats';
+import StatsBox from '../common/StatsBox';
 
 
 class LoadSearchResultsModal extends React.Component {
