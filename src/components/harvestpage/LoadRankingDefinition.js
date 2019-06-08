@@ -12,6 +12,7 @@ import { setRankingDefinition } from '../../actions/RankingDefinition';
 // Components.
 import FileLoader from '../io/FileLoader';
 import PageTitle from '../common/PageTitle';
+import RuleList from '../common/RuleList';
 
 
 // TODO: RANKING DEFINITION VALIDITY.
@@ -111,8 +112,7 @@ class LoadRankingDefinition extends React.Component {
               </div>
 
               <div className="card-body">
-                <p className="mb-0">TODO RANKING DEFINITION COMPONENTS</p>
-                {rankingDefinition.map((entry, index) => <p key={`${entry}-${index}`}>entry</p>)}
+                <RuleList rules={rankingDefinition.rules} />
               </div>
             </div>
           </div>

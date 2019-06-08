@@ -1,6 +1,3 @@
-import { config } from '../config/Config';
-
-
 const arrayOfStrNumbers = l => [...Array(l + 1).keys()].splice(1).map(e => e.toString());
 
 const rem2px = rem => rem * parseFloat(getComputedStyle(document.documentElement).fontSize);

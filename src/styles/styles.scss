@@ -1,9 +1,11 @@
 @import './base/base';
 @import './base/bootstrap_extra';
 
-@import './components/common/step';
+@import './components/common/badge';
 @import './components/common/paginator';
 @import './components/common/progressbar';
+@import './components/common/step';
+@import './components/common/tooltip';
 @import './components/fileloader';
 @import './components/modal';
 @import './components/resultitemlist';

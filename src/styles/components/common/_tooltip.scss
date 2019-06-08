@@ -1,0 +1,42 @@
+.tooltip-box {
+  position: fixed;
+  background-color: $light;
+  border: 1px solid $grey;
+  box-shadow: 0 0 15px 0 $dark;
+  visibility: hidden;
+  z-index: 10;
+}
+
+// Tooltip animations.
+.tooltip-enter {
+  opacity: 0;
+  transform: scale(0.9);
+  visibility: visible;
+}
+
+.tooltip-enter-active {
+  opacity: 1;
+  pointer-events: none;
+  transform: translateX(0);
+  transition: opacity 250ms, transform 250ms !important;
+}
+
+.tooltip-enter-done {
+  visibility: visible;
+}
+
+.tooltip-exit {
+  opacity: 1;
+  visibility: visible;
+}
+
+.tooltip-exit-active {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.9);
+  transition: opacity 250ms, transform 250ms !important;
+}
+
+.tooltip-exit-done {
+  visibility: hidden;
+}
