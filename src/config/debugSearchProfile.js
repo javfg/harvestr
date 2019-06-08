@@ -168,29 +168,29 @@ export const debugSearchProfile = [
     ]
   },
   {
-    "name": "BioGrid",
-    "urlTemplate": "https://webservice.thebiogrid.org/interactions/?geneList={{GENENAME}}&taxId=9606&accessKey=8b95f31461c48d27eb8cce6e8f1caa15",
+    "name": "BioGRID",
+    "urlTemplate": "https://webservice.thebiogrid.org/interactions/?geneList={{GENENAME}}&taxId=9606&interSpeciesExcluded=true&accessKey=8b95f31461c48d27eb8cce6e8f1caa15",
     "fetcher": "standardFetcher",
     "parser": "tsvParser",
     "requires": "GENENAME",
     "fields": [
       {
-        "name": "BioGRID Interaction ID",
+        "name": "BioGRID Interaction data",
         "entries": [
           {
-            "name": "BioGRID Interaction ID",
-            "linkTo": "https://thebiogrid.org/{{value}}",
+            "name": "Interaction ID",
+            "linkTo": "https://thebiogrid.org/interaction/{{value}}",
             "path": 0
           },
           {
             "name": "Interactor A",
-            "linkTo": "https://thebiogrid.org/{{value}}",
-            "path": 5
+            "linkTo": "https://thebiogrid.org/search.php?search={{value}}&organism=9606",
+            "path": 7
           },
           {
             "name": "Interactor B",
-            "linkTo": "https://thebiogrid.org/{{value}}",
-            "path": 6
+            "linkTo": "https://thebiogrid.org/search.php?search={{value}}&organism=9606",
+            "path": 8
           },
           {
             "name": "PubMed ID",
