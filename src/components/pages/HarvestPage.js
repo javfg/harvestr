@@ -80,7 +80,7 @@ class HarvestPage extends React.Component {
         >
           <Step name="Item list" isCorrect={loadItemListOk} />
           <Step name="Search profile" isCorrect={loadSearchProfileOk} />
-          <Step name="Ranking definition" isOptional={true}/>
+          <Step name="Ranking definition" isOptional={true} />
           <Step name="Launch" />
         </Steps>
       </div>
@@ -88,6 +88,7 @@ class HarvestPage extends React.Component {
   }
 }
 
+// TODO: REFACTOR CORRECTNESS TO CONTENTS OF ITEMLIST/SEARCHPROFILE/RANKINGDEF.
 
 //
 // Redux mapping functions.
