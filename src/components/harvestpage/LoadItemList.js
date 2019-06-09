@@ -94,9 +94,6 @@ class LoadItemList extends React.Component {
       }
     } = this;
 
-    const shortItemList = itemList.length <= 10 ? itemList.slice(0, 10)
-    :
-    itemList.slice(0, 10).concat(`...${itemList.length - 10} more`);
 
     return (
       <>
@@ -105,14 +102,13 @@ class LoadItemList extends React.Component {
                       and specify which one is it. Alternatively, you can paste
                       a list of items separated in different lines."
           icon={faUpload}
-          margins='mb-2'
           size="h3"
           title="Load item list"
         />
 
 
-        <div className="row mb-3">
-          <div className="col px-5">
+        <div className="row mb-3 px-3">
+          <div className="col">
             <div className="card">
               <div className="card-header">
                 <Tabs handleClick={handleSelectTab} currentTab={currentLoadItemListTab}>
@@ -120,7 +116,7 @@ class LoadItemList extends React.Component {
                   <Tab caption="Paste data" icon={faClipboard} tabNumber={1} type="radio" />
                 </Tabs>
               </div>
-              <div className="card-body h-13r">
+              <div className="card-body pb-3">
                 {
                   currentLoadItemListTab === 0 ? (
                     <>
@@ -143,7 +139,7 @@ class LoadItemList extends React.Component {
                       <div className="row justify-content-center">
                         <div className="col-xs-8 col-sm-6 col-md-4">
                           <button
-                            className="btn btn-primary btn-block mt-2"
+                            className="btn btn-primary btn-block mt-3"
                             disabled={!selectedColumn}
                             onClick={handleSetItemListFromCSV}
                           >
@@ -185,22 +181,23 @@ class LoadItemList extends React.Component {
           </div>
         </div>
 
-        <div className="row">
-          <div className="col px-5">
+        <div className="row px-3">
+          <div className="col">
             <div className="card">
               <div className="card-header py-2">
                 <PageTitle
                   description="You can check if the file and column loaded are correct taking a
                               look at the first items in the list."
                   icon={faList}
-                  margins='mb-2'
                   size="h3"
+                  margins="mb-0"
                   title="Items on your list"
+                  descriptionSize="small"
                 />
               </div>
 
               <div className="card-body">
-                <ItemList items={shortItemList} />
+                <ItemList items={itemList} />
               </div>
             </div>
           </div>

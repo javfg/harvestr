@@ -51,54 +51,45 @@ class LoadSearchProfile extends React.Component {
                        items previously loaded; and for every resource, the relevant fields
                        of data the harvest will contain."
           icon={faSearch}
-          margins='mb-2'
           size="h3"
           title="Search profile"
         />
 
-        <div className="row mb-5 px-5">
-          <div className="col col-md-12 col-lg-6 pr-3 pl-0">
+        <div className="row mb-3 px-3">
+          <div className="col col-6 flex-column">
             <PageTitle
               icon={faFolderOpen}
-              margins='ml-0 mb-0'
+              margins='my-2'
               size="h4"
               title="Load search profile"
             />
 
-            <div className="row mt-1">
-              <div className="col">
-                <FileLoader
-                  fileType='JSON'
-                  handleUploadFileChange={handleSearchProfileFileChange}
-                  onFileRead={handleSearchProfileFile}
-                  uploadFile={searchProfileFile}
-                />
-              </div>
-            </div>
+            <FileLoader
+              fileType='JSON'
+              handleUploadFileChange={handleSearchProfileFileChange}
+              onFileRead={handleSearchProfileFile}
+              uploadFile={searchProfileFile}
+            />
           </div>
-          <div className="col col-md-12 col-lg-6 pl-3">
+          <div className="col col-6 flex-column">
             <PageTitle
               icon={faFile}
-              margins='mb-0'
+              margins='my-2'
               size="h4"
               title="Create a new search profile"
             />
 
-            <div className="row mt-1">
-              <div className="col border p-2 mx-0">
-                <button
-                  className="btn btn-primary btn-block"
-                  onClick={handleGoToSearchProfile}
-                >
-                  <FontAwesomeIcon icon={faHammer} /> Go to search profile creator
-                </button>
-              </div>
-            </div>
+            <button
+              className="btn btn-primary btn-block mt-3"
+              onClick={handleGoToSearchProfile}
+            >
+              <FontAwesomeIcon icon={faHammer} /> Go to search profile editor
+            </button>
           </div>
         </div>
 
-        <div className="row">
-          <div className="col px-5">
+        <div className="row px-3">
+          <div className="col">
             <div className="card">
               <div className="card-header py-2">
                 <PageTitle
@@ -106,6 +97,8 @@ class LoadSearchProfile extends React.Component {
                   margins="mb-0"
                   size="h4"
                   title="Current search profile"
+                  description="Here, you can take a look at the queries, fields and entries this search profile defines."
+                  descriptionSize="small"
                 />
               </div>
 

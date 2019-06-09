@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const PageTitle = ({ icon, title, extraTitle, description, size, descriptionSize, margins }) => {
-  const mb = margins ? margins : 'mb-2';
+  const mb = margins ? margins : 'mb-4';
 
   return (
     <>
@@ -29,7 +29,7 @@ const PageTitle = ({ icon, title, extraTitle, description, size, descriptionSize
               const SizeTag = descriptionSize || 'p';
 
               return (
-                <SizeTag className="text-muted">{description}</SizeTag>
+                <SizeTag className="text-muted mb-0">{description}</SizeTag>
               );
             })()}
           </div>

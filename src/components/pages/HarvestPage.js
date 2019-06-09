@@ -51,47 +51,30 @@ class HarvestPage extends React.Component {
     return (
       <div className="container-fluid my-4">
         <PageTitle
-          description="Follow the steps below to create a harvest."
+        //TODO: THIS  IS NOW AN EDITOR
+          description="TODO."
           icon={faSeedling}
           size="h1"
-          title="Create a harvest"
+          title="Harvest editor"
         />
 
-        <div className="row mb-2">
-          <div className="col">
+        <div className="row">
+          <div className="col bg-light border mx-3 py-2">
             {(() => {
               switch (currentStep) {
                 case 1:
-                  return (
-                    <div className="p-3 bg-light border">
-                      <LoadItemList />
-                    </div>
-                  );
-
+                  return <LoadItemList />
                 case 2:
-                  return (
-                    <div className="p-3 bg-light border">
-                      <LoadSearchProfile />
-                    </div>
-                  );
-
+                  return <LoadSearchProfile />
                 case 3:
-                  return (
-                    <div className="p-3 bg-light border">
-                      <LoadRankingDefinition />
-                    </div>
-                  );
-
+                  return <LoadRankingDefinition />
                 case 4:
-                  return (
-                    <div className="p-3 bg-light border">
-                      <SearchSummary />
-                    </div>
-                  )
+                  return <SearchSummary />
               }
             })()}
           </div>
         </div>
+
         <Steps
           currentStep={currentStep}
           handlePrevClick={handlePrevClick}

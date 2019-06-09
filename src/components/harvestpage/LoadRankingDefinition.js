@@ -48,58 +48,47 @@ class LoadRankingDefinition extends React.Component {
       <>
         <PageTitle
           description="The ranking definition is the list of parameters and values that will
-                       be used to sort the harvest. The system will assign a score to each of
-                       them according to those parameters, and will be able to explain the
-                       reasons for every ranking. If you do not specify a ranking definition,
+                       be used to sort the harvest. If you do not specify a ranking definition,
                        the harvest will be unsorted."
           icon={faSearch}
-          margins='mb-2'
           size="h3"
           title="Ranking definition"
         />
 
-        <div className="row mb-5 px-5">
-          <div className="col col-md-12 col-lg-6 pr-3 pl-0">
+        <div className="row mb-3 px-3">
+          <div className="col col-6 flex-column">
             <PageTitle
               icon={faFolderOpen}
-              margins='ml-0 mb-0'
+              margins='my-2'
               size="h4"
               title="Load ranking definition"
             />
 
-            <div className="row mt-1">
-              <div className="col">
-                <FileLoader
-                  fileType='JSON'
-                  handleUploadFileChange={handleRankingDefinitionFileChange}
-                  onFileRead={handleRankingDefinitionFile}
-                  uploadFile={rankingDefinitionFile}
-                />
-              </div>
-            </div>
+            <FileLoader
+              fileType='JSON'
+              handleUploadFileChange={handleRankingDefinitionFileChange}
+              onFileRead={handleRankingDefinitionFile}
+              uploadFile={rankingDefinitionFile}
+            />
           </div>
-          <div className="col col-md-12 col-lg-6 pl-3">
+          <div className="col col-6 flex-column">
             <PageTitle
               icon={faFile}
-              margins='mb-0'
+              margins='my-2'
               size="h4"
               title="Create a new ranking definition"
             />
 
-            <div className="row mt-1">
-              <div className="col border p-2 mx-0">
-                <button
-                  className="btn btn-primary btn-block"
-                  onClick={handleGoToRankingDefinition}
-                >
-                  <FontAwesomeIcon icon={faHammer} /> Go to ranking definition creator
-                </button>
-              </div>
-            </div>
+            <button
+              className="btn btn-primary btn-block mt-3"
+              onClick={handleGoToRankingDefinition}
+            >
+              <FontAwesomeIcon icon={faHammer} /> Go to ranking definition editor
+            </button>
           </div>
         </div>
 
-        <div className="row">
+        <div className="row mb-1">
           <div className="col px-5">
             <div className="card">
               <div className="card-header py-2">
@@ -108,6 +97,8 @@ class LoadRankingDefinition extends React.Component {
                   margins="mb-0"
                   size="h4"
                   title="Current ranking definition"
+                  description="Take a look at the rules currently in effect in the ranking."
+                  descriptionSize="small"
                 />
               </div>
 

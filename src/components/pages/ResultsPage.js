@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 
 import { CSSTransition } from 'react-transition-group';
 
-import Moment from 'moment';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPoll, faSave, faFileCsv, faFolderOpen } from '@fortawesome/free-solid-svg-icons';
 
@@ -41,7 +39,7 @@ class HarvestPage extends React.Component {
 
   handleSaveHarvestResults = () => {
     const { harvest, searchResults } = this.props;
-    const fileName = `${harvest.details.name}-results-${Moment().format('HH-mm-ss-DD-MM-YYYY')}`;
+    const fileName = harvest.details.name;
     const contents = {harvest, searchResults};
 
     download(fileName, contents, 'application/json');

@@ -4,10 +4,8 @@ import { withRouter } from 'react-router-dom';
 
 import { CSSTransition } from 'react-transition-group';
 
-import moment from 'moment';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlayCircle, faEllipsisH, faAddressCard, faFileAlt, faSave } from '@fortawesome/free-solid-svg-icons';
+import { faPlayCircle, faEllipsisH, faAddressCard, faFileAlt, faSave, faListOl, faSearch, faPlay } from '@fortawesome/free-solid-svg-icons';
 
 // Actions.
 import { setDetailsField } from '../../actions/Details';
@@ -64,9 +62,23 @@ class SearchSummary extends React.Component {
 
   handleSaveHarvest = () => {
     const { harvest } = this.props;
-    const fileName = `${harvest.details.name}-results-${moment().format('HH-mm-ss-DD-MM-YYYY')}`;
+    const fileName = harvest.details.name;
 
     download(fileName, harvest, 'application/json');
+  };
+
+  handleSaveRankingDefinition = () => {
+    const { harvest } = this.props;
+    const fileName = `${harvest.details.name}-rankingDefinition`;
+
+    download(fileName, harvest.rankingDefinition, 'application/json');
+  };
+
+  handleSaveSearchProfile = () => {
+    const { harvest } = this.props;
+    const fileName = `${harvest.details.name}-searchProfile`;
+
+    download(fileName, harvest.searchProfile, 'application/json');
   };
 
 
@@ -76,6 +88,8 @@ class SearchSummary extends React.Component {
       handleLaunchSearch,
       handleNameChange,
       handleSaveHarvest,
+      handleSaveRankingDefinition,
+      handleSaveSearchProfile,
       props: {
         harvest: { details },
         harvestProgressModal: { visible }
@@ -88,12 +102,11 @@ class SearchSummary extends React.Component {
           description="Before running the harvest, you can give it a name and description; and save
                        it to your computer so you can load and run it again at a later time."
           icon={faEllipsisH}
-          margins='mb-2'
           size="h3"
-          title="Details"
+          title="Details and saving"
         />
 
-        <div className="row mb-3">
+        <div className="row mb-3 px-3">
           <div className="col col-6 flex-column">
             <div className="input-group mb-3">
               <div className="input-group-prepend w-100">
@@ -114,7 +127,7 @@ class SearchSummary extends React.Component {
               </span>
               <textarea
                 className="form-control resize-none"
-                rows="5"
+                rows="6"
                 value={details.description}
                 onChange={handleDescriptionChange}
               />
@@ -124,30 +137,60 @@ class SearchSummary extends React.Component {
             <div className="container border h-100 pt-2">
               <div className="row">
                 <div className="col">
-                  <h4><FontAwesomeIcon icon={faSave} className="mr-2" />Save for later use</h4>
+                  <PageTitle
+                    icon={faSave}
+                    title="Save for later use"
+                    size="h4"
+                    margins="mb-3"
+                    description="You can save the whole harvest, including item list, search profile, ranking definition
+                                 along with the current results (if any), or choose to save only the search profile or
+                                 ranking definition separately."
+                    descriptionSize="small"
+                  />
                 </div>
               </div>
-              <div className="row">
+              <div className="row mb-3">
                 <div className="col">
                   <button
                     className="btn btn-primary mr-2 btn-block"
                     onClick={handleSaveHarvest}
                   >
-                    <FontAwesomeIcon icon={faSave} /> Save everything
+                    <FontAwesomeIcon icon={faSave} className="mr-1" />Save everything
                   </button>
                 </div>
               </div>
-              <div className="">
-
+              <div className="row">
+                <div className="col">
+                  <button
+                    className="btn btn-primary mr-2 btn-block d-flex justify-content-center align-items-center"
+                    onClick={handleSaveSearchProfile}
+                  >
+                    <FontAwesomeIcon icon={faSearch} className="mr-1" /><small>Save search profile</small>
+                  </button>
+                </div>
+                <div className="col">
+                  <button
+                    className="btn btn-primary mr-2 btn-block d-flex justify-content-center align-items-center"
+                    onClick={handleSaveRankingDefinition}
+                  >
+                    <FontAwesomeIcon icon={faListOl} className="mr-1" /><small>Save ranking definition</small>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
+        <PageTitle
+          description="Once you are done, you can start the process."
+          icon={faPlay}
+          size="h3"
+          title="Run"
+        />
         <div className="row justify-content-center">
           <div className="col-xs-8 col-sm-6 col-md-4">
             <button
-              className="btn btn-primary btn-block mt-2"
+              className="btn btn-primary btn-block my-2"
               onClick={handleLaunchSearch}
             >
               <FontAwesomeIcon icon={faPlayCircle} className="mr-2" />Launch harvest
