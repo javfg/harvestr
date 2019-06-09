@@ -3,8 +3,8 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
-const PageTitle = ({ icon, title, extraTitle, description, size, margins }) => {
-  const mb = margins ? margins : 'mb-4';
+const PageTitle = ({ icon, title, extraTitle, description, size, descriptionSize, margins }) => {
+  const mb = margins ? margins : 'mb-2';
 
   return (
     <>
@@ -25,7 +25,13 @@ const PageTitle = ({ icon, title, extraTitle, description, size, margins }) => {
       {description && (
         <div className={`row ${description ? mb : ''}`}>
           <div className="col">
-            <p className="text-muted">{description}</p>
+            {(() => {
+              const SizeTag = descriptionSize || 'p';
+
+              return (
+                <SizeTag className="text-muted">{description}</SizeTag>
+              );
+            })()}
           </div>
         </div>
       )}

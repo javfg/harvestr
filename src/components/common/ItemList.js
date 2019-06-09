@@ -10,9 +10,10 @@ const ItemList = ({ items }) => (
   ) : (
     <div className="row">
       <div className="col">
-        {items.map(item => {
-          return <Badge key={`item-${item}`} name={item} type="item" />
-        })}
+        {items.slice(0, 10).map(item => <Badge key={`item-${item}`} name={item} type="item" />)}
+        {items.length > 10 && <Badge name={`...${items.length - 10} more`} type="item" noTooltip />}
+
+        <p className="text-muted mt-3 mb-0"><small>{items.length} Items total.</small></p>
       </div>
     </div>
   )

@@ -14,6 +14,7 @@ const RuleList = ({ rules }) => (
           const {name, ...details} = rule;
           return <Badge key={`${name}-${index}`} name={name} details={details} type="rule" />
         })}
+        <p className="text-muted mt-3 mb-0"><small>{rules.length} Rules total.</small></p>
       </div>
     </div>
   )

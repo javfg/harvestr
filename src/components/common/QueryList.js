@@ -22,7 +22,7 @@ const QueryList = ({ queries }) => (
                   ))}
               </tbody>
             </table>
-            <p className="text-muted mb-0"><small>Queries for {queries.length} different services.</small></p>
+            <p className="text-muted mb-0"><small>{queries.length} Queries total.</small></p>
           </>
         )
       }

@@ -52,7 +52,7 @@ class Header extends React.Component {
               </li>
               <li className="nav-item">
                 <NavLink exact to="/harvest" className="nav-link" activeClassName="active">
-                    <FontAwesomeIcon icon={faSeedling}/> CREATE HARVEST
+                    <FontAwesomeIcon icon={faSeedling}/> HARVEST
                 </NavLink>
               </li>
               <li className="nav-item">

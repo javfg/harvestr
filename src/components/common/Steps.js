@@ -36,7 +36,7 @@ class Steps extends React.Component {
     const isOptional = currentChildren.props.isOptional;
 
     return (
-      <div className="row">
+      <div className="row mt-3">
         <div className="col col-xs-12 col-sm-2 col-lg-2">
           <CSSTransition
             in={currentStep !== 1}
