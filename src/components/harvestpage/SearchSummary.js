@@ -110,7 +110,7 @@ class SearchSummary extends React.Component {
           <div className="col col-6 flex-column">
             <div className="input-group mb-3">
               <div className="input-group-prepend w-100">
-                <span className="input-group-text w-35">
+                <span className="input-group-text">
                   <FontAwesomeIcon icon={faAddressCard} className="mr-1" />Name
                 </span>
                 <input
@@ -122,7 +122,7 @@ class SearchSummary extends React.Component {
               </div>
             </div>
             <div className="input-group-prepend w-100">
-              <span className="input-group-text w-35">
+              <span className="input-group-text">
                 <FontAwesomeIcon icon={faFileAlt} className="mr-1" />Description
               </span>
               <textarea
