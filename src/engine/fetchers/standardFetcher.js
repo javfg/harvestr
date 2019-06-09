@@ -11,7 +11,7 @@ const fetchWithRetry = async (input, init = {}) => {
       result = await fetch(input, init);
       break;
     } catch (e) {
-      const randomDelay = Math.floor(Math.random() * (config.retryMaxDelay - config.retryMaxDelay + 1) + config.retryMinDelay);
+      const randomDelay = Math.floor(Math.random() * (config.retryMaxDelay - config.retryMinDelay + 1) + config.retryMinDelay);
 
       console.error('Error fetching', input, 'retrying after', randomDelay);
 

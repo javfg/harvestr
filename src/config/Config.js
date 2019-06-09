@@ -6,7 +6,7 @@ export const config = {
   itemConcurrency: 3,
   retryAttempts: 5,
   retryMinDelay: 1000,
-  retryMaxDelay: 5000,
+  retryMaxDelay: 2500,
 
   shortTableResultsElementsToShow: 2
 };
