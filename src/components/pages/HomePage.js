@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInfoCircle, faQuestionCircle, faBox, faLifeRing, faBug, faQuoteRight } from '@fortawesome/free-solid-svg-icons';
+import { faInfoCircle, faQuestionCircle, faBox, faLifeRing, faBug, faQuoteRight, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 
 // Actions.
 import { setHarvestPageField } from '../../actions/HarvestPage';
@@ -196,11 +196,11 @@ class HomePage extends React.Component {
             <div className="card w-75 mx-5 mt-3">
               <div className="card-header">
                 <Tabs handleClick={handleSelectTab} currentTab={currentCitationTab}>
-                  <Tab caption="Plain" tabNumber={0} />
-                  <Tab caption="BibTeX" tabNumber={1} />
-                  {/* <Tab caption="EndNote" tabNumber={2} />
-                  <Tab caption="RefMan" tabNumber={3} />
-                  <Tab caption="RefWorks" tabNumber={4} /> */}
+                  <Tab caption="Plain" icon={faAngleDoubleRight} tabNumber={0} />
+                  <Tab caption="BibTeX" icon={faAngleDoubleRight} tabNumber={1} />
+                  {/* <Tab caption="EndNote" icon={faAngleDoubleRight} tabNumber={2} />
+                  <Tab caption="RefMan" icon={faAngleDoubleRight} tabNumber={3} />
+                  <Tab caption="RefWorks" icon={faAngleDoubleRight} tabNumber={4} /> */}
                 </Tabs>
               </div>
               <div className="card-body">
