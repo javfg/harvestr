@@ -57,7 +57,7 @@ class LoadItemList extends React.Component {
 
   handleSetItemlistFromTextArea = () => {
     const { setHarvestPageField, setItemList, harvestPage: { textAareaContents } } = this.props;
-    const itemList = [...new Set(textAareaContents.split('\n'))];
+    const itemList = [...new Set(textAareaContents.split('\n'))].filter(item => item != null);
 
     setHarvestPageField({textAareaContents, loadItemListOk: true});
     setItemList(itemList);

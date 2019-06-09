@@ -40,7 +40,7 @@ export const populateStore = () => {
       dispatch(setSearchProfile(debugSearchProfile));
       dispatch(setRankingDefinition(debugRankingDefinition));
       dispatch(setSearchResults(debugSearchResults));
-      dispatch(setHarvestPageField({currentStep: 2}));
+      dispatch(setHarvestPageField({currentStep: 1}));
       dispatch(setResultsPageField(debugResultsPage));
     }
   }
