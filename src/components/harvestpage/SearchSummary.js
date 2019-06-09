@@ -117,6 +117,7 @@ class SearchSummary extends React.Component {
                   className="form-control"
                   type="text"
                   value={details.name}
+                  spellCheck={false}
                   onChange={handleNameChange}
                 />
               </div>
