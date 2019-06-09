@@ -47,13 +47,8 @@ class Badge extends React.Component {
   }
 
 
-  handleMouseOut = () => {
-    this.tooltipRef.current.hide();
-  };
-
-  handleMouseOver = (e) => {
-    this.tooltipRef.current.show(e.currentTarget.getBoundingClientRect());
-  };
+  handleMouseOut = () => !this.props.noTooltip && this.tooltipRef.current.hide();
+  handleMouseOver = (e) => !this.props.noTooltip && this.tooltipRef.current.show(e.currentTarget.getBoundingClientRect());
 
 
   render() {
