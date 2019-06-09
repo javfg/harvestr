@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus, faCubes, faSearch, faList } from '@fortawesome/free-solid-svg-icons';
@@ -42,9 +43,14 @@ class ResultsItemList extends React.Component {
     this.props.setResultsPageField({currentPage});
   }
 
+  handleClickRunHarvest = () => {
+    this.props.history.push('/harvest');
+  }
+
   render () {
     const {
       handleChangePage,
+      handleClickRunHarvest,
       handleContractClick,
       props: {
         searchResults,
@@ -54,7 +60,13 @@ class ResultsItemList extends React.Component {
 
     if (searchResults.length === 0) {
       return (
-        <p>No items</p>
+        <p className="text-muted m-5 text-center">
+          Result list is empty. <a
+            href="#!" onClick={handleClickRunHarvest}
+          >
+            Run a harvest
+          </a> or load results using the button.
+        </p>
       );
     }
 
@@ -159,4 +171,4 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ResultsItemList);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ResultsItemList));
