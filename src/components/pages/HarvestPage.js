@@ -51,8 +51,8 @@ class HarvestPage extends React.Component {
     return (
       <div className="container-fluid my-4">
         <PageTitle
-        //TODO: THIS  IS NOW AN EDITOR
-          description="TODO."
+          description="Create a harvest by loading a list of items, defining a search profile and,
+                       optionally, a ranking definition."
           icon={faSeedling}
           size="h1"
           title="Harvest editor"
