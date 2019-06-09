@@ -4,8 +4,10 @@ import { withRouter } from 'react-router-dom';
 
 import { CSSTransition } from 'react-transition-group';
 
+import moment from 'moment';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSeedling, faPlayCircle } from '@fortawesome/free-solid-svg-icons';
+import { faPlayCircle, faEllipsisH, faAddressCard, faFileAlt, faSave } from '@fortawesome/free-solid-svg-icons';
 
 // Actions.
 import { setDetailsField } from '../../actions/Details';
@@ -20,7 +22,8 @@ import PageTitle from '../common/PageTitle';
 // Search engine.
 import SearchEngine from '../../engine/searchEngine';
 
-
+// Utils.
+import { download } from '../../utils/file';
 
 
 class SearchSummary extends React.Component {
@@ -33,9 +36,9 @@ class SearchSummary extends React.Component {
     this.props.setHarvestProgressModalField({visible: true});
 
     const searchEngine = new SearchEngine(
-      this.props.itemList,
-      this.props.searchProfile,
-      this.props.rankingDefinition,
+      this.props.harvest.itemList,
+      this.props.harvest.searchProfile,
+      this.props.harvest.rankingDefinition,
       this.props.config
     );
 
@@ -51,28 +54,93 @@ class SearchSummary extends React.Component {
   }
 
 
+  handleNameChange = (e) => {
+    this.props.setDetailsField({name: e.currentTarget.value});
+  };
+
+  handleDescriptionChange = (e) => {
+    this.props.setDetailsField({description: e.currentTarget.value});
+  };
+
+  handleSaveHarvest = () => {
+    const { harvest } = this.props;
+    const fileName = `${harvest.details.name}-results-${moment().format('HH-mm-ss-DD-MM-YYYY')}`;
+
+    download(fileName, harvest, 'application/json');
+  };
+
+
   render() {
     const {
+      handleDescriptionChange,
       handleLaunchSearch,
+      handleNameChange,
+      handleSaveHarvest,
       props: {
+        harvest: { details },
         harvestProgressModal: { visible }
       }
-      //props: { itemList, rankingDefinition, searchProfile  }
     } = this;
 
     return (
       <>
         <PageTitle
-          description="Summary description."
-          icon={faSeedling}
+          description="Before running the harvest, you can give it a name and description; and save
+                       it to your computer so you can load and run it again at a later time."
+          icon={faEllipsisH}
           margins='mb-2'
           size="h3"
-          title="Harvest summary"
+          title="Details"
         />
 
-        <div className="row">
-          <div className="col text-center">
-            <p>Summary goes here</p>
+        <div className="row mb-3">
+          <div className="col col-6 flex-column">
+            <div className="input-group mb-3">
+              <div className="input-group-prepend w-100">
+                <span className="input-group-text w-35">
+                  <FontAwesomeIcon icon={faAddressCard} className="mr-1" />Name
+                </span>
+                <input
+                  className="form-control"
+                  type="text"
+                  value={details.name}
+                  onChange={handleNameChange}
+                />
+              </div>
+            </div>
+            <div className="input-group-prepend w-100">
+              <span className="input-group-text w-35">
+                <FontAwesomeIcon icon={faFileAlt} className="mr-1" />Description
+              </span>
+              <textarea
+                className="form-control resize-none"
+                rows="5"
+                value={details.description}
+                onChange={handleDescriptionChange}
+              />
+            </div>
+          </div>
+          <div className="col col-6">
+            <div className="container border h-100 pt-2">
+              <div className="row">
+                <div className="col">
+                  <h4><FontAwesomeIcon icon={faSave} className="mr-2" />Save for later use</h4>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col">
+                  <button
+                    className="btn btn-primary mr-2 btn-block"
+                    onClick={handleSaveHarvest}
+                  >
+                    <FontAwesomeIcon icon={faSave} /> Save everything
+                  </button>
+                </div>
+              </div>
+              <div className="">
+
+              </div>
+            </div>
           </div>
         </div>
 
@@ -106,12 +174,9 @@ class SearchSummary extends React.Component {
 //
 const mapStateToProps = (state) => ({
   config: state.config,
-  details: state.harvest.details,
   harvestPage: state.ui.harvestPage,
   harvestProgressModal: state.ui.harvestProgressModal,
-  itemList: state.harvest.itemList,
-  rankingDefinition: state.harvest.rankingDefinition,
-  searchProfile: state.harvest.searchProfile
+  harvest: state.harvest
 });
 
 const mapDispatchToProps = dispatch => ({

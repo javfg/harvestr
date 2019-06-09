@@ -1,7 +1,9 @@
 //
 // Ranking Definition Reducer.
 //
-const rankingDefinitionDefaultState = [];
+const rankingDefinitionDefaultState = {
+  rules: []
+};
 
 export default (state = rankingDefinitionDefaultState, action) => {
   switch (action.type) {

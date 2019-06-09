@@ -9,8 +9,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPoll, faSave, faFileCsv, faFolderOpen } from '@fortawesome/free-solid-svg-icons';
 
 // Actions.
+import { setItemList } from '../../actions/itemList';
 import { setDetailsField } from '../../actions/Details';
+import { setRankingDefinition } from '../../actions/RankingDefinition';
 import { setResultsPageField } from '../../actions/ResultsPage';
+import { setSearchProfile } from '../../actions/searchProfile';
 import { setSearchResults } from '../../actions/searchResults';
 
 // Components.
@@ -37,9 +40,9 @@ class HarvestPage extends React.Component {
   }
 
   handleSaveHarvestResults = () => {
-    const { details, searchResults } = this.props;
-    const fileName = `${details.name}-results-${Moment().format('HH-mm-ss-DD-MM-YYYY')}`;
-    const contents = {details, searchResults};
+    const { harvest, searchResults } = this.props;
+    const fileName = `${harvest.details.name}-results-${Moment().format('HH-mm-ss-DD-MM-YYYY')}`;
+    const contents = {harvest, searchResults};
 
     download(fileName, contents, 'application/json');
   };
@@ -50,10 +53,23 @@ class HarvestPage extends React.Component {
   };
 
   handleLoadHarvestResults = async (event) => {
-    const { setDetailsField, setResultsPageField, setSearchResults } = this.props;
+    const {
+      setDetailsField,
+      setItemList,
+      setRankingDefinition,
+      setSearchProfile,
+      setSearchResults,
+      setResultsPageField
+    } = this.props;
     const loadedJSON = await readJSONFromFile(event.target.files[0]);
 
-    setDetailsField(loadedJSON.details);
+    console.log('loadedJSON', loadedJSON);
+
+
+    setDetailsField(loadedJSON.harvest.details);
+    setItemList(loadedJSON.harvest.itemList);
+    setRankingDefinition(loadedJSON.harvest.rankingDefinition);
+    setSearchProfile(loadedJSON.harvest.searchProfile);
     setSearchResults(loadedJSON.searchResults);
     setResultsPageField({
       currentPage: 0,
@@ -132,13 +148,16 @@ class HarvestPage extends React.Component {
 // Redux mapping functions.
 //
 const mapStateToProps = (state) => ({
-  details: state.harvest.details,
+  harvest: state.harvest,
   resultsPage: state.ui.resultsPage.main,
   searchResults: state.harvest.searchResults
 });
 
 const mapDispatchToProps = (dispatch) => ({
   setDetailsField: (newState) => dispatch(setDetailsField(newState)),
+  setItemList: (itemList) => dispatch(setItemList(itemList)),
+  setRankingDefinition: (rankingDefinition) => dispatch(setRankingDefinition(rankingDefinition)),
+  setSearchProfile: (searchProfile) => dispatch(setSearchProfile(searchProfile)),
   setResultsPageField: (newState) => dispatch(setResultsPageField(newState)),
   setSearchResults: (searchResults) => dispatch(setSearchResults(searchResults))
 });

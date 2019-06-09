@@ -32,7 +32,7 @@ $normal-color: #d1d1d1;
 
 $border-radius: 0;
 
-body, #app, #app {
+body, #app {
   height: 100vh;
   color: $dark;
 }
@@ -86,4 +86,14 @@ a, a:visited, a:hover, a:active {
 
 .border-radius {
   border-radius: $border-radius !important;
+}
+
+.footer-block {
+  height: 114px;
+}
+
+.footer-container {
+  position: absolute;
+  width: 97%;
+  bottom: 1rem;
 }

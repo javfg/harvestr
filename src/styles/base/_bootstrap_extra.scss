@@ -166,3 +166,8 @@
 .btn-sm {
   border-radius: $border-radius !important;
 }
+
+// Fix input group.
+.input-group-text {
+  border-right: none !important;
+}

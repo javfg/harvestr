@@ -92,7 +92,6 @@ class HarvestPage extends React.Component {
             })()}
           </div>
         </div>
-
         <Steps
           currentStep={currentStep}
           handlePrevClick={handlePrevClick}
