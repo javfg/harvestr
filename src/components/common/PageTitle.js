@@ -11,7 +11,7 @@ const PageTitle = ({ icon, title, extraTitle, description, size, descriptionSize
       <div className={`row ${!description ? mb : ''}`}>
         <div className="col">
           {(() => {
-            const SizeTag = size;
+            const SizeTag = size || 'h1';
 
             return (
               <SizeTag className="mb-0">
