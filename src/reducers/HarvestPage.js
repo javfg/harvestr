@@ -5,7 +5,6 @@ const HarvestPageDefaultState = {
   currentStep: 1,
   currentLoadItemListTab: 0,
   itemList: [],
-  debugHarvestPage: true,
   harvestDone: false,
   loadItemListOk: false,
   loadSearchProfileOk: false,

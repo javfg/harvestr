@@ -44,7 +44,8 @@
     "save-dev": "^2.0.0"
   },
   "scripts": {
-    "start": "DEBUG=true NODE_ENV=development parcel src/index.html --open",
+    "start": "NODE_ENV=development parcel src/index.html --open",
+    "start-debug": "DEBUG=true NODE_ENV=development parcel src/index.html --open",
     "build": "NODE_ENV=production parcel build src/index.html --out-dir prod --experimental-scope-hoisting",
     "precommit": "lint-staged",
     "predeploy": "yarn run build",

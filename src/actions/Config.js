@@ -2,16 +2,11 @@
 import { setItemList } from './itemList';
 import { setRankingDefinition } from './RankingDefinition';
 import { setSearchProfile } from './searchProfile';
-import { setSearchResults } from './searchResults';
-import { setHarvestPageField } from './HarvestPage';
-import { setResultsPageField } from './ResultsPage';
 
 // Debug data.
 import { debugItemList } from '../config/debugItemList';
 import { debugRankingDefinition } from '../config/debugRankingDefinition';
 import { debugSearchProfile } from '../config/debugSearchProfile';
-import { debugSearchResults } from '../config/debugSearchResults';
-import { debugResultsPage } from '../config/debugResultsPage';
 
 
 //
@@ -36,16 +31,14 @@ export const populateStore = () => {
 
     // Debug settings.
     if (config.debug) {
+      console.log('loading debug data');
+
       dispatch(setItemList(debugItemList));
       dispatch(setSearchProfile(debugSearchProfile));
       dispatch(setRankingDefinition(debugRankingDefinition));
-      dispatch(setSearchResults(debugSearchResults));
-      dispatch(setHarvestPageField({currentStep: 1}));
-      dispatch(setResultsPageField(debugResultsPage));
     }
   }
 }
-
 
 // Redux store update for config.
 export const setConfig = (config) => {

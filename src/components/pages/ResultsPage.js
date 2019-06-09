@@ -61,9 +61,6 @@ class HarvestPage extends React.Component {
     } = this.props;
     const loadedJSON = await readJSONFromFile(event.target.files[0]);
 
-    console.log('loadedJSON', loadedJSON);
-
-
     setDetailsField(loadedJSON.harvest.details);
     setItemList(loadedJSON.harvest.itemList);
     setRankingDefinition(loadedJSON.harvest.rankingDefinition);
@@ -95,7 +92,6 @@ class HarvestPage extends React.Component {
               <PageTitle
                 description="Results of the harvest."
                 icon={faPoll}
-                size="h1"
                 title="Results"
               />
             </div>

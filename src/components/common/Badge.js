@@ -7,7 +7,8 @@ import {
   faList,
   faMinus,
   faEllipsisH,
-  faGavel
+  faGavel,
+  faFile
 } from '@fortawesome/free-solid-svg-icons';
 
 // Components.
@@ -40,6 +41,9 @@ class Badge extends React.Component {
       case 'rule':
         this.icon = faGavel;
         break;
+      case 'parser':
+        this.icon = faFile;
+        break;
       case 'value': default:
         this.icon = faEllipsisH;
         break;
@@ -56,7 +60,7 @@ class Badge extends React.Component {
       icon,
       handleMouseOut,
       handleMouseOver,
-      props: { details = {}, type, name, noTooltip  }
+      props: { details = {}, type, name, noTooltip, margin = 'mx-2' }
     } = this;
 
     const typeLabel = type.charAt(0).toUpperCase() + type.slice(1);
@@ -64,7 +68,7 @@ class Badge extends React.Component {
     return (
       <>
         <span
-          className={`badge badge-dark badge-${type} mx-2`}
+          className={`badge badge-dark badge-${type} ${margin}`}
           key={`badge-${name}`}
           onMouseOver={handleMouseOver}
           onMouseOut={handleMouseOut}

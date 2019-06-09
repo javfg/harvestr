@@ -1,15 +1,16 @@
 import swal from 'sweetalert2';
 
 
-const toast = (type, title, position) => swal.mixin({
+const toast = (type, title, html, position, timer) => swal.mixin({
   type,
   title,
+  html,
   toast: true,
   position,
   showConfirmButton: false,
-  timer: 3000
+  timer: timer || 3000
 }).fire();
 
-export const successToast = (title) => toast('success', title, 'top-end');
-export const failureToast = (title) => toast('error', title, 'top-end');
-export const infoToast = (title) => toast('info', title, 'top-end');
+export const successToast = (title, html, timer) => toast('success', title, html, 'top-end', timer);
+export const failureToast = (title, html, timer) => toast('error', title, html, 'top-end', timer);
+export const infoToast = (title, html, timer) => toast('info', title, html, 'top-end', timer);

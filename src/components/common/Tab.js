@@ -39,7 +39,7 @@ class Tab extends React.Component {
             onClick={() => {handleClick(tabNumber)}}
             className="clear-link"
           >
-            <FontAwesomeIcon icon={icon} className="mr-1" />{caption}
+            {icon && <FontAwesomeIcon icon={icon} className="mr-1" />}{caption}
           </a>
         </span>
       </li>

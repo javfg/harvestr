@@ -41,7 +41,6 @@ class HarvestPage extends React.Component {
       props: {
         harvestPage: {
           currentStep,
-          debugHarvestPage,
           loadItemListOk,
           loadSearchProfileOk
         }
@@ -54,7 +53,6 @@ class HarvestPage extends React.Component {
           description="Create a harvest by loading a list of items, defining a search profile and,
                        optionally, a ranking definition."
           icon={faSeedling}
-          size="h1"
           title="Harvest editor"
         />
 
@@ -80,8 +78,8 @@ class HarvestPage extends React.Component {
           handlePrevClick={handlePrevClick}
           handleNextClick={handleNextClick}
         >
-          <Step name="Item list" isCorrect={loadItemListOk || debugHarvestPage} />
-          <Step name="Search profile" isCorrect={loadSearchProfileOk || debugHarvestPage} />
+          <Step name="Item list" isCorrect={loadItemListOk} />
+          <Step name="Search profile" isCorrect={loadSearchProfileOk} />
           <Step name="Ranking definition" isOptional={true}/>
           <Step name="Launch" />
         </Steps>
