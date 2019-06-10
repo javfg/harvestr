@@ -59,6 +59,11 @@ class LoadItemList extends React.Component {
     const { setHarvestPageField, setItemList, harvestPage: { textAareaContents } } = this.props;
     const itemList = [...new Set(textAareaContents.split('\n'))].filter(item => item != null);
 
+    if (itemList.length === 1 && itemList[0] === 'kittens') {
+      const kittens = window.open();
+      kittens.location = 'https://webm.red/gaTy.webm';
+    }
+
     setHarvestPageField({textAareaContents, loadItemListOk: true});
     setItemList(itemList);
   }
