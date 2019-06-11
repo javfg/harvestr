@@ -1,6 +1,7 @@
 // Parser strategies.
 import { csvParser } from '../parsers/csvParser';
 import { htmlParser } from '../parsers/htmlParser';
+import { htmlDocParser } from '../parsers/htmlDocParser';
 import { jsonParser } from '../parsers/jsonParser';
 import { tsvParser } from '../parsers/tsvParser';
 import { xmlParser } from '../parsers/xmlParser';
@@ -19,6 +20,8 @@ class Parser {
         return jsonParser;
       case 'htmlParser':
         return htmlParser;
+      case 'htmlDocParser':
+        return htmlDocParser;
       case 'csvParser':
         return csvParser;
       case 'tsvParser':
