@@ -39,16 +39,16 @@ class HarvestPage extends React.Component {
       handleNextClick,
       handlePrevClick,
       props: {
+        itemList,
         harvestPage: {
           currentStep,
-          loadItemListOk,
-          loadSearchProfileOk
-        }
+        },
+        searchProfile
       }
     } = this;
 
     return (
-      <div className="container-fluid my-4">
+      <div className="container my-4">
         <PageTitle
           description="Create a harvest by loading a list of items, defining a search profile and,
                        optionally, a ranking definition."
@@ -78,8 +78,8 @@ class HarvestPage extends React.Component {
           handlePrevClick={handlePrevClick}
           handleNextClick={handleNextClick}
         >
-          <Step name="Item list" isCorrect={loadItemListOk} />
-          <Step name="Search profile" isCorrect={loadSearchProfileOk} />
+          <Step name="Item list" isCorrect={itemList.length > 0} />
+          <Step name="Search profile" isCorrect={searchProfile.length > 0} />
           <Step name="Ranking definition" isOptional={true} />
           <Step name="Launch" />
         </Steps>
@@ -88,13 +88,14 @@ class HarvestPage extends React.Component {
   }
 }
 
-// TODO: REFACTOR CORRECTNESS TO CONTENTS OF ITEMLIST/SEARCHPROFILE/RANKINGDEF.
 
 //
 // Redux mapping functions.
 //
 const mapStateToProps = state => ({
-  harvestPage: state.ui.harvestPage
+  harvestPage: state.ui.harvestPage,
+  itemList: state.harvest.itemList,
+  searchProfile: state.harvest.searchProfile
 });
 
 const mapDispatchToProps = dispatch => ({

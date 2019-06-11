@@ -44,27 +44,26 @@ class LoadItemList extends React.Component {
   }
 
   handleTypeInTextArea = (e) => {
-    this.props.setHarvestPageField({textAareaContents: e.target.value});
+    this.props.setHarvestPageField({textAreaContents: e.target.value});
   }
 
   handleSetItemListFromCSV = () => {
-    const { setHarvestPageField, setItemList, harvestPage: { selectedColumn, itemListFileContents } } = this.props;
+    const { setItemList, harvestPage: { selectedColumn, itemListFileContents } } = this.props;
     const itemList = [...new Set(itemListFileContents.map(row => row[selectedColumn]))];
 
-    setHarvestPageField({selectedColumn, loadItemListOk: true});
     setItemList(itemList);
   }
 
   handleSetItemlistFromTextArea = () => {
-    const { setHarvestPageField, setItemList, harvestPage: { textAareaContents } } = this.props;
-    const itemList = [...new Set(textAareaContents.split('\n'))].filter(item => item != null);
+    const { setHarvestPageField, setItemList, harvestPage: { textAreaContents } } = this.props;
+    const itemList = [...new Set(textAreaContents.split('\n'))].filter(item => item != null);
 
     if (itemList.length === 1 && itemList[0] === 'kittens') {
       const kittens = window.open();
       kittens.location = 'https://webm.red/gaTy.webm';
     }
 
-    setHarvestPageField({textAareaContents, loadItemListOk: true});
+    setHarvestPageField({textAreaContents});
     setItemList(itemList);
   }
 
@@ -91,7 +90,7 @@ class LoadItemList extends React.Component {
           columns,
           selectedColumn,
           currentLoadItemListTab,
-          textAareaContents,
+          textAreaContents,
           itemListFile,
           itemListFileHasHeader
         },
@@ -160,7 +159,7 @@ class LoadItemList extends React.Component {
                         <div className="col">
                           <textarea
                             className="form-control resize-none"
-                            value={textAareaContents}
+                            value={textAreaContents}
                             onChange={handleTypeInTextArea}
                             rows={5}
                             placeholder="Paste a list of items here."
@@ -172,7 +171,7 @@ class LoadItemList extends React.Component {
                           <button
                             className="btn btn-primary btn-block mt-2"
                             onClick={handleSetItemlistFromTextArea}
-                            disabled={textAareaContents.length === 0}
+                            disabled={textAreaContents.length === 0}
                           >
                             <FontAwesomeIcon icon={faList} /> Load items
                           </button>

@@ -23,7 +23,6 @@ class LoadSearchProfile extends React.Component {
 
 
   handleSearchProfileFile = (result) => {
-    this.props.setHarvestPageField({loadSearchProfileOk: true});
     this.props.setSearchProfile(result);
   }
 

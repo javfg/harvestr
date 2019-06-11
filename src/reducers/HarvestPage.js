@@ -6,9 +6,6 @@ const HarvestPageDefaultState = {
   currentLoadItemListTab: 0,
   itemList: [],
   harvestDone: false,
-  loadItemListOk: false,
-  loadSearchProfileOk: false,
-  launchSearchOk: false,
   columns: [],
   searchProfileFile: undefined,
   selectedColumn: undefined,
@@ -16,7 +13,7 @@ const HarvestPageDefaultState = {
   itemListFile: undefined,
   itemListFileContents: undefined,
   itemListFileHasHeader: true,
-  textAareaContents: '',
+  textAreaContents: '',
 };
 
 export default (state = HarvestPageDefaultState, action) => {

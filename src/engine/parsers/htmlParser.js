@@ -6,6 +6,7 @@ export const htmlParser = function(doc, field) {
       .split(`<${entry.path.betweenTags}`)[1]
       .split(`>`)[1]
       .split(`</${entry.path.betweenTags}`)[0]];
+    // eslint-disable-next-line no-empty
     } catch {}
   });
 };

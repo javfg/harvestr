@@ -41,13 +41,12 @@ class HomePage extends React.Component {
 
 
   handleClickLoadDemoData = () => {
-    const { setDetailsField, setHarvestPageField, setItemList, setRankingDefinition, setSearchProfile } = this.props;
+    const { setDetailsField, setItemList, setRankingDefinition, setSearchProfile } = this.props;
 
     setDetailsField(demoDetails);
     setItemList(demoItemList);
     setRankingDefinition(demoRankingDefinition);
     setSearchProfile(demoSearchProfile);
-    setHarvestPageField({loadItemListOk: true, loadSearchProfileOk: true});
 
     this.props.history.push('/harvest');
     successToast('Demo data loaded, explore!');
@@ -66,7 +65,7 @@ class HomePage extends React.Component {
     const citationTitle='HARVESTR: Massive query service for life sciences';
 
     return (
-      <div className="container-fluid my-4">
+      <div className="container my-4">
         <PageTitle
           icon={faInfoCircle}
           title="What is this?"

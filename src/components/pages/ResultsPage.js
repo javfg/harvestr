@@ -59,6 +59,7 @@ class HarvestPage extends React.Component {
       setSearchResults,
       setResultsPageField
     } = this.props;
+
     const loadedJSON = await readJSONFromFile(event.target.files[0]);
 
     setDetailsField(loadedJSON.harvest.details);
@@ -153,7 +154,7 @@ const mapDispatchToProps = (dispatch) => ({
   setRankingDefinition: (rankingDefinition) => dispatch(setRankingDefinition(rankingDefinition)),
   setSearchProfile: (searchProfile) => dispatch(setSearchProfile(searchProfile)),
   setResultsPageField: (newState) => dispatch(setResultsPageField(newState)),
-  setSearchResults: (searchResults) => dispatch(setSearchResults(searchResults))
+  setSearchResults: (searchResults) => dispatch(setSearchResults(searchResults)),
 });
 
 
