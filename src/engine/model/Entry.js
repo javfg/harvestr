@@ -1,5 +1,3 @@
-
-
 class Entry {
   constructor(name, path, saveData, removeNewLines, linkTo) {
     this.name = name;

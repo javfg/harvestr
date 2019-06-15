@@ -16,7 +16,7 @@ export default class SearchEngine {
     this.savedData = {};
     this.stats = {items: 0, queries: 0, fields: 0, entries: 0, values: 0};
 
-    this.items = itemList.map(item => new Item(item, searchProfile, this.savedData));
+    this.items = itemList.map(item => new Item(item, searchProfile, rankingDefinition.rules, this.savedData));
   }
 
 

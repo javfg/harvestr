@@ -1,5 +1,5 @@
 export const config = {
-  debug: false,
+  debug: true,
 
   serverFetcherUrl: 'http://localhost:8081',
 

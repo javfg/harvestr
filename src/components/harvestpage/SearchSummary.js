@@ -23,6 +23,7 @@ import ProgressBarController from '../../engine/model/ProgressBarController';
 
 // Utils.
 import { download } from '../../utils/file';
+import RankingEngine from '../../engine/rankingEngine';
 
 
 class SearchSummary extends React.Component {
@@ -32,25 +33,40 @@ class SearchSummary extends React.Component {
 
 
   handleLaunchSearch = async () => {
+    const {
+      harvest: { itemList, searchProfile, rankingDefinition },
+      config, setDetailsField, setHarvestProgressModalField, setSearchResults, setResultsPageField
+    } = this.props;
+
     const progressBar = new ProgressBarController();
-    this.props.setHarvestProgressModalField({visible: true});
+
+    setHarvestProgressModalField({visible: true});
 
     const searchEngine = new SearchEngine(
-      this.props.harvest.itemList,
-      this.props.harvest.searchProfile,
-      this.props.harvest.rankingDefinition,
-      this.props.config
+      itemList,
+      searchProfile,
+      rankingDefinition,
+      config
     );
 
-    const searchResults = await searchEngine.run(progressBar);
+    const rankingEngine = new RankingEngine(
+      searchEngine.items,
+      rankingDefinition,
+      config
+    )
 
-    this.props.setDetailsField({stats: searchResults.stats});
-    this.props.setSearchResults(searchResults.items);
-    this.props.setResultsPageField({
+    const searchResults = await searchEngine.run(progressBar);
+    const rankedResults = await rankingEngine.run(progressBar);
+
+    setDetailsField({stats: searchResults.stats});
+    setSearchResults(searchResults.items);
+    setResultsPageField({
       currentPage: 0,
       totalPages: Math.ceil(searchResults.items.length / 10),
       pageSize: 10
     });
+
+    console.log('rankedResults', rankedResults);
   }
 
 
