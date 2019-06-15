@@ -19,6 +19,7 @@ import PageTitle from '../common/PageTitle';
 
 // Search engine.
 import SearchEngine from '../../engine/searchEngine';
+import ProgressBarController from '../../engine/model/ProgressBarController';
 
 // Utils.
 import { download } from '../../utils/file';
@@ -31,6 +32,7 @@ class SearchSummary extends React.Component {
 
 
   handleLaunchSearch = async () => {
+    const progressBar = new ProgressBarController();
     this.props.setHarvestProgressModalField({visible: true});
 
     const searchEngine = new SearchEngine(
@@ -40,7 +42,7 @@ class SearchSummary extends React.Component {
       this.props.config
     );
 
-    const searchResults = await searchEngine.run();
+    const searchResults = await searchEngine.run(progressBar);
 
     this.props.setDetailsField({stats: searchResults.stats});
     this.props.setSearchResults(searchResults.items);

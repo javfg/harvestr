@@ -2,15 +2,14 @@
 import Item from './model/Item';
 
 // Utils.
-import AsyncItemQueue from './model/AsyncQueue';
 import { config } from '../config/Config';
 
 
 //
-// Search engine class.
+// Ranking engine class.
 //
 //
-export default class SearchEngine {
+export default class RankingEngine {
   constructor(itemList, searchProfile, rankingDefinition, config) {
     this.config = config;
     this.savedData = {};
@@ -38,20 +37,22 @@ export default class SearchEngine {
 
 
   run = async (progressBar) => {
-    const asyncItemQueue = new AsyncItemQueue(this.items, config.itemConcurrency, progressBar);
+    progressBar.setCurrentMessage('Computing rankings and sorting...');
 
-    progressBar.show();
-    progressBar.done(false);
-    progressBar.setCurrentMessage('Starting...');
+    // Compute rankings for every item.
+    /* TODO:
+        1. for every item:
+          1.1. for every ranking rule:
+            1.1.1. get relevant entry values.
+            1.1.2. get relevant operator, value and importance from rule.
+            1.1.3. compute operation with entry values and rule values.
+            1.1.4. accumulate score and store explanation.
+     */
 
-    // Run the harvest.
-    await asyncItemQueue.run();
+    // Sort items.
+    // TODO: sort method.
 
-    // Calculate harvest stats.
-    progressBar.setCurrentMessage('Calculating stats...');
-
-    this.calculateStats();
-
+    progressBar.setCurrentProgress(progressBar.totalProgress);
     progressBar.done(true);
 
     return {items: this.items, stats: this.stats};

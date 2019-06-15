@@ -9,7 +9,8 @@ class AsyncItemQueue {
     const bundles = Math.ceil(this.items.length / this.concurrency);
     let currentBundle = 0;
 
-    this.progressBar.setTotalProgress(bundles);
+    // Total progress will be bundles + 1 step for ranking computing.
+    this.progressBar.setTotalProgress(bundles + 1);
 
     while (currentBundle < bundles) {
       console.log(`<--------- FETCHING ITEM BUNDLE ${currentBundle + 1} OF ${bundles} --------->`);

@@ -6,6 +6,7 @@ class Item {
     this.name = name;
     this.savedData = savedData;
     this.score = 0;
+    this.explanations = [];
 
     this.queries = queries.map(query => new Query(
       query.name,
