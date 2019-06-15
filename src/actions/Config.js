@@ -2,6 +2,7 @@
 import { setItemList } from './itemList';
 import { setRankingDefinition } from './RankingDefinition';
 import { setSearchProfile } from './searchProfile';
+import { setHarvestPageField } from './HarvestPage';
 
 // Debug data.
 import { debugItemList } from '../config/debugItemList';
@@ -15,6 +16,8 @@ import { debugSearchProfile } from '../config/debugSearchProfile';
 
 // Get config environment.
 export const getConfigFromEnv = () => (dispatch) => {
+  console.log('process.env.DEBUG', process.env.DEBUG);
+
   const config = {
     // eslint-disable-next-line no-undef
     debug: process.env.DEBUG === 'true'
@@ -36,6 +39,7 @@ export const populateStore = () => {
       dispatch(setItemList(debugItemList));
       dispatch(setSearchProfile(debugSearchProfile));
       dispatch(setRankingDefinition(debugRankingDefinition));
+      dispatch(setHarvestPageField({currentStep: 4}))
     }
   }
 }

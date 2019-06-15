@@ -114,7 +114,7 @@ export const debugSearchProfile = [
         "path": "uniprot/entry/feature[@type='glycosylation site']",
         "entries": [
           {
-            "name": "description",
+            "name": "Description",
             "path": "@description"
           },
           {

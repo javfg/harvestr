@@ -4,7 +4,7 @@ export const demoRankingDefinition = {
       "name": "Located in extracellular space",
       "query": "UniProt",
       "field": "Subcellular location",
-      "entry": "GO ID",
+      "entry": ["GO ID"],
       "type": "INCLUDES",
       "value": "GO:0005615",
       "importance": 1
@@ -13,7 +13,7 @@ export const demoRankingDefinition = {
       "name": "Not located in chylomicron",
       "query": "UniProt",
       "field": "Subcellular location",
-      "entry": "GO ID",
+      "entry": ["GO ID"],
       "type": "INCLUDES",
       "value": "GO:0042627",
       "importance": -1
@@ -22,7 +22,7 @@ export const demoRankingDefinition = {
       "name": "Has glycosylation sites",
       "query": "UniProt",
       "field": "Glycosylation sites",
-      "entry": "description",
+      "entry": ["Description"],
       "type": "ATLEAST",
       "value": 1,
       "importance": 2
@@ -31,6 +31,7 @@ export const demoRankingDefinition = {
       "name": "Interacts with Antithrombin",
       "query": "BioGRID",
       "field": "BioGRID Interaction data",
+      "entry": ["Interactor A", "Interactor B"],
       "type": "INCLUDES",
       "value": "SERPINC1",
       "importance": 3
@@ -38,7 +39,8 @@ export const demoRankingDefinition = {
     {
       "name": "Has most articles in PubMed",
       "query": "PubMed",
-      "field": "count",
+      "field": "Count",
+      "entry": "Count",
       "type": "MAX",
       "importance": 1
     },
@@ -46,6 +48,7 @@ export const demoRankingDefinition = {
       "name": "Melting temperature 55C < x < 65C",
       "query": "TM Predictor",
       "field": "TM Index",
+      "entry": "TM Index",
       "type": "BETWEEN",
       "value": [0, 1],
       "importance": 3

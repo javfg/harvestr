@@ -26,7 +26,7 @@ class Item {
       rule.field,
       rule.importance,
       rule.query,
-      rule.type,
+      rule.operator,
       rule.value
     ));
   }
