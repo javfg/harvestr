@@ -1,26 +1,21 @@
 export const maxOperator = function (rule, relevantValues, item, items) {
-  const sortedItems = items.sort((a, b) => {
-    const valuesA = a.queries
-      .find(query => query.name === rule.query)
-      .fields
-      .find(field => field.name === rule.field)
-      .entries
-      .find(entry => entry.name === rule.entry[0])
-      .value
+  const dummyArray = items.map(item => ({
+    name: item.name,
+    value: Math.max(
+      item
+        .queries
+        .find(query => query.name === rule.query)
+        .fields
+        .find(field => field.name === rule.field)
+        .entries
+        .find(entry => entry.name === rule.entry[0])
+        .value
+    )
+  }));
 
-    const valuesB = b.queries
-      .find(query => query.name === rule.query)
-      .fields
-      .find(field => field.name === rule.field)
-      .entries
-      .find(entry => entry.name === rule.entry[0])
-      .value
+  const sortedItems = dummyArray.sort((a, b) => b.value - a.value);
 
-    const maxA = Math.max(...valuesA);
-    const maxB = Math.max(...valuesB);
-
-    return maxB - maxA;
-  });
+  //TODO: get items from the original array.
 
   const slicedSortedItems = sortedItems.slice(0, rule.values[0]);
   const slicedSortedItemsItemIndex = slicedSortedItems.findIndex(slicedSortedItem => slicedSortedItem.name === name);
@@ -32,5 +27,5 @@ export const maxOperator = function (rule, relevantValues, item, items) {
 
   console.log('slicedSortedItems', slicedSortedItems, 'slicedSortedItemsItemIndex', slicedSortedItemsItemIndex, 'so', positionScore);
 
-  return positionScore;
+  return true; //positionScore;
 }

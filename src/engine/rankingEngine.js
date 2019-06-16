@@ -16,13 +16,13 @@ export default class RankingEngine {
     console.log('RANKINGENGINE -> this', this);
 
     // Compute rankings for every item.
-    this.items.forEach(item => {
-      console.log('-> RULE: starting item', item);
-      item.rules.forEach(rule => {
-        console.log('-> RULE: Starting rule', rule);
+    this.items.forEach((item, index) => {
+      console.log('-> ITEM: Starting item', index, item, this.items);
+      item.rules.forEach((rule, index) => {
+        console.log('-> RULE: Starting rule', index, rule);
         rule.run(item, this.items);
-      })
-    })
+      });
+    });
 
     // Sort items.
     // TODO: sort method.
