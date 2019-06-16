@@ -16,8 +16,6 @@ import { debugSearchProfile } from '../config/debugSearchProfile';
 
 // Get config environment.
 export const getConfigFromEnv = () => (dispatch) => {
-  console.log('process.env.DEBUG', process.env.DEBUG);
-
   const config = {
     // eslint-disable-next-line no-undef
     debug: process.env.DEBUG === 'true'

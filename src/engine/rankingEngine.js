@@ -17,8 +17,10 @@ export default class RankingEngine {
 
     // Compute rankings for every item.
     this.items.forEach(item => {
+      console.log('-> RULE: starting item', item);
       item.rules.forEach(rule => {
-        rule.compute(item);
+        console.log('-> RULE: Starting rule', rule);
+        rule.run(item, this.items);
       })
     })
 

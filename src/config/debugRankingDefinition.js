@@ -40,8 +40,9 @@ export const debugRankingDefinition = {
       "name": "Has most articles in PubMed",
       "query": "PubMed",
       "field": "Count",
-      "entry": "Count",
+      "entry": ["Count"],
       "operator": "MAX",
+      "value": [1],
       "importance": 1
     },
     {

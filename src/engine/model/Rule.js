@@ -14,7 +14,7 @@ class Rule {
   }
 
 
-  compute(item) {
+  run(item, items) {
     const relevantQuery = item.queries.find(query => query.name === this.query);
     if (!relevantQuery) {
       return;
@@ -32,10 +32,10 @@ class Rule {
 
     const relevantValues = relevantEntry.value;
 
-    console.log('computing', this.name, 'with operator', this.operator, 'on', item.name, 'value is', relevantValues, 'must contain', this.values);
+    console.log('computing', this.name, 'with operator', this.operator, 'on', item.name, 'value is', relevantValues, 'rule values', this.values);
 
     const operator = new Operator(this.operator);
-    operator.compute(this.values, relevantValues);
+    operator.compute(this, relevantValues, item, items);
 
     // TODO: OPERATORS THAT TAKE OTHER ITEMS AS PARAMS.
 

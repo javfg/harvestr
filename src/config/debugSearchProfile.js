@@ -224,7 +224,7 @@ export const debugSearchProfile = [
         ]
       },
       {
-        "name": "count",
+        "name": "Count",
         "path": "eSearchResult/Count",
         "entries" : [
           {

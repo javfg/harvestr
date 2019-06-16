@@ -2,6 +2,8 @@
 import { atLeastOperator } from '../operators/atLeastOperator.js';
 import { includesOperator } from '../operators/includesOperator.js';
 import { betweenOperator } from '../operators/betweenOperator.js';
+import { maxOperator } from '../operators/maxOperator.js';
+
 
 
 class Operator {
@@ -17,6 +19,8 @@ class Operator {
         return betweenOperator;
       case 'INCLUDES':
         return includesOperator;
+      case 'MAX':
+        return maxOperator;
 
         default:
           return undefined;
@@ -24,7 +28,7 @@ class Operator {
   };
 
 
-  compute = (ruleValues, value) => this.computeStrategy(ruleValues, value);
+  compute = (rule, relevantValues, item, items) => this.computeStrategy(rule, relevantValues, item, items);
 }
 
 export default Operator;
