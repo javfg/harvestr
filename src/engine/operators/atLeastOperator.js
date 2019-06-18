@@ -3,5 +3,11 @@ export const atLeastOperator = function (rule, relevantValues) {
 
   console.log('hasAtLeast', hasAtLeast, hasAtLeast ? 'SO, TRUE' : 'SO, FALSE');
 
-  return hasAtLeast;
+  return {
+    score: hasAtLeast ? rule.importance : 0,
+    result: hasAtLeast,
+    textPositive: 'contains at least',
+    textNegative: 'does not contain at least',
+    rank: undefined
+  };
 }

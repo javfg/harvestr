@@ -20,8 +20,14 @@ export default class RankingEngine {
       console.log('-> ITEM: Starting item', index, item, this.items);
       item.rules.forEach((rule, index) => {
         console.log('-> RULE: Starting rule', index, rule);
-        rule.run(item, this.items);
+        const ruleResult = rule.run(item, this.items);
+
+        item.score += ruleResult.score;
+        item.explanations.push(ruleResult);
       });
+
+      console.log('item.score', item.score);
+      console.log('item.explanations', item.explanations);
     });
 
     // Sort items.

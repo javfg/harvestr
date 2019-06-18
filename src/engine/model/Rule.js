@@ -35,7 +35,7 @@ class Rule {
     console.log('computing', this.name, 'with operator', this.operator, 'on', item.name, 'value is', relevantValues, 'rule values', this.values);
 
     const operator = new Operator(this.operator);
-    operator.compute(this, relevantValues, item, items);
+    return operator.compute(this, relevantValues, item, items);
 
     /*
     1.1.1. get relevant entry values.

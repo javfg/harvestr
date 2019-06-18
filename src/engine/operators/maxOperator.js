@@ -1,4 +1,5 @@
 export const maxOperator = function (rule, relevantValues, item, items) {
+  // Copy relevant fields (name and relevant entry) to a dummy array.
   const dummyArray = items.map(item => ({
     name: item.name,
     value: Math.max(
@@ -13,19 +14,28 @@ export const maxOperator = function (rule, relevantValues, item, items) {
     )
   }));
 
-  const sortedItems = dummyArray.sort((a, b) => b.value - a.value);
+  // Sort, get names and slice the array to the given length.
+  const slicedSortedItemNames = dummyArray
+    .sort((a, b) => b.value - a.value)
+    .map(dummyItem => dummyItem.name)
+    .slice(0, rule.values[0]);
 
-  //TODO: get items from the original array.
+  // Find current item's index in the array.
+  const itemIndex = slicedSortedItemNames.findIndex(slicedSortedItemName => slicedSortedItemName === item.name);
 
-  const slicedSortedItems = sortedItems.slice(0, rule.values[0]);
-  const slicedSortedItemsItemIndex = slicedSortedItems.findIndex(slicedSortedItem => slicedSortedItem.name === name);
-
+  // Calculate score: proportional to position in sliced array.
   let positionScore = 0;
-  if (slicedSortedItemsItemIndex !== -1) {
-    positionScore = (rule.value[0] - slicedSortedItemsItemIndex) / rule.value[0];
+  if (itemIndex !== -1) {
+    positionScore = (rule.values[0] - itemIndex) / rule.values[0];
   }
 
-  console.log('slicedSortedItems', slicedSortedItems, 'slicedSortedItemsItemIndex', slicedSortedItemsItemIndex, 'so', positionScore);
+  console.log('slicedSortedItemNames', slicedSortedItemNames, 'slicedSortedItemsItemIndex', itemIndex, 'so', positionScore);
 
-  return true; //positionScore;
+  return {
+    score: positionScore * rule.importance,
+    result: itemIndex !== -1,
+    textPositive: 'is the top',
+    textNegative: 'is not in the top',
+    rank: itemIndex === -1 ? itemIndex : itemIndex + 1
+  };
 }
