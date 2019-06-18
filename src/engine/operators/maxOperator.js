@@ -32,10 +32,13 @@ export const maxOperator = function (rule, relevantValues, item, items) {
   console.log('slicedSortedItemNames', slicedSortedItemNames, 'slicedSortedItemsItemIndex', itemIndex, 'so', positionScore);
 
   return {
-    score: positionScore * rule.importance,
+    item: item.name,
+    field: rule.field,
     result: itemIndex !== -1,
+    rule: rule.name,
+    score: positionScore * rule.importance,
     textPositive: 'is the top',
     textNegative: 'is not in the top',
-    rank: itemIndex === -1 ? itemIndex : itemIndex + 1
+    values: itemIndex === -1 ? [itemIndex] : [itemIndex + 1]
   };
 }

@@ -224,7 +224,7 @@ export const demoSearchProfile = [
         ]
       },
       {
-        "name": "count",
+        "name": "Count",
         "path": "eSearchResult/Count",
         "entries" : [
           {

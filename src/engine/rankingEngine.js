@@ -31,7 +31,7 @@ export default class RankingEngine {
     });
 
     // Sort items.
-    // TODO: sort method.
+    this.items.sort((itemA, itemB) => itemB.score - itemA.score);
 
     progressBar.setCurrentProgress(progressBar.totalProgress);
     progressBar.done(true);

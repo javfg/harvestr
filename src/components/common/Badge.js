@@ -3,12 +3,13 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCubes,
-  faSearch,
+  faEllipsisH,
+  faFile,
+  faGavel,
   faList,
   faMinus,
-  faEllipsisH,
-  faGavel,
-  faFile
+  faSearch,
+  faStar
 } from '@fortawesome/free-solid-svg-icons';
 
 // Components.
@@ -40,6 +41,9 @@ class Badge extends React.Component {
         break;
       case 'rule':
         this.icon = faGavel;
+        break;
+      case 'score':
+        this.icon = faStar;
         break;
       case 'parser':
         this.icon = faFile;

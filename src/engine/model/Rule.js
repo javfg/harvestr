@@ -25,12 +25,12 @@ class Rule {
       return;
     }
 
-    const relevantEntry = relevantField.entries.find(entry => this.entry.includes(entry.name));
-    if (!relevantEntry) {
+    const relevantEntries = relevantField.entries.filter(entry => this.entry.includes(entry.name));
+    if (!relevantEntries) {
       return;
     }
 
-    const relevantValues = relevantEntry.value;
+    const relevantValues = relevantEntries.map(relevantEntry => relevantEntry.value).flat();
 
     console.log('computing', this.name, 'with operator', this.operator, 'on', item.name, 'value is', relevantValues, 'rule values', this.values);
 

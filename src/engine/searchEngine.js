@@ -40,6 +40,7 @@ export default class SearchEngine {
   run = async (progressBar) => {
     const asyncItemQueue = new AsyncItemQueue(this.items, config.itemConcurrency, progressBar);
 
+    progressBar.setCurrentProgress(0);
     progressBar.show();
     progressBar.done(false);
     progressBar.setCurrentMessage('Starting...');

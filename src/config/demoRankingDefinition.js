@@ -5,8 +5,8 @@ export const demoRankingDefinition = {
       "query": "UniProt",
       "field": "Subcellular location",
       "entry": ["GO ID"],
-      "type": "INCLUDES",
-      "value": "GO:0005615",
+      "operator": "INCLUDES",
+      "value": ["GO:0005615"],
       "importance": 1
     },
     {
@@ -14,8 +14,8 @@ export const demoRankingDefinition = {
       "query": "UniProt",
       "field": "Subcellular location",
       "entry": ["GO ID"],
-      "type": "INCLUDES",
-      "value": "GO:0042627",
+      "operator": "INCLUDES",
+      "value": ["GO:0042627"],
       "importance": -1
     },
     {
@@ -23,25 +23,26 @@ export const demoRankingDefinition = {
       "query": "UniProt",
       "field": "Glycosylation sites",
       "entry": ["Description"],
-      "type": "ATLEAST",
-      "value": 1,
+      "operator": "ATLEAST",
+      "value": [1],
       "importance": 2
     },
     {
-      "name": "Interacts with Antithrombin",
+      "name": "Interacts with Antithrombin or Annexin",
       "query": "BioGRID",
       "field": "BioGRID Interaction data",
       "entry": ["Interactor A", "Interactor B"],
-      "type": "INCLUDES",
-      "value": "SERPINC1",
+      "operator": "INCLUDES",
+      "value": ["SERPINC1", "ANXA2"],
       "importance": 3
     },
     {
       "name": "Has most articles in PubMed",
       "query": "PubMed",
       "field": "Count",
-      "entry": "Count",
-      "type": "MAX",
+      "entry": ["Count"],
+      "operator": "MAX",
+      "value": [1],
       "importance": 1
     },
     {
@@ -49,7 +50,7 @@ export const demoRankingDefinition = {
       "query": "TM Predictor",
       "field": "TM Index",
       "entry": "TM Index",
-      "type": "BETWEEN",
+      "operator": "BETWEEN",
       "value": [0, 1],
       "importance": 3
     }

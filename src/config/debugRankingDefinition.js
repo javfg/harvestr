@@ -28,12 +28,12 @@ export const debugRankingDefinition = {
       "importance": 2
     },
     {
-      "name": "Interacts with Antithrombin",
+      "name": "Interacts with Antithrombin or Annexin",
       "query": "BioGRID",
       "field": "BioGRID Interaction data",
       "entry": ["Interactor A", "Interactor B"],
       "operator": "INCLUDES",
-      "value": ["SERPINC1"],
+      "value": ["SERPINC1", "ANXA2"],
       "importance": 3
     },
     {

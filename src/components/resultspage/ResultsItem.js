@@ -1,8 +1,12 @@
-import ResultsField from './ResultsField';
+import React from 'react';
 import { connect } from 'react-redux';
 
 // Components.
-import React from 'react';
+import Badge from '../common/Badge';
+import ResultsField from './ResultsField';
+
+// Utils.
+import { explain } from '../../utils/labels';
 
 
 class ResultsItem extends React.Component {
@@ -12,8 +16,12 @@ class ResultsItem extends React.Component {
 
   render() {
     const {
-      props: { name, queries, resultsPage: { contractedQueries } }
+      props: { name, queries, resultsPage: { contractedQueries }, score, explanations }
     } = this;
+
+    const explanationCaptions = explanations
+      .filter(explanation => explanation.result)
+      .map(explanation => explain(explanation));
 
     return (
       <tr>
@@ -22,6 +30,7 @@ class ResultsItem extends React.Component {
           scope="row"
         >
           {name}
+          <Badge type="score" name={score} details={explanationCaptions} />
         </th>
         {
           queries
