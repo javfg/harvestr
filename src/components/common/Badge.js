@@ -15,9 +15,6 @@ import {
 // Components.
 import Tooltip from './Tooltip';
 
-// Utils.
-import { translate } from '../../utils/labels';
-
 
 class Badge extends React.Component {
   constructor(props) {

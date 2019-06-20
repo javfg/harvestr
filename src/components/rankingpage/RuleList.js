@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 // Components.
 import RuleItem from './RuleItem';
@@ -20,7 +21,13 @@ class RuleList extends React.Component {
 
     return (
       <>
-        {rules.map(rule => <RuleItem key={`rule-${rule.name}`} rule={rule} />)}
+        <TransitionGroup transitionName="move" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
+          {rules.map(rule =>
+            <CSSTransition key={`rule-${rule.name}`} timeout={500} classNames="move">
+              <RuleItem rule={rule} />
+            </CSSTransition>
+          )}
+        </TransitionGroup>
         <NewRuleItem />
       </>
     );
