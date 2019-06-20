@@ -68,7 +68,7 @@ export const explain = (explanation) => (
     />
     {explanation.result ? explanation.textPositive : explanation.textNegative}
     {explanation.values.map(value => <Badge key={`explanation-${explanation.item}-${explanation.rule}-${value}`} type="value" name={value} noTooltip />)}
-    <FontAwesomeIcon icon={faEquals} />
-    <strong> {explanation.score} {Math.abs(explanation.score) === 1 ? 'point' : 'points'}</strong>
+    <FontAwesomeIcon icon={faEquals} className="mw-2" />
+    <strong>{explanation.score} {Math.abs(explanation.score) === 1 ? 'point' : 'points'}</strong>
   </span>
 );

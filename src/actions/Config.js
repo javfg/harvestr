@@ -32,7 +32,7 @@ export const populateStore = () => {
 
     // Debug settings.
     if (config.debug) {
-      console.log('loading debug data');
+      console.debug('loading debug data');
 
       dispatch(setItemList(debugItemList));
       dispatch(setSearchProfile(debugSearchProfile));

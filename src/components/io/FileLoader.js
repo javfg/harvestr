@@ -45,7 +45,7 @@ export class FileLoader extends React.Component {
         const result = await readJSONFromFile(uploadFile);
         onFileRead(result);
       } catch (e) {
-        console.log(e);
+        console.error(e);
       }
     }
   };

@@ -6,6 +6,6 @@ export const jsonParser = function(doc, field, multiple) {
 
     return multiple ? result : result[0];
   } catch (e) {
-    console.log("e", e);
+    console.error("e", e);
   }
 };
