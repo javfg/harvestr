@@ -1,7 +1,10 @@
 import React from 'react';
 
-//Components.
+// Components.
 import Badge from './Badge';
+
+// Utils.
+import { detailLabel } from '../../utils/labels';
 
 
 const RuleList = ({ rules }) => (
@@ -12,7 +15,7 @@ const RuleList = ({ rules }) => (
       <div className="col">
         {rules.map((rule, index) => {
           const {name, ...details} = rule;
-          return <Badge key={`${name}-${index}`} name={name} details={details} type="rule" />
+          return <Badge key={`${name}-${index}`} name={name} details={detailLabel(details)} type="rule" />
         })}
         <p className="text-muted mt-3 mb-0"><small>{rules.length} Rules total.</small></p>
       </div>

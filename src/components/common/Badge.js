@@ -90,21 +90,16 @@ class Badge extends React.Component {
               </span>
               <span><strong>{name}</strong></span>
             </div>
-            {Object.keys(details).length > 0 && (
+            {details.length > 0 && (
               <div className="tooltip-badge-body">
-                {Object.keys(details).map((detail, index) => {
-                  // Merge arrays.
-                  let detailLabel = details[detail];
-                  if (Array.isArray(detailLabel)) {
-                    detailLabel = detailLabel.join('; ');
-                  }
-
-                  return (
-                    <div className="tooltip-badge-details" key={`detail-${detail}-${index}`}>
-                      <strong>{translate(detail)}: </strong>{translate(detailLabel)}
-                    </div>
-                  );
-                })}
+                {details.map((detail, index) =>
+                  <div
+                    className="tooltip-badge-details"
+                    key={`detail-${detail}-${index}`}
+                  >
+                    {detail}
+                  </div>
+                )}
               </div>
             )}
           </Tooltip>

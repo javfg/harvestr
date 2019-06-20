@@ -28,6 +28,7 @@ import { setDetailsField } from '../../actions/Details';
 
 // Utils.
 import { successToast } from '../../utils/dialogs';
+import { detailLabel } from '../../utils/labels';
 
 
 class HomePage extends React.Component {
@@ -149,7 +150,7 @@ class HomePage extends React.Component {
                 <Badge
                   key={`format-${parser.name}`}
                   name={parser.name}
-                  details={parser.details}
+                  details={detailLabel(parser.details)}
                   type="parser"
                 />
               )}
