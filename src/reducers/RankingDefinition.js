@@ -10,6 +10,12 @@ export default (state = rankingDefinitionDefaultState, action) => {
     case 'SET_RANKINGDEFINITION':
       return action.rankingDefinition;
 
+    case 'ADD_RULE':
+      return {...state, rules: state.rules.push(action.rule)}
+
+    case 'DELETE_RULE':
+      return {...state, rules: state.rules.filter(rule => !rule.name === action.ruleName)}
+
     default:
       return state;
   }
