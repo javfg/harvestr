@@ -61,6 +61,7 @@ class LoadItemList extends React.Component {
     if (itemList.length === 1 && itemList[0] === 'kittens') {
       const kittens = window.open();
       kittens.location = 'https://webm.red/gaTy.webm';
+      return;
     }
 
     setHarvestPageField({textAreaContents});
