@@ -58,6 +58,9 @@ class SearchSummary extends React.Component {
     const searchResults = await searchEngine.run(progressBar);
     const rankedResults = await rankingEngine.run(progressBar);
 
+    console.log('rankedResults', JSON.stringify(rankedResults));
+
+
     setDetailsField({stats: searchResults.stats});
     setSearchResults(searchResults.items);
     setResultsPageField({

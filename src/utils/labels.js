@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowCircleRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowCircleRight, faEquals } from '@fortawesome/free-solid-svg-icons';
 
 // Components.
 import Badge from '../components/common/Badge';
@@ -47,7 +47,6 @@ export const detailLabel = (details) => Object.keys(details).map((detail, index)
 
 export const explain = (explanation) => (
   <span>
-    <strong>{explanation.score} {Math.abs(explanation.score) === 1 ? 'point' : 'points'}</strong>
     <Badge
       key={`explanation-rule-${explanation.item}-${explanation.rule}`}
       type="rule"
@@ -69,5 +68,7 @@ export const explain = (explanation) => (
     />
     {explanation.result ? explanation.textPositive : explanation.textNegative}
     {explanation.values.map(value => <Badge key={`explanation-${explanation.item}-${explanation.rule}-${value}`} type="value" name={value} noTooltip />)}
+    <FontAwesomeIcon icon={faEquals} />
+    <strong> {explanation.score} {Math.abs(explanation.score) === 1 ? 'point' : 'points'}</strong>
   </span>
 );
