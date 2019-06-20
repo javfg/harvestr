@@ -95,6 +95,10 @@
   width: 35% !important;
 }
 
+.mw-1 {
+  min-width: 1rem;
+}
+
 .mw-2 {
   min-width: 2rem;
 }
@@ -133,6 +137,12 @@
 // Bug in btn-sm.
 .btn-sm {
   border-radius: $border-radius !important;
+}
+
+// Smaller button.
+.btn-xs {
+  @extend .btn-sm;
+  padding: .1rem .25rem !important;
 }
 
 // Fix input group.

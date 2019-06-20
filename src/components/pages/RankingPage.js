@@ -4,6 +4,7 @@ import { faGavel } from '@fortawesome/free-solid-svg-icons';
 
 // Components.
 import PageTitle from '../common/PageTitle';
+import RuleList from '../rankingpage/RuleList';
 
 
 class RankingPage extends React.Component {
@@ -21,6 +22,14 @@ class RankingPage extends React.Component {
           icon={faGavel}
           title="Ranking Definition Editor"
         />
+
+        <div className="row">
+          <div className="col bg-light border mx-3 py-2">
+            <RuleList />
+          </div>
+        </div>
+
+
       </div>
     );
   }

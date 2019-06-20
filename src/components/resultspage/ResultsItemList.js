@@ -100,7 +100,7 @@ class ResultsItemList extends React.Component {
                         <FontAwesomeIcon icon={faSearch} className="mr-1" />
                         {query.name}
                         <button
-                          className="btn btn-xs btn-dark"
+                          className="btn btn-tooltip btn-dark"
                           onClick={() => handleContractClick(query.name)}
                         >
                           { contractedQueries.includes(query.name)

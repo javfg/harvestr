@@ -81,7 +81,7 @@ class ResultsField extends React.Component {
             {
               entries[0].value.length > config.shortTableResultsElementsToShow && (
                 <button
-                  className={`btn btn-xs ${lockedVisible ? 'btn-primary' : 'btn-dark'}`}
+                  className={`btn btn-tooltip ${lockedVisible ? 'btn-primary' : 'btn-dark'}`}
                   onMouseOver={handleMouseOverDetailsButton}
                   onMouseOut={handleMouseOutDetailsButton}
                   onClick={handleClickDetailsButton}
