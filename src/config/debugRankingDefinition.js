@@ -49,7 +49,7 @@ export const debugRankingDefinition = {
       "name": "Melting temperature 55C < x < 65C",
       "query": "TM Predictor",
       "field": "TM Index",
-      "entry": "TM Index",
+      "entry": ["TM Index"],
       "operator": "BETWEEN",
       "value": [0, 1],
       "importance": 3

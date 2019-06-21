@@ -139,6 +139,20 @@
   border-radius: $border-radius !important;
 }
 
+// Bug in input-group-sm.
+.input-group-sm {
+  .input-group-prepend > span {
+    border-radius: $border-radius !important;
+  }
+  .input-group-append > span {
+    border-radius: $border-radius !important;
+    border-right: 1px solid rgb(206, 212, 218) !important;
+  }
+  input, select {
+    border-radius: $border-radius !important;
+  }
+}
+
 // Smaller button.
 .btn-xs {
   @extend .btn-sm;
@@ -148,4 +162,9 @@
 // Fix input group.
 .input-group-text {
   border-right: none !important;
+}
+
+// 5 lines multiple select.
+.select-multiple {
+  height: 110px !important;
 }
