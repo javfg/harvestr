@@ -16,6 +16,9 @@ export default (state = rankingDefinitionDefaultState, action) => {
     case 'DELETE_RULE':
       return {...state, rules: state.rules.filter(rule => rule.name !== action.ruleName)}
 
+    case 'UPDATE_RULE':
+      return {...state, rules: state.rules.filter(rule => rule.name !== action.ruleName).push({name: action.ruleName, ...action.details})}
+
     default:
       return state;
   }

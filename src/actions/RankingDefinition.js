@@ -19,3 +19,10 @@ export const deleteRule = (ruleName) => ({
   type: 'DELETE_RULE',
   ruleName
 });
+
+// Update rule of given name with details.
+export const updateRule = (ruleName, details) => ({
+  type: 'UPDATE_RULE',
+  ruleName,
+  details
+});
