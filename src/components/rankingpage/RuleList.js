@@ -21,9 +21,9 @@ class RuleList extends React.Component {
 
     return (
       <>
-        <TransitionGroup transitionName="move" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
+        <TransitionGroup>
           {rules.map(rule =>
-            <CSSTransition key={`rule-${rule.name}`} timeout={500} classNames="move">
+            <CSSTransition key={`rule-${rule.name}`} timeout={700} classNames="move">
               <RuleItem rule={rule} />
             </CSSTransition>
           )}

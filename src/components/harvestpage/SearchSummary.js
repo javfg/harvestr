@@ -217,7 +217,7 @@ class SearchSummary extends React.Component {
 
         <CSSTransition
           in={visible}
-          timeout={2500}
+          timeout={250}
           classNames='modal'
           unmountOnExit
         >
