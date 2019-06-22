@@ -56,6 +56,11 @@ class RuleItem extends React.Component {
   };
 
 
+  componentWillUnmount() {
+    clearTimeout(this.deleteTimeout);
+  }
+
+
   render() {
     const {
       handleClickDelete,

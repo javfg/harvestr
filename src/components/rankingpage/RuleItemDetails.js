@@ -31,6 +31,28 @@ class RuleItemDetails extends React.Component {
   }
 
 
+  validateRuleName = (ruleName) => {
+    const { originalName } = this.state;
+    const { rankingDefinition } = this.props;
+
+    if (ruleName.length === 0) {
+      this.setState({nameError: 'Cannot be empty'});
+    } else if (ruleName.length > 64) {
+      this.setState({nameError: 'Too long'});
+    } else if (ruleName === 'new rule') {
+      this.setState({nameError: 'Rename the rule'})
+    } else if (ruleName !== originalName && rankingDefinition.rules.filter(rule => rule.name === ruleName).length > 0) {
+      this.setState({nameError: 'A rule with that name already exists'});
+    } else {
+      this.setState({nameError: undefined});
+    }
+  }
+
+  componentDidMount() {
+    this.validateRuleName(this.state.name);
+  }
+
+
   handleChangeImportance = (e) => {
     const importance = e.target.value;
     this.setState({importance});
@@ -38,19 +60,8 @@ class RuleItemDetails extends React.Component {
 
   handleChangeName = (e) => {
     const inputName = e.target.value;
-    const { originalName } = this.state;
-    const { rankingDefinition } = this.props;
 
-    // Name validation.
-    if (inputName.length === 0) {
-      this.setState({nameError: 'Cannot be empty'});
-    } else if (inputName.length > 64) {
-      this.setState({nameError: 'Too long'});
-    } else if (inputName !== originalName && rankingDefinition.rules.filter(rule => rule.name === inputName).length > 0) {
-      this.setState({nameError: 'A rule with that name already exists'});
-    } else {
-      this.setState({nameError: undefined});
-    }
+    this.validateRuleName(inputName);
 
     this.setState({name: inputName});
   }
@@ -110,7 +121,7 @@ class RuleItemDetails extends React.Component {
     const queries = searchProfile.filter(query => query.name).map(query => query.name);
     const selectedQuery = searchProfile.find(queryFind => queryFind.name === query);
     const fields = selectedQuery ? selectedQuery.fields.map(field => field.name) : [];
-    const selectedField = selectedQuery.fields.find(fieldFind => fieldFind.name === field);
+    const selectedField = selectedQuery ? selectedQuery.fields.find(fieldFind => fieldFind.name === field) : undefined;
     const entries = selectedField ? selectedField.entries.map(entry => entry.name) : [];
 
     const selectedOperator = operators.find(operatorFind => operatorFind.details.code === operator);
@@ -148,7 +159,7 @@ class RuleItemDetails extends React.Component {
                 <span className="input-group-text">Query</span>
               </div>
               <select className="form-control" value={query} onChange={handleSelectQuery}>
-                <option disabled={true}>Select a query...</option>
+                <option disabled={true} value="DEFAULT_QUERY_VALUE">Select a query...</option>
                 {queries.map(query => <option key={query} value={query}>{query}</option>)}
               </select>
             </div>
@@ -205,7 +216,7 @@ class RuleItemDetails extends React.Component {
                 <span className="input-group-text">Operator</span>
               </div>
               <select className="form-control" value={operator} onChange={handleSelectOperator}>
-                <option disabled={true} value="DEFAULT_OPERATOR">Select an operator...</option>
+                <option disabled={true} value="DEFAULT_OPERATOR_VALUE">Select an operator...</option>
                 {operators.map(operator => <option key={operator.name} value={operator.details.code}>{operator.name}</option>)}
               </select>
             </div>

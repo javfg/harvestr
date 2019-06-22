@@ -11,7 +11,7 @@ export default (state = rankingDefinitionDefaultState, action) => {
       return action.rankingDefinition;
 
     case 'ADD_RULE':
-      return {...state, rules: state.rules.push(action.rule)}
+      return {...state, rules: state.rules.concat(action.rule)}
 
     case 'DELETE_RULE':
       return {...state, rules: state.rules.filter(rule => rule.name !== action.ruleName)}
