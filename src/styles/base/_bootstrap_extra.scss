@@ -150,7 +150,12 @@
   }
   input, select {
     border-radius: $border-radius !important;
+    border-right: 1px solid rgb(206, 212, 218) !important;
   }
+}
+
+.range-prepend {
+  border-right: 1px solid rgb(206, 212, 218) !important;
 }
 
 // Smaller button.
