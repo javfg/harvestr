@@ -71,7 +71,7 @@ class RuleItem extends React.Component {
           ref={this.tooltipRef}
           margin={1}
         >
-          <p className="mb-0 p-1 bg-danger text-small font-weight-bold">First, edit the rule you just added!</p>
+          <p className="mb-0 p-1 bg-danger text-light text-small font-weight-bold">First, edit the rule you just added!</p>
         </Tooltip>
       </>
     );
