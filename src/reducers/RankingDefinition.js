@@ -16,8 +16,12 @@ export default (state = rankingDefinitionDefaultState, action) => {
     case 'DELETE_RULE':
       return {...state, rules: state.rules.filter(rule => rule.name !== action.ruleName)}
 
-    case 'UPDATE_RULE':
-      return {...state, rules: state.rules.filter(rule => rule.name !== action.ruleName).push({name: action.ruleName, ...action.details})}
+    case 'UPDATE_RULE': {
+      let ruleIndex = state.rules.findIndex(rule => rule.name === action.ruleName);
+      state.rules[ruleIndex] = action.details;
+
+      return {...state}
+    }
 
     default:
       return state;

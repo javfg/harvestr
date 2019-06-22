@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faTimes, faSave } from '@fortawesome/free-solid-svg-icons';
 
 // Actions.
 import { updateRule } from '../../actions/RankingDefinition';
@@ -15,6 +15,7 @@ import { operators } from "../../engine/operators/operators";
 
 // Utils.
 import { translateImportance } from '../../utils/labels';
+import { successToast } from "../../utils/dialogs";
 
 
 class RuleItemDetails extends React.Component {
@@ -54,6 +55,23 @@ class RuleItemDetails extends React.Component {
     this.setState({name: inputName});
   }
 
+  handleChangeValue = (e) => {
+    const value = e.target.value.split(',').map(val => val.trim());
+    this.setState({value});
+  }
+
+  handleClickSaveChanges = () => {
+    const {
+      props: { updateRule },
+      state: { nameError, originalName, ...newRule }
+    } = this;
+
+    if (!nameError) {
+      updateRule(originalName, newRule);
+      successToast('Rule updated');
+    }
+  }
+
   handleSelectQuery = (e) => {
     const query = e.target.value;
     this.setState({query, field: 'DEFAULT_FIELD_VALUE', entry: 'DEFAULT_ENTRY_VALUE'});
@@ -74,21 +92,17 @@ class RuleItemDetails extends React.Component {
     this.setState({operator});
   }
 
-  handleChangeValue = (e) => {
-    const value = e.target.value.split(',').map(val => val.trim());
-    this.setState({value});
-  }
-
 
   render() {
     const {
       handleChangeImportance,
       handleChangeName,
+      handleChangeValue,
+      handleClickSaveChanges,
       handleSelectEntry,
       handleSelectField,
       handleSelectOperator,
       handleSelectQuery,
-      handleChangeValue,
       props: { searchProfile },
       state: { entry, field, importance, name, nameError, operator, query, value }
     } = this;
@@ -106,8 +120,8 @@ class RuleItemDetails extends React.Component {
     }
 
     return (
-      <div>
-        <div className="row mt-2 px-5">
+      <div className="pt-3">
+        <div className="row px-5">
           <div className="col">
 
             {/* NAME */}
@@ -218,7 +232,7 @@ class RuleItemDetails extends React.Component {
         </div>
 
         {/* IMPORTANCE */}
-        <div className="row mt-2 px-5">
+        <div className="row my-2 px-5">
           <div className="col col-6">
             <div className="input-group input-group-sm">
               <div className="input-group-prepend range-prepend">
@@ -232,6 +246,17 @@ class RuleItemDetails extends React.Component {
           </div>
         </div>
 
+        {/* SAVE BUTTON */}
+        <div className="row justify-content-end">
+          <div className="col col-4 text-right">
+            <button
+              className="btn btn-primary"
+              onClick={handleClickSaveChanges}
+            >
+              <FontAwesomeIcon icon={faSave} className="mr-1" />Save changes
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
