@@ -37,8 +37,10 @@ const labels = {
   xmlParser: 'XML'
 };
 
-export const translate = (entry) => labels[entry] ? labels[entry] : entry;
+const importanceLabels = ['Very bad', 'Bad', 'Slightly bad', 'Neutral', 'Slightly good', 'Good', 'Very good'];
 
+export const translate = (entry) => labels[entry] ? labels[entry] : entry;
+export const translateImportance = (importance) => importanceLabels[parseInt(importance) + 3];
 
 export const detailLabel = (details) => Object.keys(details).map((detail, index) => (
   <span key={`detail-${detail}-${index}`}><strong>{translate(detail)}:</strong> {details[detail]}</span>
