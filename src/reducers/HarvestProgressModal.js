@@ -2,11 +2,12 @@
 // Progress Bar Reducer.
 //
 const harvestProgressModalDefaultState = {
-  visible: false,
-  harvestDone: false,
   currentMessage: '',
   currentItems: [],
   currentProgress: 0,
+  elapsedTime: 0,
+  harvestDone: false,
+  visible: false
 };
 
 export default (state = harvestProgressModalDefaultState, action) => {

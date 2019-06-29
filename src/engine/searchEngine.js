@@ -41,6 +41,7 @@ export default class SearchEngine {
     const asyncItemQueue = new AsyncItemQueue(this.items, config.itemConcurrency, progressBar);
 
     progressBar.setCurrentProgress(0);
+    progressBar.startCounter();
     progressBar.show();
     progressBar.done(false);
     progressBar.setCurrentMessage('Starting...');
@@ -52,8 +53,6 @@ export default class SearchEngine {
     progressBar.setCurrentMessage('Calculating stats...');
 
     this.calculateStats();
-
-    progressBar.done(true);
 
     return {items: this.items, stats: this.stats};
   }

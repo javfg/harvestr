@@ -39,7 +39,7 @@ class HarvestProgressModal extends React.Component {
     const {
       handleClickGoToResults,
       props: {
-        harvestProgressModal: { currentItems, currentMessage, currentProgress, harvestDone },
+        harvestProgressModal: { currentItems, currentMessage, currentProgress, elapsedTime, harvestDone },
         details: { stats }
       }
     } = this;
@@ -63,6 +63,7 @@ class HarvestProgressModal extends React.Component {
           ) : (
             <>
               <h1><FontAwesomeIcon icon={faCheck} className="text-success mr-2" />Done</h1>
+              <h4>This harvest took {elapsedTime} seconds.</h4>
               <StatsBox stats={stats} />
             </>
           )}
