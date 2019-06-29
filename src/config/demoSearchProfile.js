@@ -206,6 +206,25 @@ export const demoSearchProfile = [
     ]
   },
   {
+    "name": "DisgeNET",
+    "urlTemplate": "http://disgenet.org/api/gda/gene/{{GENENAME}}?source=CURATED&format=xml",
+    "fetcher": "serverFetcher",
+    "parser": "xmlParser",
+    "requires": "GENENAME",
+    "fields": [
+      {
+        "name": "Gene-disease associations",
+        "path": ".//disease_name",
+        "entries": [
+          {
+            "name": "Disease name",
+            "path": "."
+          }
+        ]
+      }
+    ]
+  },
+  {
     "name": "PubMed",
     "urlTemplate": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&term={{GENENAME}}%20AND20%antithrombin&api_key=b64927930264c4b75419b258a995db456707",
     "fetcher": "standardFetcher",
