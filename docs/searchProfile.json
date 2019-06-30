@@ -1,207 +1,278 @@
 [
   {
     "name": "UniProt",
-    "url": "https://www.uniprot.org/uniprot/{{ITEM}}.xml",
+    "urlTemplate": "https://www.uniprot.org/uniprot/{{ITEM}}.xml",
     "fetcher": "standardFetcher",
     "parser": "xmlParser",
-    "saveData": ["SEQUENCE", "DISGENET", "GENENAME"],
+    "saveData": [
+      "GENENAME",
+      "SEQUENCE"
+    ],
     "fields": [
       {
-        "name": "Accession",
-        "field": "uniprot.entry.accession",
-        "type": "text",
-        "multiple": true
+        "name": "accession",
+        "path": "uniprot/entry/accession",
+        "entries": [
+          {
+            "linkTo": "https://uniprot.org/uniprot/{{value}}",
+            "name": "Accession",
+            "path": "."
+          }
+        ]
       },
       {
         "name": "Gene name",
-        "type": "text",
-        "field": "uniprot.entry.gene.name",
-        "saveData": ["GENENAME", -1]
+        "path": "uniprot/entry/gene",
+        "saveData": "GENENAME",
+        "entries": [
+          {
+            "name": "Gene name",
+            "path": "name[@type='primary']",
+            "saveData": "GENENAME"
+          }
+        ]
       },
       {
         "name": "Full name",
-        "type": "text",
-        "field": "uniprot.entry.protein.submittedName.fullName",
-        "or": "uniprot.entry.protein.recommendedName.fullName"
+        "path": "uniprot/entry/protein/submittedName/fullName",
+        "or": "uniprot/entry/protein/recommendedName/fullName",
+        "entries": [
+          {
+            "name": "Full name",
+            "path": "."
+          }
+        ]
       },
       {
         "name": "Sequence",
-        "type": "text",
-        "field": "uniprot.entry.sequence",
-        "removeNewLines": true,
-        "saveData": ["SEQUENCE", -1]
+        "path": "uniprot/entry/sequence",
+        "saveData": "SEQUENCE",
+        "entries": [
+          {
+            "name": "Sequence",
+            "path": ".",
+            "removeNewLines": true,
+            "saveData": "SEQUENCE"
+          }
+        ]
       },
       {
         "name": "Molecular function",
-        "type": "object",
-        "field": "uniprot.entry.dbReference",
-        "mustInclude": "\"value\":\"F:",
-        "getFields": [
+        "path": "uniprot/entry/dbReference/property[starts-with(@value, 'F:')]/..",
+        "entries": [
           {
-            "field": "_attributes.id",
-            "linkTo": "https://www.ebi.ac.uk/QuickGO/term/"
+            "name": "GO ID",
+            "path": "@id",
+            "linkTo": "https://www.ebi.ac.uk/QuickGO/term/{{value}}"
           },
           {
-            "field": "property[0]._attributes.value",
-            "deleteLeadingChars": 2
+            "name": "Description",
+            "path": "property[@type='term']/@value"
           }
         ]
       },
       {
         "name": "Subcellular location",
-        "type": "object",
-        "field": "uniprot.entry.dbReference",
-        "mustInclude": "\"value\":\"C:",
-        "getFields": [
+        "path": "uniprot/entry/dbReference/property[starts-with(@value, 'C:')]/..",
+        "entries": [
           {
-            "field": "_attributes.id",
-            "linkTo": "https://www.ebi.ac.uk/QuickGO/term/"
+          "name": "GO ID",
+          "path": "@id",
+          "linkTo": "https://www.ebi.ac.uk/QuickGO/term/{{value}}"
           },
           {
-            "field": "property[0]._attributes.value",
-            "deleteLeadingChars": 2
+            "name": "Description",
+            "path": "property[starts-with(@value, 'C:')]/@value"
           }
         ]
       },
       {
         "name": "Disgenet ID",
-        "type": "object",
-        "field": "uniprot.entry.dbReference",
-        "mustInclude": "\"type\":\"DisGeNET\"",
-        "saveData": ["DISGENET", 1],
-        "getFields": [
+        "path": "uniprot/entry/dbReference[@type='DisGeNET']/@id",
+        "entries": [
           {
-            "field": "_attributes.id"
-          }
-        ],
-        "linkTo": "http://disgenet.org/search?q="
-      },
-      {
-        "name": "Glycosylation sites",
-        "type": "object",
-        "field": "uniprot.entry.feature",
-        "mustInclude": "\"type\":\"glycosylation site\"",
-        "getFields": [
-          {
-            "field": "_attributes.description"
-          },
-          {
-            "field": "location.position._attributes.position"
-          }
-        ]
-      },
-      {
-        "name": "Disulfide bonds",
-        "type": "object",
-        "field": "uniprot.entry.feature",
-        "mustInclude": "\"type\":\"disulfide bond\"",
-        "getFields": [
-          {
-            "field": "location.begin._attributes.position",
-            "and": "location.end._attributes.position",
-            "or": "location.position._attributes.position"
-          }
-        ]
-      },
-      {
-        "name": "Tissue specificity",
-        "type": "object",
-        "field": "uniprot.entry.comment",
-        "mustInclude": "\"type\":\"tissue specificity\"",
-        "getFields": [
-          {
-            "field": "text._text"
+            "name": "Disgenet ID",
+            "path": ".",
+            "linkTo": "http://disgenet.org/search?q={{value}}",
+            "saveData": "DISGENET"
           }
         ]
       },
       {
         "name": "BioGrid ID",
-        "type": "object",
-        "field": "uniprot.entry.dbReference",
-        "mustInclude": "\"type\":\"BioGrid\"",
-        "getFields": [
+        "path": "uniprot/entry/dbReference[@type='BioGrid']/@id",
+        "entries": [
           {
-            "field": "_attributes.id"
+            "name": "BioGrid ID",
+            "path": ".",
+            "linkTo": "https://thebiogrid.org/{{value}}"
           }
-        ],
-        "linkTo": "https://thebiogrid.org/"
+        ]
+      },
+      {
+        "name": "Glycosylation sites",
+        "path": "uniprot/entry/feature[@type='glycosylation site']",
+        "entries": [
+          {
+            "name": "Description",
+            "path": "@description"
+          },
+          {
+            "name": "position",
+            "path": "location/position/@position"
+          }
+        ]
+      },
+      {
+        "name": "Disulfide bonds",
+        "path": "uniprot/entry/feature[@type='disulfide bond']/location",
+        "entries": [
+          {
+            "name": "Begin",
+            "path": "begin/@position"
+          },
+          {
+            "name": "End",
+            "path": "end/@position"
+          },
+          {
+            "name": "Position",
+            "path": "position/@position"
+          }
+        ]
+      },
+      {
+        "name": "Tissue specificity",
+        "path": "uniprot/entry/comment[@type='tissue specificity']/text",
+        "entries": [
+          {
+            "name": "Tissue specificity",
+            "path": "."
+          }
+        ]
       },
       {
         "name": "Reactome pathways",
-        "type": "object",
-        "field": "uniprot.entry.dbReference",
-        "mustInclude": "\"type\":\"Reactome\"",
-        "getFields": [
+        "path": "uniprot/entry/dbReference[@type='Reactome']",
+        "entries": [
           {
-            "field": "_attributes.id"
+            "name": "ID",
+            "path": "@id"
           },
           {
-            "field": "property._attributes.value"
+            "name": "Value",
+            "path": "property[@type='pathway name']/@value"
           }
         ]
       }
     ]
   },
-
+  {
+    "name": "BioGRID",
+    "urlTemplate": "https://webservice.thebiogrid.org/interactions/?geneList={{GENENAME}}&taxId=9606&interSpeciesExcluded=true&accessKey=8b95f31461c48d27eb8cce6e8f1caa15",
+    "fetcher": "standardFetcher",
+    "parser": "tsvParser",
+    "requires": "GENENAME",
+    "fields": [
+      {
+        "name": "BioGRID Interaction data",
+        "entries": [
+          {
+            "name": "Interaction ID",
+            "linkTo": "https://thebiogrid.org/interaction/{{value}}",
+            "path": 0
+          },
+          {
+            "name": "Interactor A",
+            "linkTo": "https://thebiogrid.org/search.php?search={{value}}&organism=9606",
+            "path": 7
+          },
+          {
+            "name": "Interactor B",
+            "linkTo": "https://thebiogrid.org/search.php?search={{value}}&organism=9606",
+            "path": 8
+          },
+          {
+            "name": "PubMed ID",
+            "linkTo": "https://www.ncbi.nlm.nih.gov/pubmed/{{value}}",
+            "path": 14
+          },
+          {
+            "name": "Score",
+            "path": 18
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "DisgeNET",
+    "urlTemplate": "http://disgenet.org/api/gda/gene/{{GENENAME}}?source=CURATED&format=xml",
+    "fetcher": "serverFetcher",
+    "parser": "xmlParser",
+    "requires": "GENENAME",
+    "fields": [
+      {
+        "name": "Gene-disease associations",
+        "path": ".//disease_name",
+        "entries": [
+          {
+            "name": "Disease name",
+            "path": "."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "PubMed",
+    "urlTemplate": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&term={{GENENAME}}%20AND20%antithrombin&api_key=b64927930264c4b75419b258a995db456707",
+    "fetcher": "standardFetcher",
+    "parser": "xmlParser",
+    "requires": "GENENAME",
+    "fields": [
+      {
+        "name": "gene AND antithombin",
+        "path": "eSearchResult/IdList/Id",
+        "entries": [
+          {
+            "name": "First 20 entries",
+            "path": ".",
+            "linkTo": "https://www.ncbi.nlm.nih.gov/pmc/articles/{{value}}"
+          }
+        ]
+      },
+      {
+        "name": "Count",
+        "path": "eSearchResult/Count",
+        "entries" : [
+          {
+            "name": "Count",
+            "path": "."
+          }
+        ]
+      }
+    ]
+  },
   {
     "name": "TM Predictor",
-    "url": "http://tm.life.nthu.edu.tw/result.php?seq={{SEQUENCE}}&submit=Submit",
+    "urlTemplate": "http://tm.life.nthu.edu.tw/result.php?seq={{SEQUENCE}}&submit=Submit",
     "fetcher": "serverFetcher",
     "parser": "htmlParser",
     "requires": "SEQUENCE",
     "fields": [
       {
         "name": "TM Index",
-        "type": "text",
-        "searchString": "Tm Index (TI)",
-        "betweenTags": "font"
-      }
-    ]
-  },
+        "entries": [
+          {
+            "name": "TM Index",
+            "path": {
+              "searchString": "Tm Index (TI)",
+              "betweenTags": "font"
+            }
+          }
+        ]
 
-  {
-    "name": "PMC",
-    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&term={{GENENAME}}%20AND%antithrombin",
-    "fetcher": "serverFetcher",
-    "parser": "xmlParser",
-    "requires": "GENENAME",
-    "fields": [
-      {
-        "name": "IDs",
-        "field": "eSearchResult.IdList.Id",
-        "type": "text",
-        "multiple": true,
-        "linkTo": "https://www.ncbi.nlm.nih.gov/pmc/articles/"
-      }
-    ]
-  },
-
-  {
-    "name": "Biogrid",
-    "url": "https://webservice.thebiogrid.org/interactions/?geneList={{GENENAME}}&accessKey=8b95f31461c48d27eb8cce6e8f1caa15",
-    "fetcher": "standardFetcher",
-    "parser": "tsvParser",
-    "requires": "GENENAME",
-    "fields": [
-      {
-        "name": "BioGRID Interaction ID",
-        "field": 0
-      },
-      {
-        "name": "Interactor A",
-        "field": 5
-      },
-      {
-        "name": "Interactor B",
-        "field": 6
-      },
-      {
-        "name": "Pubmed ID",
-        "field": 14
-      },
-      {
-        "name": "Score",
-        "field": 18
       }
     ]
   }
