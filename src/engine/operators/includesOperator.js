@@ -1,8 +1,12 @@
+// Config.
+import { config } from '../../config/Config';
+
+
 export const includesOperator = function (rule, relevantValues, item) {
   const matchingValues = rule.values.find(ruleValue => relevantValues.includes(ruleValue));
   const hasMatchingValues = typeof matchingValues !== 'undefined';
 
-  console.log('matchingValues', matchingValues, matchingValues ? 'SO, TRUE' : 'SO, FALSE');
+  config.debugRankingEngine && console.log('matchingValues', matchingValues, matchingValues ? 'SO, TRUE' : 'SO, FALSE');
 
   return {
     item: item.name,

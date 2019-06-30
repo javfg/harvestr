@@ -8,5 +8,8 @@ export const config = {
   retryMinDelay: 1000,
   retryMaxDelay: 2500,
 
+  debugSearchEngine: false,
+  debugRankingEngine: false,
+
   shortTableResultsElementsToShow: 2
 };

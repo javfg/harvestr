@@ -1,3 +1,7 @@
+// Config.
+import { config } from '../../config/Config';
+
+
 class AsyncItemQueue {
   constructor(items, concurrency, progressBar) {
     this.items = items;
@@ -13,7 +17,7 @@ class AsyncItemQueue {
     this.progressBar.setTotalProgress(bundles + 1);
 
     while (currentBundle < bundles) {
-      console.log(`<--------- FETCHING ITEM BUNDLE ${currentBundle + 1} OF ${bundles} --------->`);
+      config.debugSearchEngine && console.log(`<--------- FETCHING ITEM BUNDLE ${currentBundle + 1} OF ${bundles} --------->`);
 
       const lowerRange = currentBundle * this.concurrency;
       const upperRange = (currentBundle + 1) * this.concurrency;
@@ -24,7 +28,7 @@ class AsyncItemQueue {
 
       await Promise.all(this.items.slice(lowerRange, upperRange).map(item => item.run()));
 
-      console.log('<--------- BATCH DONE, delaying before next batch --------->');
+      config.debugSearchEngine && console.log('<--------- BATCH DONE, delaying before next batch --------->');
       await new Promise (resolve => setTimeout(resolve, 100));
 
       currentBundle++;

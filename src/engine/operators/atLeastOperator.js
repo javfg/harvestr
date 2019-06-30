@@ -1,7 +1,11 @@
+// Config.
+import { config } from '../../config/Config';
+
+
 export const atLeastOperator = function (rule, relevantValues, item) {
   const hasAtLeast = relevantValues.length >= rule.values[0];
 
-  console.log('hasAtLeast', hasAtLeast, hasAtLeast ? 'SO, TRUE' : 'SO, FALSE');
+  config.debugSearchEngine && console.log('hasAtLeast', hasAtLeast, hasAtLeast ? 'SO, TRUE' : 'SO, FALSE');
 
   return {
     item: item.name,

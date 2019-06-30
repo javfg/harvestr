@@ -1,3 +1,6 @@
+// Config.
+import { config } from '../../config/Config';
+
 // Ranking engine model.
 import Operator from "./Operator";
 
@@ -32,7 +35,7 @@ class Rule {
 
     const relevantValues = relevantEntries.map(relevantEntry => relevantEntry.value).flat();
 
-    console.log('computing', this.name, 'with operator', this.operator, 'on', item.name, 'value is', relevantValues, 'rule values', this.values);
+    config.debugRankingEngine && console.log('computing', this.name, 'with operator', this.operator, 'on', item.name, 'value is', relevantValues, 'rule values', this.values);
 
     const operator = new Operator(this.operator);
     return operator.compute(this, relevantValues, item, items);

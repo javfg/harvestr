@@ -1,3 +1,7 @@
+// Config.
+import { config } from '../../config/Config';
+
+
 export const maxOperator = function (rule, relevantValues, item, items) {
   // Copy relevant fields (name and relevant entry) to a dummy array.
   const dummyArray = items.map(item => ({
@@ -29,7 +33,7 @@ export const maxOperator = function (rule, relevantValues, item, items) {
     positionScore = (rule.values[0] - itemIndex) / rule.values[0];
   }
 
-  console.log('slicedSortedItemNames', slicedSortedItemNames, 'slicedSortedItemsItemIndex', itemIndex, 'so', positionScore);
+  config.debugRankingEngine && console.log('slicedSortedItemNames', slicedSortedItemNames, 'slicedSortedItemsItemIndex', itemIndex, 'so', positionScore);
 
   return {
     item: item.name,

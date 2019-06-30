@@ -1,3 +1,7 @@
+// Config.
+import { config } from '../config/Config';
+
+
 //
 // Ranking engine class.
 //
@@ -13,21 +17,21 @@ export default class RankingEngine {
   run = async (progressBar) => {
     progressBar.setCurrentMessage('Computing rankings and sorting...');
 
-    console.log('RANKINGENGINE -> this', this);
+    config.debugRankingEngine && console.log('RANKINGENGINE -> this', this);
 
     // Compute rankings for every item.
     this.items.forEach((item, index) => {
-      console.log('-> ITEM: Starting item', index, item, this.items);
+      config.debugRankingEngine && console.log('-> ITEM: Starting item', index, item, this.items);
       item.rules.forEach((rule, index) => {
-        console.log('-> RULE: Starting rule', index, rule);
+        config.debugRankingEngine && console.log('-> RULE: Starting rule', index, rule);
         const ruleResult = rule.run(item, this.items);
 
-        item.score += ruleResult.score;
+        item.score += parseFloat(ruleResult.score);
         item.explanations.push(ruleResult);
       });
 
-      console.log('item.score', item.score);
-      console.log('item.explanations', item.explanations);
+      config.debugRankingEngine && console.log('item.score', item.score);
+      config.debugRankingEngine && console.log('item.explanations', item.explanations);
     });
 
     // Sort items.
@@ -36,7 +40,6 @@ export default class RankingEngine {
     progressBar.setCurrentProgress(progressBar.totalProgress);
     progressBar.stopCounter();
     progressBar.done(true);
-    console.log('progressBar', progressBar);
 
     return {items: this.items};
   }

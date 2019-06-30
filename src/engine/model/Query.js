@@ -1,3 +1,7 @@
+// Config.
+import { config } from '../../config/Config';
+
+// Search engine model.
 import Fetcher from './Fetcher';
 import Parser from './Parser';
 import Field from './Field';
@@ -30,7 +34,7 @@ class Query {
   // Replaces patterns in urls.
   resolveUrl = (item) => {
     if (this.requires) {
-      console.log('Query requirement ->', this.requires, '->', this.savedData[this.requires].slice(0, 64));
+      config.debugSearchEngine && console.log('Query requirement ->', this.requires, '->', this.savedData[this.requires].slice(0, 64));
 
       const requiresRegexp = new RegExp(`{{${this.requires}}}`, 'g');
       this.url = this.url.replace(requiresRegexp, this.savedData[this.requires]);
@@ -84,7 +88,7 @@ class Query {
 
     // Step 4: Fetch.
     const document = await fetchPromise;
-    console.log('Query -> fetch', document.slice(0, 64));
+    config.debugSearchEngine && console.log('Query -> fetch', document.slice(0, 64));
 
     // Step 5: Parse every field.
     this.fields.forEach(field => this.parseField(document, field));
@@ -108,7 +112,7 @@ class Query {
         .value[0];
       });
     }
-    console.log('Query -> AFTER RUN', this);
+    config.debugSearchEngine && console.log('Query -> AFTER RUN', this);
   }
 }
 

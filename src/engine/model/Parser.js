@@ -1,3 +1,6 @@
+// Config.
+import { config } from '../../config/Config';
+
 // Parser strategies.
 import { csvParser } from '../parsers/csvParser';
 import { htmlParser } from '../parsers/htmlParser';
@@ -34,7 +37,7 @@ class Parser {
 
 
   parse = (doc, entry) => {
-    console.log('-> Parsing', doc.slice(0, 64));
+    config.debugSearchEngine && console.log('-> Parsing', doc.slice(0, 64));
 
     return this.parseStrategy(doc, entry);
   }
