@@ -50,6 +50,7 @@ class HarvestPage extends React.Component {
     document.getElementById('inputfile').click();
   };
 
+  // TODO: Refactor out.
   handleLoadHarvestResults = async (event) => {
     const {
       setDetailsField,

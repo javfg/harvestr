@@ -2,13 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInfoCircle, faQuestionCircle, faBox, faLifeRing, faBug, faQuoteRight, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
+import { faInfoCircle, faQuestionCircle, faBox, faLifeRing, faBug, faQuoteRight, faAngleDoubleRight, faFolderOpen } from '@fortawesome/free-solid-svg-icons';
 
 // Actions.
-import { setHarvestPageField } from '../../actions/HarvestPage';
 import { setItemList } from '../../actions/itemList';
 import { setRankingDefinition } from '../../actions/RankingDefinition';
+import { setResultsPageField } from '../../actions/ResultsPage';
 import { setSearchProfile } from '../../actions/searchProfile';
+import { setSearchResults } from '../../actions/searchResults';
 
 // Components.
 import Badge from '../common/Badge';
@@ -29,6 +30,7 @@ import { setDetailsField } from '../../actions/Details';
 // Utils.
 import { successToast } from '../../utils/dialogs';
 import { detailLabel } from '../../utils/labels';
+import { readJSONFromFile } from '../../utils/file';
 
 
 class HomePage extends React.Component {
@@ -53,12 +55,51 @@ class HomePage extends React.Component {
     successToast('Demo data loaded, explore!');
   };
 
+  handleClickLoadHarvest = () => {
+    document.getElementById('inputfile').click();
+  };
+
+  // TODO: Refactor out.
+  handleLoadHarvest = async (event) => {
+    const {
+      setDetailsField,
+      setItemList,
+      setRankingDefinition,
+      setSearchProfile,
+      setSearchResults,
+      setResultsPageField
+    } = this.props;
+
+    const loadedJSON = await readJSONFromFile(event.target.files[0]);
+
+    setDetailsField(loadedJSON.harvest.details);
+    setItemList(loadedJSON.harvest.itemList);
+    setRankingDefinition(loadedJSON.harvest.rankingDefinition);
+    setSearchProfile(loadedJSON.harvest.searchProfile);
+    setSearchResults(loadedJSON.searchResults);
+    setResultsPageField({
+      currentPage: 0,
+      loadResultsModalVisible: true,
+      totalPages: Math.ceil(loadedJSON.searchResults.length / 10),
+      pageSize: 10
+    });
+
+    if (loadedJSON.harvest.searchResults.length > 0) {
+      this.props.history.push('/results')
+    } else {
+      this.props.history.push('/harvest')
+    }
+  };
+
+
   handleSelectTab = (currentCitationTab) => this.setState({currentCitationTab});
 
 
   render() {
     const {
       handleClickLoadDemoData,
+      handleClickLoadHarvest,
+      handleLoadHarvest,
       handleSelectTab,
       state: { currentCitationTab }
     } = this;
@@ -171,7 +212,17 @@ class HomePage extends React.Component {
               onClick={handleClickLoadDemoData}
             >
               Load demo data
-            </a> and play around with it. The interface should be self-explanatory.
+            </a> and play around with it. The interface should be self-explanatory.<br/>
+            Or, if you already know what you are doing,
+            <button
+              className="btn btn-primary ml-2"
+              onClick={handleClickLoadHarvest}
+            >
+              <FontAwesomeIcon icon={faFolderOpen} /> Load a Harvest
+            </button>
+            <div className="input-hidden">
+              <input type="file" id="inputfile" tabIndex="-1" onChange={handleLoadHarvest}/>
+            </div>
 
             <div className="my-1" />
           </div>
@@ -310,10 +361,11 @@ class HomePage extends React.Component {
 //
 const mapDispatchToProps = (dispatch) => ({
   setDetailsField: (newState) => dispatch(setDetailsField(newState)),
-  setHarvestPageField: (newState) => dispatch(setHarvestPageField(newState)),
   setItemList: (itemList) => dispatch(setItemList(itemList)),
   setRankingDefinition: (rankingDefinition) => dispatch(setRankingDefinition(rankingDefinition)),
-  setSearchProfile: (searchProfile) => dispatch(setSearchProfile(searchProfile))
+  setResultsPageField: (newState) => dispatch(setResultsPageField(newState)),
+  setSearchProfile: (searchProfile) => dispatch(setSearchProfile(searchProfile)),
+  setSearchResults: (searchResults) => dispatch(setSearchResults(searchResults)),
 });
 
 
