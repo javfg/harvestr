@@ -18,7 +18,7 @@ export class FileLoader extends React.Component {
     this.props.handleUploadFileChange(event.target.files[0]);
   }
 
-  handleHeaderChange = (event) => {
+  handleFileHasHeaderChange = (event) => {
     this.props.handleFileHasHeaderChange(event.target.checked);
   }
 
@@ -54,7 +54,7 @@ export class FileLoader extends React.Component {
   render() {
     const {
       handleFileSelected,
-      handleHeaderChange,
+      handleFileHasHeaderChange,
       props: { uploadFile, uploadFileHasHeader, fileType, mimeType },
       readFile
     } = this;
@@ -104,7 +104,7 @@ export class FileLoader extends React.Component {
                       checked={uploadFileHasHeader}
                       className="form-check-input"
                       id="hasHeader"
-                      onChange={handleHeaderChange}
+                      onChange={handleFileHasHeaderChange}
                       type="checkbox"
                     />
                     <label

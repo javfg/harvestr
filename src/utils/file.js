@@ -7,7 +7,7 @@ const readFile = (file) => {
 
     reader.readAsText(file);
   });
-}
+};
 
 const readJSONFromFile = async (file) => {
   const fileContents = await readFile(file);
@@ -17,7 +17,7 @@ const readJSONFromFile = async (file) => {
   } catch (e) {
     throw new Error('Unable to parse file.');
   }
-}
+};
 
 const download = (fileName, content, contentType) => {
   const fileA = document.createElement('a');
@@ -26,6 +26,7 @@ const download = (fileName, content, contentType) => {
   fileA.href = URL.createObjectURL(file);
   fileA.download = fileName;
   fileA.click();
-}
+};
+
 
 export { download, readJSONFromFile };

@@ -77,10 +77,11 @@ class SearchSummary extends React.Component {
   };
 
   handleSaveHarvest = () => {
-    const { harvest } = this.props;
+    const { harvest, searchResults = [] } = this.props;
     const fileName = harvest.details.name;
+    const contents = {harvest, searchResults};
 
-    download(fileName, harvest, 'application/json');
+    download(fileName, contents, 'application/json');
   };
 
   handleSaveRankingDefinition = () => {
@@ -236,7 +237,8 @@ const mapStateToProps = (state) => ({
   config: state.config,
   harvestPage: state.ui.harvestPage,
   harvestProgressModal: state.ui.harvestProgressModal,
-  harvest: state.harvest
+  harvest: state.harvest,
+  searchResults: state.harvest.searchResults
 });
 
 const mapDispatchToProps = dispatch => ({

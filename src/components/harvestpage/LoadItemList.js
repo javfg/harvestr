@@ -49,7 +49,7 @@ class LoadItemList extends React.Component {
 
   handleSetItemListFromCSV = () => {
     const { setItemList, harvestPage: { selectedColumn, itemListFileContents } } = this.props;
-    const itemList = [...new Set(itemListFileContents.map(row => row[selectedColumn]))];
+    const itemList = [...new Set(itemListFileContents.map(row => row[selectedColumn - 1]))];
 
     setItemList(itemList);
   }
@@ -72,8 +72,8 @@ class LoadItemList extends React.Component {
     this.props.setHarvestPageField({itemListFile});
   }
 
-  handleItemListFileHasHeaderChange = (itemListFileHasHeaders) => {
-    this.props.setHarvestPageField({itemListFileHasHeaders});
+  handleItemListFileHasHeaderChange = (itemListFileHasHeader) => {
+    this.props.setHarvestPageField({itemListFileHasHeader});
   }
 
 
