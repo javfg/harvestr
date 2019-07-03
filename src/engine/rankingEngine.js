@@ -15,7 +15,9 @@ export default class RankingEngine {
 
 
   run = async (progressBar) => {
-    progressBar.setCurrentMessage('Computing rankings and sorting...');
+    if (progressBar) {
+      progressBar.setCurrentMessage('Computing rankings and sorting...');
+    }
 
     config.debugRankingEngine && console.log('RANKINGENGINE -> this', this);
 
@@ -37,9 +39,11 @@ export default class RankingEngine {
     // Sort items.
     this.items.sort((itemA, itemB) => itemB.score - itemA.score);
 
-    progressBar.setCurrentProgress(progressBar.totalProgress);
-    progressBar.stopCounter();
-    progressBar.done(true);
+    if (progressBar) {
+      progressBar.setCurrentProgress(progressBar.totalProgress);
+      progressBar.stopCounter();
+      progressBar.done(true);
+    }
 
     return {items: this.items};
   }

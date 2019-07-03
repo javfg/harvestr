@@ -1,6 +1,5 @@
 // Fetcher strategies.
 import { standardFetcher } from '../fetchers/standardFetcher';
-import { corsFetcher } from '../fetchers/corsFetcher';
 import { serverFetcher } from '../fetchers/serverFetcher';
 
 // Config.
@@ -16,8 +15,6 @@ class Fetcher {
     switch (fetchStrategy) {
       case 'standardFetcher':
         return standardFetcher;
-      case 'corsFetcher':
-        return corsFetcher;
       case 'serverFetcher':
         return serverFetcher(config.serverFetcherUrl);
 

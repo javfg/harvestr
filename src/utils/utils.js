@@ -1,9 +1,9 @@
-const arrayOfStrNumbers = l => [...Array(l + 1).keys()].splice(1).map(e => e.toString());
+export const arrayOfStrNumbers = l => [...Array(l + 1).keys()].splice(1).map(e => e.toString());
 
-const rem2px = rem => rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
-const px2rem = px => px / parseFloat(getComputedStyle(document.documentElement).fontSize);
+export const rem2px = rem => rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+export const px2rem = px => px / parseFloat(getComputedStyle(document.documentElement).fontSize);
 
-const exportCSV = searchResults => {
+export const exportCSV = searchResults => {
   const escape = text => {
     if (Array.isArray(text)) {
       text = text.join("; ");
@@ -41,5 +41,3 @@ const exportCSV = searchResults => {
   link.click();
   document.body.removeChild(link);
 };
-
-export { arrayOfStrNumbers, rem2px, px2rem, exportCSV };
