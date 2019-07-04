@@ -1,0 +1,17 @@
+# Development environment definition
+# Author: Manuel Bernal Llinares
+version: "3.5"
+services:
+    harvestr-server:
+        image: 5222aba07e1a
+        ports:
+            - "8081:8081"
+    harvestr:
+        image: 308cac270bbd
+        ports:
+            - "8080:80"
+        depends_on:
+            - harvestr-server
+networks:
+    default:
+        name: harvestr-network
