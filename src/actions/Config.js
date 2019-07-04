@@ -18,7 +18,9 @@ import { debugSearchProfile } from '../config/debugSearchProfile';
 export const getConfigFromEnv = () => (dispatch) => {
   const config = {
     // eslint-disable-next-line no-undef
-    debug: process.env.DEBUG === 'true'
+    debug: process.env.DEBUG === 'true',
+    // eslint-disable-next-line no-undef
+    serverFetcherUrl: process.env.SERVER_FETCHER_URL || '127.0.0.1:8081'
   }
 
   return dispatch(setConfig(config));
