@@ -1,7 +1,8 @@
 export const config = {
   debug: true,
 
-  serverFetcherUrl: 'http://localhost:8081',
+  //serverFetcherUrl: 'http://localhost:8081',
+  serverFetcherUrl: 'http://harvestr.meneillos.com:8081',
 
   itemConcurrency: 3,
   retryAttempts: 5,
