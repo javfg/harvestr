@@ -1,5 +1,5 @@
 # Development environment definition
-# Author: Manuel Bernal Llinares
+# Author: Javier Ferrer
 version: "3.5"
 services:
     harvestr-server:
