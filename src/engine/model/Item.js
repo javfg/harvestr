@@ -27,7 +27,7 @@ class Item {
       rule.importance,
       rule.query,
       rule.operator,
-      rule.value
+      rule.values
     ));
   }
 

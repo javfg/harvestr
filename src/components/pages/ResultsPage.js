@@ -15,6 +15,7 @@ import { setSearchProfile } from '../../actions/searchProfile';
 import { setSearchResults } from '../../actions/searchResults';
 
 // Components.
+import Item from '../../engine/model/Item';
 import LoadSearchResultsModal from '../resultspage/LoadSearchResultsModal';
 import PageTitle from '../common/PageTitle';
 import ResultsItemList from '../resultspage/ResultsItemList';
@@ -62,12 +63,19 @@ class HarvestPage extends React.Component {
     } = this.props;
 
     const loadedJSON = await readJSONFromFile(event.target.files[0]);
+    const parsedResults = loadedJSON.harvest.searchResults.map(item =>
+      new Item(
+        item.name,
+        item.queries,
+        loadedJSON.harvest.rankingDefinition.rules
+      )
+    );
 
     setDetailsField(loadedJSON.harvest.details);
     setItemList(loadedJSON.harvest.itemList);
     setRankingDefinition(loadedJSON.harvest.rankingDefinition);
     setSearchProfile(loadedJSON.harvest.searchProfile);
-    setSearchResults(loadedJSON.searchResults);
+    setSearchResults(parsedResults);
     setResultsPageField({
       currentPage: 0,
       loadResultsModalVisible: true,

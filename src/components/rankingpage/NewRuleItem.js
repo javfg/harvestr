@@ -38,7 +38,7 @@ class RuleItem extends React.Component {
       field: 'DEFAULT_FIELD_VALUE',
       entry: ['DEFAULT_ENTRY_VALUE'],
       operator: 'DEFAULT_OPERATOR_VALUE',
-      value: [],
+      values: [],
       importance: 0
     });
   }

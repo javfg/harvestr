@@ -39,13 +39,6 @@ class Rule {
 
     const operator = new Operator(this.operator);
     return operator.compute(this, relevantValues, item, items);
-
-    /*
-    1.1.1. get relevant entry values.
-    1.1.2. get relevant operator, value and importance from rule.
-    1.1.3. compute operation with entry values and rule values.
-    1.1.4. accumulate score and store explanation.
-    */
   }
 }
 

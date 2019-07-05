@@ -23,6 +23,9 @@ import { demoItemList } from '../../config/demoItemList';
 import { demoRankingDefinition } from '../../config/demoRankingDefinition';
 import { demoSearchProfile } from '../../config/demoSearchProfile';
 
+// Model.
+import Item from '../../engine/model/Item';
+
 // Parsers.
 import { parsers } from '../../engine/parsers/parsers';
 import { setDetailsField } from '../../actions/Details';
@@ -71,12 +74,19 @@ class HomePage extends React.Component {
     } = this.props;
 
     const loadedJSON = await readJSONFromFile(event.target.files[0]);
-
+    const parsedResults = loadedJSON.harvest.searchResults.map(item =>
+      new Item(
+        item.name,
+        item.queries,
+        loadedJSON.harvest.rankingDefinition.rules
+      )
+    );
+    
     setDetailsField(loadedJSON.harvest.details);
     setItemList(loadedJSON.harvest.itemList);
     setRankingDefinition(loadedJSON.harvest.rankingDefinition);
     setSearchProfile(loadedJSON.harvest.searchProfile);
-    setSearchResults(loadedJSON.searchResults);
+    setSearchResults(parsedResults);
     setResultsPageField({
       currentPage: 0,
       loadResultsModalVisible: true,

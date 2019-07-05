@@ -67,8 +67,8 @@ class RuleItemDetails extends React.Component {
   }
 
   handleChangeValue = (e) => {
-    const value = e.target.value.split(',').map(val => val.trim());
-    this.setState({value});
+    const values = e.target.value.split(',');
+    this.setState({values});
   }
 
   handleClickSaveChanges = () => {
@@ -115,7 +115,7 @@ class RuleItemDetails extends React.Component {
       handleSelectOperator,
       handleSelectQuery,
       props: { searchProfile },
-      state: { entry, field, importance, name, nameError, operator, query, value }
+      state: { entry, field, importance, name, nameError, operator, query, values }
     } = this;
 
     const queries = searchProfile.filter(query => query.name).map(query => query.name);
@@ -233,12 +233,12 @@ class RuleItemDetails extends React.Component {
               <div className="input-group-prepend">
                 <span className="input-group-text">Values</span>
               </div>
-              <input type="text" className="form-control" value={value} onChange={handleChangeValue} />
+              <input type="text" className="form-control" value={values} onChange={handleChangeValue} />
             </div>
           </div>
           <div className="col col-6 d-block align-items-center">
             <span className="text-muted">Current values:</span>
-            {value.map((val, index) => <Badge key={`${val}-${index}`} type="value" name={val} noTooltip />)}
+            {values.map((val, index) => <Badge key={`${val}-${index}`} type="value" name={val} noTooltip />)}
           </div>
         </div>
 

@@ -46,7 +46,7 @@
             "Disease class"
           ],
           "operator": "INCLUDES",
-          "value": [
+          "values": [
             "Neoplasms"
           ],
           "importance": "3"
@@ -59,7 +59,7 @@
             "Count"
           ],
           "operator": "MAX",
-          "value": [
+          "values": [
             "5"
           ],
           "importance": "2"
@@ -72,7 +72,7 @@
             "GO ID"
           ],
           "operator": "INCLUDES",
-          "value": [
+          "values": [
             "GO:0006284",
             "GO:0006302",
             "GO0043504",
