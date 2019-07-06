@@ -3,6 +3,7 @@ import { config } from '../../config/Config';
 
 
 export const includesOperator = function (rule, relevantValues, item) {
+  relevantValues = relevantValues.map(relevantValue => relevantValue.toLowerCase());
   const matchingValues = rule.values.find(ruleValue => relevantValues.includes(ruleValue));
   const partialMatchingValues = rule.values.find(ruleValue => {
     const partialMatches = relevantValues.map(relevantValue => relevantValue.includes(ruleValue));
@@ -16,13 +17,13 @@ export const includesOperator = function (rule, relevantValues, item) {
   let score = hasMatchingValues ? rule.importance : 0;
 
   if (!rule.parameters.exact && score === 0) {
-    score = hasPartialMatchingValues ? rule.importance * .5 : 0;
+    score = hasPartialMatchingValues ? rule.importance : 0;
   }
 
   return {
     item: item.name,
     field: rule.field,
-    result: hasMatchingValues || hasPartialMatchingValues,
+    result: hasMatchingValues || (!rule.parameters.exact && hasPartialMatchingValues),
     rule: rule.name,
     score,
     textPositive: 'includes',
