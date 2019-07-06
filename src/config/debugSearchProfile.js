@@ -57,6 +57,16 @@ export const debugSearchProfile = [
         ]
       },
       {
+        "name": "Mass (Da)",
+        "path": "uniprot/entry/sequence/@mass",
+        "entries": [
+          {
+            "name": "Mass (Da)",
+            "path": "."
+          }
+        ]
+      },
+      {
         "name": "Molecular function",
         "path": "uniprot/entry/dbReference/property[starts-with(@value, 'F:')]/..",
         "entries": [
@@ -76,9 +86,9 @@ export const debugSearchProfile = [
         "path": "uniprot/entry/dbReference/property[starts-with(@value, 'C:')]/..",
         "entries": [
           {
-          "name": "GO ID",
-          "path": "@id",
-          "linkTo": "https://www.ebi.ac.uk/QuickGO/term/{{value}}"
+            "name": "GO ID",
+            "path": "@id",
+            "linkTo": "https://www.ebi.ac.uk/QuickGO/term/{{value}}"
           },
           {
             "name": "Description",
@@ -245,7 +255,7 @@ export const debugSearchProfile = [
       {
         "name": "Count",
         "path": "eSearchResult/Count",
-        "entries" : [
+        "entries": [
           {
             "name": "Count",
             "path": "."
@@ -272,8 +282,7 @@ export const debugSearchProfile = [
             }
           }
         ]
-
       }
     ]
   }
-]
+];
