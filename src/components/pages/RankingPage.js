@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
-import { faGavel } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGavel, faSeedling } from '@fortawesome/free-solid-svg-icons';
 
 // Actions.
 import { setSearchResults } from '../../actions/searchResults';
@@ -28,7 +29,7 @@ class RankingPage extends React.Component {
   handleClickApplyRanking = async () => {
     const {
       harvest: { rankingDefinition, searchResults },
-      config, setSearchResults, setResultsPageField
+      config, history, setSearchResults, setResultsPageField
     } = this.props;
 
     // Empty previous score and explanations, remake rules.
@@ -60,11 +61,20 @@ class RankingPage extends React.Component {
       totalPages: Math.ceil(rankedResults.items.length / 10),
       pageSize: 10
     });
+
+    // Navigate to results.
+    history.push('/results');
   }
+
+  handleClickBackToHarvestEditor = () => {this.props.history.push('/harvest')};
 
 
   render() {
-    const { handleClickApplyRanking } = this;
+    const {
+      handleClickApplyRanking,
+      handleClickBackToHarvestEditor,
+      props: { harvest: { searchResults }}
+    } = this;
 
     return (
       <div className="container my-4">
@@ -83,12 +93,23 @@ class RankingPage extends React.Component {
 
         <div className="row justify-content-center mt-4">
           <div className="col col-3">
-            <button
-              className="btn btn-block btn-primary"
-              onClick={handleClickApplyRanking}
-            >
-              Apply this ranking definition
-            </button>
+            {
+              searchResults.length > 0 ? (
+                <button
+                  className="btn btn-block btn-primary"
+                  onClick={handleClickApplyRanking}
+                >
+                  Apply this ranking definition
+                </button>
+              ) : (
+                <button
+                  className="btn btn-block btn-primary"
+                  onClick={handleClickBackToHarvestEditor}
+                >
+                  <FontAwesomeIcon icon={faSeedling} className="mr-1" />Go to harvest editor
+                </button>
+              )
+            }
           </div>
         </div>
 
