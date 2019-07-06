@@ -29,8 +29,16 @@ class ResultsItem extends React.Component {
           className="border"
           scope="row"
         >
-          {name}
-          <Badge type="score" name={score} details={explanationCaptions} />
+          <div className="row">
+            <div className="col text-center">
+              <Badge type="item" name={name} noTooltip />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col text-center">
+             <Badge type="score" name={score} details={explanationCaptions} />
+            </div>
+          </div>
         </th>
         {
           queries
