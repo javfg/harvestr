@@ -157,7 +157,7 @@ export const debugSearchProfile = [
         "entries": [
           {
             "name": "ID",
-            "path": "@id",
+            "path": "@id"
           },
           {
             "name": "Value",
@@ -226,13 +226,13 @@ export const debugSearchProfile = [
   },
   {
     "name": "PubMed",
-    "urlTemplate": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&term={{GENENAME}}%20AND20%antithrombin&api_key=b64927930264c4b75419b258a995db456707",
+    "urlTemplate": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&term={{GENENAME}}%20AND20%COAGULATION%20AND20%THROMBOSIS&api_key=b64927930264c4b75419b258a995db456707",
     "fetcher": "standardFetcher",
     "parser": "xmlParser",
     "requires": "GENENAME",
     "fields": [
       {
-        "name": "gene AND antithombin",
+        "name": "gene AND COAGULATION AND THROMBOSIS",
         "path": "eSearchResult/IdList/Id",
         "entries": [
           {
@@ -275,5 +275,5 @@ export const debugSearchProfile = [
 
       }
     ]
-  },
-];
+  }
+]

@@ -1,12 +1,12 @@
 export const demoRankingDefinition = {
-  rules: [
+  "rules": [
     {
       "name": "Located in extracellular space",
       "query": "UniProt",
       "field": "Subcellular location",
       "entry": ["GO ID"],
       "operator": "INCLUDES",
-      "value": ["GO:0005615"],
+      "values": ["GO:0005615"],
       "importance": 1
     },
     {
@@ -15,7 +15,7 @@ export const demoRankingDefinition = {
       "field": "Subcellular location",
       "entry": ["GO ID"],
       "operator": "INCLUDES",
-      "value": ["GO:0042627"],
+      "values": ["GO:0042627"],
       "importance": -1
     },
     {
@@ -24,7 +24,7 @@ export const demoRankingDefinition = {
       "field": "Glycosylation sites",
       "entry": ["Description"],
       "operator": "ATLEAST",
-      "value": [1],
+      "values": [1],
       "importance": 2
     },
     {
@@ -33,7 +33,7 @@ export const demoRankingDefinition = {
       "field": "BioGRID Interaction data",
       "entry": ["Interactor A", "Interactor B"],
       "operator": "INCLUDES",
-      "value": ["SERPINC1", "ANXA2"],
+      "values": ["SERPINC1", "ANXA2"],
       "importance": 3
     },
     {
@@ -42,17 +42,17 @@ export const demoRankingDefinition = {
       "field": "Count",
       "entry": ["Count"],
       "operator": "MAX",
-      "value": [1],
+      "values": [1],
       "importance": 1
     },
     {
       "name": "Melting temperature 55C < x < 65C",
       "query": "TM Predictor",
       "field": "TM Index",
-      "entry": "TM Index",
+      "entry": ["TM Index"],
       "operator": "BETWEEN",
-      "value": [0, 1],
+      "values": [0, 1],
       "importance": 3
     }
   ]
-};
+}
