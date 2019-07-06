@@ -14,7 +14,8 @@ const RuleList = ({ rules }) => (
     <div className="row">
       <div className="col">
         {rules.map((rule, index) => {
-          const {name, ...details} = rule;
+          // eslint-disable-next-line no-unused-vars
+          const {name, parameters, ...details} = rule;
           return <Badge key={`${name}-${index}`} name={name} details={detailLabel(details)} type="rule" />
         })}
         <p className="text-muted mt-3 mb-0"><small>{rules.length} Rules total.</small></p>

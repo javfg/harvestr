@@ -8,13 +8,19 @@ export const operators = [{
   name: 'Between',
   details: {
     code: 'BETWEEN',
-    description: 'The entry contains a value between two numbers.'
+    description: 'The entry contains values between two numbers.'
   }
 }, {
   name: 'Includes',
   details: {
     code: 'INCLUDES',
     description: 'The entry includes one of the given values.'
+  }
+}, {
+  name: 'Greater than',
+  details: {
+    code: 'GREATERTHAN',
+    description: 'The entry contains values greater than a number.'
   }
 }, {
   name: 'Maximum',

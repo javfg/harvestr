@@ -13,12 +13,18 @@ export const includesOperator = function (rule, relevantValues, item) {
 
   config.debugRankingEngine && console.log('matchingValues', matchingValues, matchingValues ? 'SO, TRUE' : 'SO, FALSE');
 
+  let score = hasMatchingValues ? rule.importance : 0;
+
+  if (!rule.parameters.exact && score === 0) {
+    score = hasPartialMatchingValues ? rule.importance * .5 : 0;
+  }
+
   return {
     item: item.name,
     field: rule.field,
     result: hasMatchingValues || hasPartialMatchingValues,
     rule: rule.name,
-    score: hasMatchingValues ? rule.importance : hasPartialMatchingValues ? rule.importance * .5 : 0,
+    score,
     textPositive: 'includes',
     textNegative: 'does not include',
     values: rule.values

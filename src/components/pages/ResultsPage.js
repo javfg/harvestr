@@ -67,7 +67,10 @@ class HarvestPage extends React.Component {
       new Item(
         item.name,
         item.queries,
-        loadedJSON.harvest.rankingDefinition.rules
+        loadedJSON.harvest.rankingDefinition.rules,
+        undefined,
+        item.score,
+        item.explanations
       )
     );
 

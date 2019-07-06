@@ -6,7 +6,7 @@ import Operator from "./Operator";
 
 
 class Rule {
-  constructor(name, entry, field, importance, query, operator, values) {
+  constructor(name, entry, field, importance, query, operator, values, parameters = {}) {
     this.name = name;
     this.entry = entry;
     this.field = field;
@@ -14,6 +14,7 @@ class Rule {
     this.query = query;
     this.operator = operator;
     this.values = values;
+    this.parameters = parameters;
   }
 
 

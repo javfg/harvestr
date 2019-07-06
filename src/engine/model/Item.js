@@ -3,11 +3,11 @@ import Rule from './Rule';
 
 
 class Item {
-  constructor(name, queries, rules, savedData) {
+  constructor(name, queries, rules, savedData, score = 0, explanations = []) {
     this.name = name;
     this.savedData = savedData;
-    this.score = 0;
-    this.explanations = [];
+    this.score = score;
+    this.explanations = explanations;
 
     this.queries = queries.map(query => new Query(
       query.name,
@@ -27,7 +27,8 @@ class Item {
       rule.importance,
       rule.query,
       rule.operator,
-      rule.values
+      rule.values,
+      rule.parameters
     ));
   }
 

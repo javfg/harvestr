@@ -66,7 +66,8 @@ class RuleItem extends React.Component {
       handleClickDelete,
       handleClickEdit,
       props: {
-        rule: { name, ...details }
+        // eslint-disable-next-line no-unused-vars
+        rule: { name, parameters, ...details }
       },
       state: { expanded }
     } = this;

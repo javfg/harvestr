@@ -41,7 +41,8 @@ class RankingPage extends React.Component {
         rule.importance,
         rule.query,
         rule.operator,
-        rule.values
+        rule.values,
+        rule.parameters
       ));
       item.score = 0;
       item.explanations = [];

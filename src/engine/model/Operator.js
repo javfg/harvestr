@@ -1,7 +1,8 @@
 // Operators.
 import { atLeastOperator } from '../operators/atLeastOperator.js';
-import { includesOperator } from '../operators/includesOperator.js';
+import { greaterThanOperator } from '../operators/greaterThan.js';
 import { betweenOperator } from '../operators/betweenOperator.js';
+import { includesOperator } from '../operators/includesOperator.js';
 import { maxOperator } from '../operators/maxOperator.js';
 
 
@@ -17,6 +18,8 @@ class Operator {
         return atLeastOperator;
       case 'BETWEEN':
         return betweenOperator;
+      case 'GREATERTHAN':
+        return greaterThanOperator;
       case 'INCLUDES':
         return includesOperator;
       case 'MAX':
