@@ -15,6 +15,7 @@ export const exportCSV = searchResults => {
   let csvContent = 'data:text/csv;charset=utf-8,';
 
   // First, headers.
+  csvContent += '"item","score",'
   searchResults[0].queries.forEach(query => {
     query.fields.forEach(field => {
       csvContent += `"${field.name}",`;
@@ -25,6 +26,7 @@ export const exportCSV = searchResults => {
 
   // Then, data.
   searchResults.forEach(item => {
+    csvContent += `"${item.name}","${item.score}",`;
     item.queries.forEach(query => {
       query.fields.forEach(field => {
         const countValue = field.entries[0].value.length;
