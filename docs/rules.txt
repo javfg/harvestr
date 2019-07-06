@@ -1,0 +1,5 @@
+Temperatura de melting > 65 (>1)                            3
+Most articles in pubmed                                     3
+Glycosilation sites >= 2                                    2
+Located in extracellular space                              1
+Interacts with Antithrombin or Thrombin (SERPINC1, F2)      3
