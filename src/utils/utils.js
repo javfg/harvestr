@@ -6,13 +6,13 @@ export const px2rem = px => px / parseFloat(getComputedStyle(document.documentEl
 export const exportCSV = searchResults => {
   const escape = text => {
     if (Array.isArray(text)) {
-      text = text.join("; ");
+      text = text.join('; ');
     }
 
-    return text.replace(/\\/g, "\\\\").replace(/\n/g, "\\n");
+    return text.replace(/\\/g, '\\\\').replace(/\n/g, '\\n');
   };
 
-  let csvContent = "data:text/csv;charset=utf-8,";
+  let csvContent = 'data:text/csv;charset=utf-8,';
 
   // First, headers.
   searchResults[0].queries.forEach(query => {
@@ -21,22 +21,24 @@ export const exportCSV = searchResults => {
     });
   });
 
-  csvContent += "\n";
+  csvContent += '\n';
 
   // Then, data.
   searchResults.forEach(item => {
     item.queries.forEach(query => {
       query.fields.forEach(field => {
-        csvContent += `"${escape(field.data)}",`;
+        const countValue = field.entries[0].value.length;
+        const entriesText = [...Array(countValue).keys()].map(index => field.entries.map(entry => escape(entry.value[index]))).join(';');
+        csvContent += `"${entriesText}",`;
       });
     });
-    csvContent += "\n";
+    csvContent += '\n';
   });
 
   const encodedUri = encodeURI(csvContent);
-  const link = document.createElement("a");
-  link.setAttribute("href", encodedUri);
-  link.setAttribute("download", "results.csv");
+  const link = document.createElement('a');
+  link.setAttribute('href', encodedUri);
+  link.setAttribute('download', 'results.csv');
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);

@@ -23,7 +23,7 @@ import ResultsTooltip from '../resultspage/ResultsTooltip';
 
 // Utils.
 import { download, readJSONFromFile } from '../../utils/file';
-//import { exportCSV } from '../../utils/utils';
+import { exportCSV } from '../../utils/utils';
 
 
 class HarvestPage extends React.Component {
@@ -34,7 +34,7 @@ class HarvestPage extends React.Component {
 
   handleExportCSV = () => {
     // TODO:
-    //exportCSV(this.props.searchResults);
+    exportCSV(this.props.searchResults);
     console.log('export CSV');
   }
 
