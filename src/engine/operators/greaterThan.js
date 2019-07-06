@@ -4,7 +4,7 @@ import { config } from '../../config/Config';
 
 export const greaterThanOperator = function (rule, relevantValues, item) {
   const valuesGreaterThan = relevantValues.filter(relevantValue => relevantValue > rule.values[0]).length;
-  const proportionOfValuesGreaterThan = valuesGreaterThan / relevantValues.length;
+  const proportionOfValuesGreaterThan = (valuesGreaterThan / relevantValues.length) || 0;
 
   config.debugRankingEngine && console.log('GT', valuesGreaterThan, '/', relevantValues, '=', proportionOfValuesGreaterThan, 'score', rule.importance * proportionOfValuesGreaterThan);
 
