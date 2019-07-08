@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGavel, faSeedling } from '@fortawesome/free-solid-svg-icons';
+import { faListOl, faSeedling } from '@fortawesome/free-solid-svg-icons';
 
 // Actions.
 import { setSearchResults } from '../../actions/searchResults';
@@ -82,7 +82,7 @@ class RankingPage extends React.Component {
         <PageTitle
           description="Build a Ranking definition by adding rules. Every rule will affect a field of a query,
                        and must be described by an operator and a score."
-          icon={faGavel}
+          icon={faListOl}
           title="Ranking Definition Editor"
         />
 

@@ -1,7 +1,7 @@
 //
 // Results Page Settings Reducer.
 //
-const ResultsPageDefaultState = {
+const resultsPageDefaultState = {
   contractedQueries: [],
   currentPage: 0,
   loadResultsModalVisible: false,
@@ -9,7 +9,7 @@ const ResultsPageDefaultState = {
   totalPages: 0
 };
 
-export default (state = ResultsPageDefaultState, action) => {
+export default (state = resultsPageDefaultState, action) => {
   switch (action.type) {
     case 'SET_RESULTSPAGESTATE':
       return { ...state, ...action.newState };

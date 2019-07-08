@@ -1,24 +1,18 @@
 import React from "react";
-import { connect } from "react-redux";
 import { CSSTransition } from "react-transition-group";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faTrashAlt, faClone } from '@fortawesome/free-solid-svg-icons';
 
-// Actions.
-import { deleteRule } from '../../actions/RankingDefinition';
-
 // Components.
-import Badge from '../common/Badge';
-import Tooltip from '../common/Tooltip';
+import Badge from './Badge';
+import Tooltip from './Tooltip';
 
 // Utils.
 import { detailLabel } from '../../utils/labels';
-import RuleItemDetails from './RuleItemDetails';
 
 
-// TODO: Use editorItem.
-class RuleItem extends React.Component {
+class EditorItem extends React.Component {
   constructor(props) {
     super(props);
 
@@ -38,7 +32,7 @@ class RuleItem extends React.Component {
 
   handleClickDelete = (e) => {
     const {
-      props: { deleteRule, rule: { name } },
+      props: { deleteItem },
       state: { deleteConfirm }
      } = this;
 
@@ -52,7 +46,7 @@ class RuleItem extends React.Component {
     } else {
       this.tooltipRef.current.hide();
       clearTimeout(this.deleteTimeout);
-      deleteRule(name);
+      deleteItem(name);
     }
   };
 
@@ -66,20 +60,18 @@ class RuleItem extends React.Component {
     const {
       handleClickDelete,
       handleClickEdit,
-      props: {
-        // eslint-disable-next-line no-unused-vars
-        rule: { name, parameters, ...details }
-      },
+      props: { badge, children },
       state: { expanded }
     } = this;
 
+    const editorItemDetails = React.Children.only(children);
 
     return (
       <>
         <div className="container bg-white border p-2 mb-2 rule-move">
           <div key={`${name}`} className="row">
             <div className="col d-flex align-items-center justify-content-between">
-              <Badge name={name} details={detailLabel(details)} type="rule" />
+              {badge}
               <div>
                 <button
                   className={`btn btn-xs ${expanded ? 'btn-warning': 'btn-dark'} ml-1`}
@@ -108,7 +100,7 @@ class RuleItem extends React.Component {
             classNames='expand'
             unmountOnExit
           >
-            <RuleItemDetails name={name} details={details} />
+            {editorItemDetails}
           </CSSTransition>
         </div>
         <Tooltip
@@ -122,12 +114,4 @@ class RuleItem extends React.Component {
   }
 }
 
-
-//
-// Redux mapping functions.
-//
-const mapDispatchToProps = dispatch => ({
-  deleteRule: (ruleName) => dispatch(deleteRule(ruleName))
-});
-
-export default connect(undefined, mapDispatchToProps)(RuleItem);
+export default EditorItem;

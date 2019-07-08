@@ -1,7 +1,7 @@
 //
 // Result Tooltip Reducer.
 //
-const ResultsTooltipDefaultState = {
+const resultsTooltipDefaultState = {
   name: undefined,
   entries: [],
   growX: 'right',
@@ -12,7 +12,7 @@ const ResultsTooltipDefaultState = {
   lockedVisible: false
 };
 
-export default (state = ResultsTooltipDefaultState, action) => {
+export default (state = resultsTooltipDefaultState, action) => {
   switch (action.type) {
     case 'SET_RESULTSTOOLTIP':
       return {...state, ...action.newState};
