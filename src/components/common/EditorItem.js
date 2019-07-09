@@ -5,11 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faTrashAlt, faClone } from '@fortawesome/free-solid-svg-icons';
 
 // Components.
-import Badge from './Badge';
 import Tooltip from './Tooltip';
-
-// Utils.
-import { detailLabel } from '../../utils/labels';
 
 
 class EditorItem extends React.Component {
@@ -32,7 +28,7 @@ class EditorItem extends React.Component {
 
   handleClickDelete = (e) => {
     const {
-      props: { deleteItem },
+      props: { deleteItem, name },
       state: { deleteConfirm }
      } = this;
 
@@ -46,6 +42,8 @@ class EditorItem extends React.Component {
     } else {
       this.tooltipRef.current.hide();
       clearTimeout(this.deleteTimeout);
+
+      console.log('deleting', name);
       deleteItem(name);
     }
   };
@@ -60,7 +58,15 @@ class EditorItem extends React.Component {
     const {
       handleClickDelete,
       handleClickEdit,
-      props: { badge, children },
+      props: {
+        badge,
+        children,
+        expandButton = faPen,
+        contractButton = faPen,
+        expandButtonClass = "btn-dark",
+        contractButtonClass = "btn-dark",
+        name
+      },
       state: { expanded }
     } = this;
 
@@ -74,10 +80,10 @@ class EditorItem extends React.Component {
               {badge}
               <div>
                 <button
-                  className={`btn btn-xs ${expanded ? 'btn-warning': 'btn-dark'} ml-1`}
+                  className={`btn btn-xs ${!expanded ? expandButtonClass: contractButtonClass} ml-1`}
                   onClick={handleClickEdit}
                 >
-                  <FontAwesomeIcon icon={faPen} className="mw-1" />
+                  <FontAwesomeIcon icon={!expanded ? expandButton : contractButton} className="mw-1" />
                 </button>
                 <button
                   className="btn btn-xs btn-dark ml-1"
@@ -100,7 +106,9 @@ class EditorItem extends React.Component {
             classNames='expand'
             unmountOnExit
           >
-            {editorItemDetails}
+            <>
+              {editorItemDetails}
+            </>
           </CSSTransition>
         </div>
         <Tooltip

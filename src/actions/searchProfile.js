@@ -21,10 +21,10 @@ export const deleteQuery = (queryName) => ({
 });
 
 // Update query of given name with details.
-export const updateQuery = (queryName, updatedQuery) => ({
+export const updateQuery = (queryName, newQuery) => ({
   type: 'UPDATE_QUERY',
   queryName,
-  updatedQuery
+  newQuery
 });
 
 // Add field to given query in search profile.

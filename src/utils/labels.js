@@ -19,6 +19,7 @@ const labels = {
   htmlParser: 'HTML',
   importance: 'Importance',
   jsonParser: 'JSON',
+  linkTo: 'Links to',
   mediaType: 'Media type',
   operator: 'Operator',
   or: 'Alternative path',

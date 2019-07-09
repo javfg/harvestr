@@ -14,8 +14,12 @@ export default (state = searchProfileDefaultState, action) => {
     case 'DELETE_QUERY':
       return state.filter(query => query.name !== action.queryName);
 
-    case 'UPDATE_QUERY':
-      return state.filter(query => query.name !== action.queryName).push(action.updatedQuery);
+    case 'UPDATE_QUERY': {
+      const queryIndex = state.findIndex(query => query.name === action.queryName);
+      state[queryIndex] = action.newQuery;
+
+      return [...state];
+    }
 
     case 'ADD_FIELD':
       return state;

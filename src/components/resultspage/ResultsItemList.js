@@ -168,7 +168,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   setResultsPageField: (newState) => dispatch(setResultsPageField(newState)),
   setResultsTooltip: (newState) => dispatch(setResultsTooltip(newState))
-})
+});
 
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ResultsItemList));

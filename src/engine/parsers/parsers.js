@@ -1,4 +1,5 @@
 export const parsers = [{
+  id: 'xmlParser',
   name: 'XML',
   details: {
       format: 'eXtensible Markup Language.',
@@ -7,6 +8,7 @@ export const parsers = [{
                     that is both human-readable and machine-readable.'
   }
 }, {
+  id: 'jsonParser',
   name: 'JSON',
   details: {
     format: 'JavaScript Object Notation.',
@@ -15,27 +17,36 @@ export const parsers = [{
                   consisting of attribute–value pairs and array data types.'
   }
 }, {
+  id: 'txtParser',
   name: 'TXT',
   details: {
       format: 'Plain text file.',
       mediaType: 'text/plain'
-
   }
 }, {
+  id: 'htmlParser',
   name: 'HTML',
   details: {
     format: 'HyperText Markup Language.',
     mediaType: 'text/html',
     description: 'Markup language for documents designed to be displayed in a web browser.'
-
   }
-  }, {
-  name: 'DSV',
+}, {
+  id: 'tsvParser',
+  name: 'TSV',
   details: {
-    format: 'Delimiter separated values.',
+    format: 'Tab separated values.',
     mediaType: ['text/csv', 'text/tab-separated-values'],
-    types: ['CSV', 'TSV'],
     description: 'Store two-dimensional arrays of data by separating the values in each row with\
-                    specific delimiter characters.'
+                    tab as delimited character.'
+  }
+}, {
+  id: 'csvParser',
+  name: 'CSV',
+  details: {
+    format: 'Comma separated values.',
+    mediaType: ['text/csv', 'text/tab-separated-values'],
+    description: 'Store two-dimensional arrays of data by separating the values in each row with\
+                    comma as delimiter character.'
   }
 }];
