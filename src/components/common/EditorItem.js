@@ -43,7 +43,6 @@ class EditorItem extends React.Component {
       this.tooltipRef.current.hide();
       clearTimeout(this.deleteTimeout);
 
-      console.log('deleting', name);
       deleteItem(name);
     }
   };

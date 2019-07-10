@@ -83,8 +83,6 @@ class QueryItemDetails extends React.Component {
       state: { name, fetcher, parser, urlTemplate },
     } = this;
 
-    console.log('this.state', this.state);
-
     return(
       <>
         <div className="row px-5">
@@ -142,7 +140,7 @@ class QueryItemDetails extends React.Component {
           </div>
         </div>
 
-        <div className="row px-5 mt-4">
+        <div className="row px-5 mt-2">
           <div className="col">
             {(() => {
               switch(parser) {
@@ -160,7 +158,7 @@ class QueryItemDetails extends React.Component {
         </div>
 
         {/* SAVE BUTTON */}
-        <div className="row justify-content-end mt-2">
+        <div className="row justify-content-end mt-4">
           <div className="col col-4 text-right">
             <button
               className="btn btn-primary"

@@ -74,7 +74,6 @@ class TSVParserUI extends React.Component {
             return keys.map(key => tsvLine[key]);
           });
         } else {
-          console.log('tsv', tsv);
           tsv.columns = [...Array(tsv.data[0].length + 1).keys()]
           tsv.columns.shift()
         }
@@ -103,13 +102,10 @@ class TSVParserUI extends React.Component {
 
     const selectedCols = data.map(entry => entry.path);
 
-
-    console.log('this.state', this.state);
-
     return(
-      <>
+      <div className="p-2 border">
         <PageTitle
-          description="Entre a sample Item name to substitute in the URL template specified above, and select the
+          description="Enter a sample Item name to substitute in the URL template specified above, and select the
                        relevant columns of the resulting document. TSV queries will have only one Field, and every
                        selected column will be an Entry."
           icon={faBookOpen}
@@ -147,26 +143,43 @@ class TSVParserUI extends React.Component {
           <div className="col">
             {tsv && tsv.data ? (
               tsv.columns.map((column, index) => (
-                <div key={`tsvcoldiv-${column}-${index}`}>
-                  <input
-                    checked={selectedCols.includes(index)}
-                    key={`tsvcolcheckbox-${column}-${index}`}
-                    name={`tsvcolcheckbox-${column}-${index}`}
-                    onChange={(e) => {handleChangeSelectColumn(index, e.target.checked)}}
-                    type="checkbox"
-                  />
-                  <label
-                    className="mb-0"
-                    htmlFor={`tsvcolcheckbox-${column}-${index}`}
-                    key={`tsvcollabel-${column}-${index}`}
-                  >
-                    <strong className="mr-2">{sampleHasHeaders ? column : `Column ${column}`}:</strong>
-                    <small>{tsv.data[index].slice(0, 4).join(', ')}</small>
-                  </label>
+                <div className="input-group mb-1" key={`tsvcoldiv-${column}-${index}`}>
+                  <div className="input-group-prepend">
+                    <div className="input-group-text">
+                      <input
+                        checked={selectedCols.includes(index)}
+                        key={`tsvcolcheckbox-${column}-${index}`}
+                        name={`tsvcolcheckbox-${column}-${index}`}
+                        onChange={(e) => {handleChangeSelectColumn(index, e.target.checked)}}
+                        type="checkbox"
+                      />
+                    </div>
+                  </div>
 
-                  {selectedCols.includes(index) && (
-                    <p>name dn stuff</p>
-                  )}
+                  <div className="form-control height-auto">
+                    <label
+                      className="mb-0"
+                      htmlFor={`tsvcolcheckbox-${column}-${index}`}
+                      key={`tsvcollabel-${column}-${index}`}
+                    >
+                      <strong className="mr-2">{sampleHasHeaders ? column : `Column ${column}`}</strong>
+                    </label>
+                    <small className="ml-3 text-muted">{tsv.data[index].slice(0, 4).join(', ')}</small>
+
+                    {selectedCols.includes(index) && (
+                      <div className="row mt-3">
+                        <div className="col">
+                          {/* ENTRY NAME */}
+                          <div className="input-group input-group-sm">
+                            <div className="input-group-prepend">
+                              <span className="input-group-text">Entry name</span>
+                            </div>
+                            <input type="text" className="form-control" value={data.find(entry => entry.path === index).name}/>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
               ))
             ) : (
@@ -174,7 +187,7 @@ class TSVParserUI extends React.Component {
             )}
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }

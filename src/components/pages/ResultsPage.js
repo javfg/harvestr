@@ -33,9 +33,7 @@ class HarvestPage extends React.Component {
 
 
   handleExportCSV = () => {
-    // TODO:
     exportCSV(this.props.searchResults);
-    console.log('export CSV');
   }
 
   handleSaveHarvestResults = () => {
