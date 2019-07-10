@@ -40,7 +40,6 @@ class QueryList extends React.Component {
 
   render() {
     const {
-      handleClickDeleteField,
       handleClickDeleteQuery,
       props: { searchProfile }
     } = this;
@@ -49,6 +48,7 @@ class QueryList extends React.Component {
       <>
         <TransitionGroup>
           {searchProfile.map(query => {
+            // eslint-disable-next-line no-unused-vars
             const { name, fields, ...details } = query;
             const queryName = name;
 
