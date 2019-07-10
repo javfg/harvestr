@@ -57,6 +57,10 @@ class QueryItemDetails extends React.Component {
     this.setState({urlTemplate});
   };
 
+  handleSetNewFields = (fields) => {
+    this.setState({fields});
+  };
+
   handleClickSaveChanges = () => {
     const {
       props: { updateQuery },
@@ -75,8 +79,11 @@ class QueryItemDetails extends React.Component {
       handleClickSaveChanges,
       handleSelectfetcher,
       handleSelectparser,
-      state: { name, fetcher, parser, urlTemplate }
+      handleSetNewFields,
+      state: { name, fetcher, parser, urlTemplate },
     } = this;
+
+    console.log('this.state', this.state);
 
     return(
       <>
@@ -140,7 +147,13 @@ class QueryItemDetails extends React.Component {
             {(() => {
               switch(parser) {
                 case 'tsvParser':
-                  return <TSVParserUI />
+                  return (
+                    <TSVParserUI
+                      data={this.state.fields[0].entries}
+                      newFieldsFunction={handleSetNewFields}
+                      urlTemplate={urlTemplate}
+                    />
+                  )
               }
             })()}
           </div>
