@@ -1,0 +1,3 @@
+[submodule "harvestr-server"]
+	path = harvestr-server
+	url = git@github.com:javfg/harvestr-server.git

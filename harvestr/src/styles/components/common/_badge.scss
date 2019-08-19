@@ -1,0 +1,79 @@
+.badge {
+  max-height: 20.5px;
+  cursor: default;
+}
+
+.tooltip-badge-title {
+  align-items: center;
+  background-color: $secondary;
+  color: $grey;
+  display: flex;
+  padding: .25rem .5rem;
+
+  .badge {
+    margin-top: 2px;
+  }
+}
+
+.tooltip-badge-body {
+  background-color: $grey;
+  padding: .5rem 1.25rem;
+
+  .tooltip-badge-details {
+    margin: 0;
+    font-size: 80%;
+    line-height: 1.4;
+    text-align: left;
+
+    .tooltip-badge-entries {
+      margin-top: .25rem;
+      line-height: 1.5rem;
+
+      span {
+        font-size: 100%;
+      }
+    }
+  }
+}
+
+
+// Badges.
+.badge-item {
+  color: $legendary-color !important;
+  border: 1px solid $legendary-color;
+}
+
+.badge-query {
+  color: $set-color !important;
+  border: 1px solid $set-color;
+}
+
+.badge-field {
+  color: $rare-color !important;
+  border: 1px solid $rare-color;
+}
+
+.badge-entry {
+  color: $magic-color !important;
+  border: 1px solid $magic-color;
+}
+
+.badge-value {
+  color: $normal-color !important;
+  border: 1px solid $normal-color;
+}
+
+.badge-rule {
+  color: $unique-color !important;
+  border: 1px solid $unique-color;
+}
+
+.badge-parser {
+  color: $seraph-color !important;
+  border: 1px solid $seraph-color;
+}
+
+.badge-score {
+  color: $seraph-color !important;
+  border: 1px solid $seraph-color;
+}

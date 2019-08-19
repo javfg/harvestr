@@ -1,0 +1,33 @@
+# docker-compose file for harvestr
+# Author: Javier Ferrer
+# updated: 2021-03-15
+version: "3.5"
+
+services:
+  harvestr-server:
+    build:
+      context: './harvestr-server'
+    container_name: harvestr-server
+    networks:
+      - 'harvestr-network'
+    ports:
+      - "8081:8081"
+    restart: '${DOCKER_RESTART_POLICY:-unless-stopped}'
+    stop_grace_period: '${DOCKER_STOP_GRACE_PERIOD:-3s}'
+
+  harvestr:
+    build:
+      context: './harvestr'
+    container_name: harvestr-frontend
+    depends_on:
+      - 'harvestr-server'
+    networks:
+      - 'harvestr-network'
+    ports:
+      - "8080:80"
+    restart: '${DOCKER_RESTART_POLICY:-unless-stopped}'
+    stop_grace_period: '${DOCKER_STOP_GRACE_PERIOD:-3s}'
+
+
+networks:
+  harvestr-network:

@@ -1,0 +1,214 @@
+// Bootstrap colors.
+$success: #28a745;
+$danger: #dc3545;
+$warning: #f0ad4e;
+$info: #17a2b8;
+$dark: #343a40;
+$light: #f8f9fa;
+
+$primary: #F44336;
+$primary-light: #FFCDD2;
+$primary-dark: #D32F2F;
+
+$secondary: #01579b;
+$secondary-light: #4f83cc;
+$secondary-dark: #002f6c;
+
+// Muted background colors.
+$primary-muted: #77b9ff;
+$secondary-muted: #d2d6db;
+$success-muted: #8ce2a0;
+$warning-muted: #f9d977;
+$danger-muted: #f2a4ac;
+
+$grey: rgb(222, 226, 230);
+
+$seraph-color: #ff5e5e;
+$legendary-color: #ffa54a;
+$unique-color: #e6cc80;
+$set-color: #deadff;
+$rare-color: #85c2ff;
+$magic-color: #95fa88;
+$normal-color: #d1d1d1;
+
+$border-radius: 0;
+
+body, #app {
+  height: 100vh;
+  color: $dark;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: Noto Sans;
+}
+
+a, a:visited, a:hover, a:active {
+  text-decoration: none;
+}
+
+.clear-link, .clear-link:hover{
+  color: #212529;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.resize-none {
+  resize: none;
+}
+
+.small {
+  display: block;
+  line-height: 110%;
+}
+
+// Text ellipsis mixin:
+@mixin ellipsis() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-small {
+  display: block;
+  line-height: 1.2;
+  font-size: 80%;
+}
+
+.line-height-1 {
+  line-height: 1 !important;
+}
+
+.input-hidden {
+  width: 0px;
+  height: 0px;
+  overflow: hidden;
+}
+
+.border-radius {
+  border-radius: $border-radius !important;
+}
+
+.footer-block {
+  height: 114px;
+}
+
+.footer-container {
+  position: absolute;
+  width: 97%;
+  bottom: 1rem;
+}
+
+small {
+  display: block;
+  line-height: 1.4 !important;
+}
+
+.height-auto {
+  height: auto !important;
+}
+
+
+// Cooler buttons.
+// .btn-primary {
+//   border: none !important;
+//   border-bottom: 2px solid darken($primary, 20%) !important;
+
+//   &:hover, &:focus {
+//     box-shadow: none !important;
+//     background-color: lighten($primary, 10%) !important;
+//     border-bottom: 2px solid darken($primary, 10%) !important;
+//   }
+
+//   &:active {
+//     background-color: $primary !important;
+//     border: none !important;
+//     transform: translateY(3px);
+//   }
+// }
+
+
+// .btn-secondary {
+//   border: none !important;
+//   border-bottom: 2px solid darken($secondary, 20%) !important;
+
+//   &:hover, &:focus {
+//     box-shadow: none !important;
+//     background-color: lighten($secondary, 10%) !important;
+//     border-bottom: 2px solid darken($secondary, 10%) !important;
+//   }
+
+//   &:active {
+//     background-color: $secondary !important;
+//     border: none !important;
+//     transform: translateY(2px);
+//   }
+// }
+
+// .btn-dark {
+//   border: none !important;
+//   border-bottom: 2px solid darken($dark, 20%) !important;
+
+//   &:hover, &:focus {
+//     box-shadow: none !important;
+//     background-color: lighten($dark, 10%) !important;
+//     border-bottom: 2px solid darken($dark, 10%) !important;
+//   }
+
+//   &:active {
+//     background-color: $dark !important;
+//     border: none !important;
+//     transform: translateY(2px);
+//   }
+// }
+
+// .btn-warning {
+//   border: none !important;
+//   border-bottom: 2px solid darken($warning, 20%) !important;
+
+//   &:hover, &:focus {
+//     box-shadow: none !important;
+//     background-color: lighten($warning, 10%) !important;
+//     border-bottom: 2px solid darken($warning, 10%) !important;
+//   }
+
+//   &:active {
+//     background-color: $warning !important;
+//     border: none !important;
+//     transform: translateY(2px);
+//   }
+// }
+
+// .btn-success {
+//   border: none !important;
+//   border-bottom: 2px solid darken($success, 20%) !important;
+
+//   &:hover, &:focus {
+//     box-shadow: none !important;
+//     background-color: lighten($success, 10%) !important;
+//     border-bottom: 3px solid darken($success, 10%) !important;
+//   }
+
+//   &:active {
+//     background-color: $success !important;
+//     border: none !important;
+//     transform: translateY(2px);
+//   }
+// }
+
+// .btn-danger {
+//   border: none !important;
+//   border-bottom: 2px solid darken($danger, 20%) !important;
+
+//   &:hover, &:focus {
+//     box-shadow: none !important;
+//     background-color: lighten($danger, 10%) !important;
+//     border-bottom: 2px solid darken($danger, 10%) !important;
+//   }
+
+//   &:active {
+//     background-color: $danger !important;
+//     border: none !important;
+//     transform: translateY(2px);
+//   }
+// }

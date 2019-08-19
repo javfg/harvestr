@@ -1,0 +1,76 @@
+.modal-bg {
+  align-items: center;
+  // To allow for opaque children.
+  background-color: rgba(52, 58, 64, 0.66);
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 10;
+}
+
+.modal-box {
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 0 15px 0px $dark;
+  display: flex;
+  flex-direction: column;
+  height: 25rem;
+  justify-content: space-between;
+  width: 35rem;
+  z-index: 11;
+}
+
+.modal-btn {
+  position: relative;
+  bottom: 0rem;
+}
+
+.modal-stats {
+  display: flex;
+  flex-direction: column;
+}
+
+// Modal animations.
+.modal-enter {
+  opacity: 0;
+  visibility: visible;
+}
+
+.modal-enter-active {
+  opacity: 1;
+  pointer-events: none;
+  transition: opacity 250ms, transform 250ms !important;
+}
+
+.modal-enter-done {
+  visibility: visible;
+}
+
+.modal-exit {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-exit-active {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 250ms, transform 250ms !important;
+}
+
+.modal-exit-done {
+  visibility: hidden;
+}
+
+.modal-icon-blink {
+  animation: blinker 1000ms ease-in-out infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: .33;
+  }
+}

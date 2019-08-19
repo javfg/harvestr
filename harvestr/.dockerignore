@@ -1,0 +1,7 @@
+.cache
+node_modules
+.eslintrc
+dist
+docs
+.vscode
+prod

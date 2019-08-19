@@ -1,0 +1,46 @@
+// Leave animation.
+.move-exit {
+  opacity: 1;
+}
+
+.move-exit-active {
+  opacity: 0;
+  transition: 700ms ease-in-out;
+  transform: translateY(-23px);
+}
+
+
+// Expand animation.
+.expand-enter {
+  opacity: 0;
+  height: auto;
+  max-height: 0;
+}
+
+.expand-enter-active {
+  opacity: 1;
+  height: auto;
+  max-height: 600px;
+  transition: 500ms;
+}
+
+.expand-exit {
+  opacity: 1;
+  height: auto;
+  max-height: 600px;
+}
+
+.expand-exit-active {
+  opacity: 0;
+  height: auto;
+  max-height: 0;
+  transition: 500ms;
+}
+
+
+// Range select.
+input[type=range] {
+  margin-left: 1rem;
+  width: 75%;
+}
+

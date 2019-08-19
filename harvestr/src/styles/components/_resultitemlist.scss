@@ -1,0 +1,73 @@
+.table-container {
+  position: absolute;
+  top: 16rem;
+  bottom: 1rem;
+  left: .5rem;
+  right: .5rem;
+  overflow: scroll;
+}
+
+.td-normal {
+  min-width: 5rem;
+}
+
+.results-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  span {
+    @include ellipsis;
+  }
+
+  .results-field__table {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+// Smaller button for tooltips.
+.btn-tooltip {
+  align-self: start;
+  padding: 0 .1rem !important;
+  margin-left: .5rem;
+  height: .9rem;
+  line-height: 0 !important;
+
+  svg {
+    margin-left: -1px;
+    margin-top: -1px;
+    padding: .1rem 0;
+  }
+}
+
+.results-entry-table {
+  table-layout: auto;
+}
+
+.table-xs {
+  td {
+    padding: 0 .1rem;
+  }
+}
+
+.text-xs {
+  display: block;
+  line-height: 1.1;
+  font-size: 60%;
+  word-wrap: break-word;
+  word-break: break-all;
+  max-width: 20rem;
+}
+
+.might-overflow:hover {
+  text-overflow: clip;
+  word-wrap: break-word;
+  word-break: break-all;
+  white-space: normal;
+  min-width: 20rem;
+}
+
+.ellipsis {
+  @include ellipsis();
+}

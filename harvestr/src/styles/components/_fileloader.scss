@@ -1,0 +1,11 @@
+.cool-file-loader {
+  border: 1px solid $grey;
+  padding: .5rem;
+  width: 100%;
+}
+
+.cool-file-loader-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
