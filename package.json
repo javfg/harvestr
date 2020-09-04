@@ -14,7 +14,7 @@
     "async-es": "^2.6.1",
     "bootstrap": "^4.3.1",
     "moment": "^2.24.0",
-    "papaparse": "^4.6.3",
+    "papaparse": "^5.2.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^6.0.0",
